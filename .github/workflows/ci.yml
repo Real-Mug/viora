@@ -1,0 +1,46 @@
+# Gate on every pull request and every push to main.
+#
+# This runs the same checks as `npm run verify` locally, but as separate steps so
+# a failure names the stage that broke. The build here uses no NEXT_PUBLIC_BASE_PATH,
+# which matches the Hostinger production deployment (site served at the root);
+# the Pages preview build lives in deploy-pages.yml and sets its own base path.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build static export
+        env:
+          NEXT_PUBLIC_SITE_URL: https://viorarental.com
+          NEXT_PUBLIC_CONTENT_MODE: placeholder
+          DEPLOY_TARGET: static
+        run: npm run build
+
+      - name: Audit the export
+        run: npm run audit:site

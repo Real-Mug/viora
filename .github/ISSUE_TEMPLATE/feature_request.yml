@@ -1,0 +1,38 @@
+name: Feature or content request
+description: A new page, section, copy change or capability.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What is missing today, and who it affects (guest, owner, admin).
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you want instead
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of change
+      options:
+        - Copy or content
+        - New page or section
+        - Design or layout
+        - Functionality (forms, booking, integrations)
+        - SEO or performance
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: Links, references, competitor examples, deadlines.
