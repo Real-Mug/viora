@@ -71,6 +71,30 @@ browser forms need no changes — they post wherever the env var points.
 
 ---
 
+## Shareable preview (GitHub Pages)
+
+**https://real-mug.github.io/viora-site/**
+
+This repository is private, and GitHub Pages will not publish from a private
+repository on a free plan. So the split is:
+
+| Repo | Visibility | Holds |
+| --- | --- | --- |
+| `Real-Mug/viora` | private | the source (this repo) |
+| `Real-Mug/viora-site` | public | the built `./out`, served by Pages |
+
+`.github/workflows/publish-site.yml` rebuilds and force-pushes `./out` to
+`viora-site` on every push to `main`. It authenticates with an ed25519 deploy
+key — the public half is a read-write deploy key on `viora-site`, the private
+half is the `SITE_DEPLOY_KEY` secret here. `GITHUB_TOKEN` cannot be used because
+it is scoped to a single repository.
+
+Never commit to `viora-site` by hand; the workflow force-pushes over it. The
+preview builds with `NEXT_PUBLIC_BASE_PATH=/viora-site`, which is why every link
+must go through `<Link>` or `next/image` rather than a hardcoded `/about`.
+
+---
+
 ## Content: everything the team edits
 
 All editable content lives in `src/content/` and `src/lib/config/site.ts`. No
