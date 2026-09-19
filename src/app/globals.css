@@ -1,0 +1,413 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   VioraRental design system
+   --------------------------------------------------------------------------
+   One warm, quiet palette: deep evergreen as the brand colour, brass as the
+   single accent, and a linen paper tone instead of pure white. Type pairs a
+   serif display face with a neutral text face. Everything else in the site
+   composes these tokens - no component invents its own colour or spacing.
+   ========================================================================== */
+
+@theme {
+  /* --- Brand ------------------------------------------------------------ */
+  --color-evergreen-50: #f1f6f4;
+  --color-evergreen-100: #dde9e5;
+  --color-evergreen-200: #bcd3cc;
+  --color-evergreen-300: #8fb3a8;
+  --color-evergreen-400: #628e81;
+  --color-evergreen-500: #437063;
+  --color-evergreen-600: #32594e;
+  --color-evergreen-700: #284740;
+  --color-evergreen-800: #1e3a34;
+  --color-evergreen-900: #162b27;
+  --color-evergreen-950: #0b1a17;
+
+  --color-brass-50: #fbf7ef;
+  --color-brass-100: #f5ebd7;
+  --color-brass-200: #e9d5ae;
+  --color-brass-300: #dcbb7e;
+  --color-brass-400: #cea057;
+  --color-brass-500: #b98a4b;
+  --color-brass-600: #9d7040;
+  --color-brass-700: #7d5735;
+  --color-brass-800: #664731;
+  --color-brass-900: #563c2c;
+
+  /* --- Neutrals: warm, never cold grey ---------------------------------- */
+  --color-linen-50: #fdfcfa;
+  --color-linen-100: #faf8f4;
+  --color-linen-200: #f2efe8;
+  --color-linen-300: #e6e1d7;
+  --color-linen-400: #cdc6b9;
+  --color-linen-500: #a9a294;
+  --color-linen-600: #7d766a;
+  --color-linen-700: #5a544b;
+  --color-linen-800: #3a3631;
+  --color-linen-900: #23211e;
+  --color-linen-950: #141312;
+
+  /* --- Semantic --------------------------------------------------------- */
+  --color-surface: var(--color-linen-100);
+  --color-surface-raised: #ffffff;
+  --color-surface-sunken: var(--color-linen-200);
+  --color-ink: var(--color-linen-900);
+  --color-ink-muted: var(--color-linen-700);
+  --color-ink-subtle: var(--color-linen-600);
+  --color-line: var(--color-linen-300);
+  --color-line-strong: var(--color-linen-400);
+
+  --color-success: #2f6f4f;
+  --color-warning: #8a6116;
+  --color-danger: #99302a;
+
+  /* --- Typography ------------------------------------------------------- */
+  --font-display: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --text-display-xl: clamp(2.75rem, 1.6rem + 4.6vw, 5rem);
+  --text-display-xl--line-height: 1.04;
+  --text-display-xl--letter-spacing: -0.028em;
+
+  --text-display-lg: clamp(2.25rem, 1.4rem + 3.2vw, 3.75rem);
+  --text-display-lg--line-height: 1.08;
+  --text-display-lg--letter-spacing: -0.024em;
+
+  --text-display-md: clamp(1.875rem, 1.3rem + 2.1vw, 2.75rem);
+  --text-display-md--line-height: 1.14;
+  --text-display-md--letter-spacing: -0.02em;
+
+  --text-display-sm: clamp(1.5rem, 1.2rem + 1.1vw, 2rem);
+  --text-display-sm--line-height: 1.2;
+  --text-display-sm--letter-spacing: -0.015em;
+
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.16em;
+
+  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.65;
+
+  /* --- Shape and depth -------------------------------------------------- */
+  --radius-card: 1rem;
+  --radius-panel: 1.5rem;
+
+  --shadow-subtle: 0 1px 2px rgb(20 19 18 / 0.04), 0 2px 8px rgb(20 19 18 / 0.04);
+  --shadow-card: 0 1px 2px rgb(20 19 18 / 0.05), 0 8px 24px -8px rgb(20 19 18 / 0.12);
+  --shadow-lifted: 0 2px 4px rgb(20 19 18 / 0.05), 0 20px 40px -16px rgb(20 19 18 / 0.2);
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  :root {
+    color-scheme: light;
+    /* Fixed header height, used by scroll-margin so anchors are not hidden. */
+    --header-height: 4.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --header-height: 5.25rem;
+    }
+  }
+
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Anchor targets clear the sticky header. */
+  :target {
+    scroll-margin-top: calc(var(--header-height) + 1.5rem);
+  }
+
+  /* A single, visible focus treatment everywhere. */
+  :focus-visible {
+    outline: 2px solid var(--color-evergreen-700);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Only remove the default ring where we draw our own. */
+  button:focus:not(:focus-visible),
+  a:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::selection {
+    background-color: var(--color-evergreen-800);
+    color: var(--color-linen-50);
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Respect a reduced-motion preference: animation is decoration here. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+@layer utilities {
+  /* Page gutter: 16px on phones, growing to a centred max-width container. */
+  .container-page {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 80rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-page {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .container-prose {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 44rem;
+  }
+
+  /* Vertical rhythm for full-width sections. */
+  .section-y {
+    padding-block: clamp(3.5rem, 2rem + 6vw, 7rem);
+  }
+
+  .section-y-tight {
+    padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+  }
+
+  .eyebrow {
+    font-size: var(--text-eyebrow);
+    line-height: var(--text-eyebrow--line-height);
+    letter-spacing: var(--text-eyebrow--letter-spacing);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* A hairline rule that reads as a brass keyline. */
+  .rule-brass {
+    background-image: linear-gradient(
+      to right,
+      var(--color-brass-400),
+      color-mix(in oklab, var(--color-brass-400) 20%, transparent)
+    );
+  }
+
+  /* Readable text over photography, without washing the image out. */
+  .scrim-bottom {
+    background-image: linear-gradient(
+      to top,
+      rgb(11 26 23 / 0.88) 0%,
+      rgb(11 26 23 / 0.6) 28%,
+      rgb(11 26 23 / 0.18) 58%,
+      rgb(11 26 23 / 0.04) 100%
+    );
+  }
+
+  .scrim-hero {
+    background-image: linear-gradient(
+      to top,
+      rgb(11 26 23 / 0.82) 0%,
+      rgb(11 26 23 / 0.55) 40%,
+      rgb(11 26 23 / 0.38) 100%
+    );
+  }
+
+  /* Card hover lift, kept cheap: transform and shadow only. */
+  .lift {
+    transition:
+      transform 420ms var(--ease-out-quint),
+      box-shadow 420ms var(--ease-out-quint);
+  }
+
+  .lift:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Entrance animation used sparingly on hero copy. */
+  .rise-in {
+    animation: rise-in 700ms var(--ease-out-quint) both;
+  }
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Skip link: off-screen until focused. */
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: 0.75rem;
+    z-index: 100;
+    transform: translateY(-160%);
+    transition: transform 160ms var(--ease-out-quint);
+  }
+
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+
+  /* Clamp helpers for card copy, so grids stay aligned. */
+  .clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .clamp-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+  }
+
+  /* Horizontal scrollers (mobile galleries) snap without a scrollbar. */
+  .snap-row {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .snap-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .snap-row > * {
+    scroll-snap-align: start;
+  }
+}
+
+/* ==========================================================================
+   Long-form article typography
+   ========================================================================== */
+
+@layer components {
+  .prose-viora {
+    color: var(--color-ink-muted);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+
+  .prose-viora > * + * {
+    margin-top: 1.25rem;
+  }
+
+  .prose-viora h2 {
+    font-size: var(--text-display-sm);
+    line-height: var(--text-display-sm--line-height);
+    letter-spacing: var(--text-display-sm--letter-spacing);
+    color: var(--color-ink);
+    margin-top: 2.75rem;
+  }
+
+  .prose-viora h3 {
+    font-size: 1.375rem;
+    line-height: 1.3;
+    color: var(--color-ink);
+    margin-top: 2rem;
+  }
+
+  .prose-viora ul,
+  .prose-viora ol {
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .prose-viora ul {
+    list-style: disc;
+  }
+
+  .prose-viora ol {
+    list-style: decimal;
+  }
+
+  .prose-viora li::marker {
+    color: var(--color-brass-500);
+  }
+
+  .prose-viora a {
+    color: var(--color-evergreen-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  .prose-viora a:hover {
+    color: var(--color-evergreen-800);
+  }
+
+  .prose-viora strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+}

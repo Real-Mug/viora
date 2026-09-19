@@ -1,0 +1,59 @@
+# Builds the site and publishes it to the gh-pages branch.
+#
+# This is the preview deployment at https://real-mug.github.io/viora/.
+# The production deployment to Hostinger is a manual upload of ./out into
+# public_html - see README.md. The two differ only in NEXT_PUBLIC_BASE_PATH and
+# NEXT_PUBLIC_SITE_URL, which is why both are set explicitly here.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build static export
+        env:
+          # A GitHub Pages project site is served from /<repo>/, not the root.
+          NEXT_PUBLIC_BASE_PATH: /viora
+          NEXT_PUBLIC_SITE_URL: https://real-mug.github.io/viora
+          NEXT_PUBLIC_CONTENT_MODE: placeholder
+          DEPLOY_TARGET: static
+        run: npm run build
+
+      - name: Audit the export
+        env:
+          NEXT_PUBLIC_BASE_PATH: /viora
+        run: npm run audit:site
+
+      - name: Publish to gh-pages
+        run: |
+          # .nojekyll ships in public/ and is required: Jekyll would otherwise
+          # strip the /_next directory and the site would load unstyled.
+          test -f out/.nojekyll || touch out/.nojekyll
+          cd out
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Deploy ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:gh-pages

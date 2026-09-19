@@ -1,0 +1,30 @@
+{
+  "name": "viorarental",
+  "version": "0.1.0",
+  "private": true,
+  "description": "VioraRental - Professional short-term rental co-hosting and property management in Canada.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "audit:site": "node scripts/audit.mjs",
+    "verify": "npm run typecheck && npm run build && npm run audit:site",
+    "placeholders": "node scripts/generate-placeholders.mjs && node scripts/generate-raster.mjs"
+  },
+  "dependencies": {
+    "next": "15.5.4",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.1.13",
+    "@types/node": "24.5.2",
+    "@types/react": "19.1.13",
+    "@types/react-dom": "19.1.9",
+    "tailwindcss": "4.1.13",
+    "typescript": "5.9.2"
+  }
+}
