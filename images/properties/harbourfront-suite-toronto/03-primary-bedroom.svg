@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1067" width="1600" height="1067" role="img" aria-label="Placeholder property image">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#23211e"/>
+      <stop offset="62%" stop-color="#5a544b"/>
+      <stop offset="100%" stop-color="#b98a4b"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5a544b"/>
+      <stop offset="100%" stop-color="#23211e"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.769" cy="0.249" r="0.55">
+      <stop offset="0%" stop-color="#e6e1d7" stop-opacity="0.55"/>
+      <stop offset="55%" stop-color="#e6e1d7" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#e6e1d7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="42"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.055"/></feComponentTransfer>
+    </filter>
+    <filter id="soften"><feGaussianBlur stdDeviation="12.8"/></filter>
+  </defs>
+
+  <rect width="1600" height="1067" fill="url(#sky)"/>
+  <rect width="1600" height="1067" fill="url(#glow)"/>
+
+  <g filter="url(#soften)" opacity="0.85">
+    <path d="M0 488 Q 448 414 832 488 T 1600 467 L 1600 1067 L 0 1067 Z" fill="#23211e" opacity="0.4"/>
+    <path d="M0 519 Q 576 573 1024 519 T 1600 551 L 1600 1067 L 0 1067 Z" fill="#23211e" opacity="0.55"/>
+  </g>
+
+  <rect y="566" width="1600" height="501" fill="url(#ground)"/>
+  <rect y="566" width="1600" height="1.5" fill="#e6e1d7" opacity="0.45"/>
+
+  <rect width="1600" height="1067" filter="url(#grain)" opacity="0.5"/>
+</svg>
