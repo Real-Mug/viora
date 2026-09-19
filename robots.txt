@@ -1,0 +1,9 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /owner/
+Disallow: /admin/
+Disallow: /thank-you/
+
+Host: https://real-mug.github.io/viora/
+Sitemap: https://real-mug.github.io/viora/sitemap.xml
