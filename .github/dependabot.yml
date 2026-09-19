@@ -1,0 +1,27 @@
+# Keeps npm dependencies and workflow actions current.
+#
+# Grouped so a routine week produces two PRs rather than a dozen. Major bumps
+# are kept separate because Next.js and React majors need a real review.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    commit-message:
+      prefix: deps
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: ci
