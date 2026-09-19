@@ -34,7 +34,7 @@ links, images without alt text, and orphan pages.
 - **`NEXT_PUBLIC_SITE_URL` drives canonicals, the sitemap and structured data.**
   Getting it wrong is the most damaging config mistake available, so never
   hardcode an origin in a component.
-- **`NEXT_PUBLIC_BASE_PATH`** is empty for the real domain and `/viora` for the
+- **`NEXT_PUBLIC_BASE_PATH`** is empty for the real domain and `/viora-site` for the
   Pages preview. Use Next's `<Link>` and `next/image` so the prefix is applied
   for you; a hand-written `href="/about"` breaks the preview.
 - **Static export has no server.** No route handlers, no on-demand image

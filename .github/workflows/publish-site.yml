@@ -1,0 +1,70 @@
+# Builds the static export and publishes it to the public Real-Mug/viora-site
+# repository, which is what GitHub Pages actually serves.
+#
+# This repository is private, and GitHub Pages will not publish from a private
+# repository on a free plan. So the source stays here and only the built HTML is
+# pushed to the public repo - the same split used by rental / rental-site.
+#
+# The push authenticates with an ed25519 deploy key: the public half is a
+# read-write deploy key on viora-site, the private half is the SITE_DEPLOY_KEY
+# secret here. GITHUB_TOKEN cannot be used because it is scoped to this repo only.
+name: Publish site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-site
+  cancel-in-progress: true
+
+env:
+  # A Pages project site is served from /<repo>/, so the export must be built
+  # with that prefix. The repo serving Pages is viora-site, not viora.
+  NEXT_PUBLIC_BASE_PATH: /viora-site
+  NEXT_PUBLIC_SITE_URL: https://real-mug.github.io/viora-site
+  NEXT_PUBLIC_CONTENT_MODE: placeholder
+  DEPLOY_TARGET: static
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build static export
+        run: npm run build
+
+      - name: Audit the export
+        run: npm run audit:site
+
+      - name: Publish to viora-site
+        run: |
+          # .nojekyll ships in public/ and is required: Jekyll would otherwise
+          # strip the /_next directory and the site would load unstyled.
+          test -f out/.nojekyll || touch out/.nojekyll
+
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SITE_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null
+
+          cd out
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Deploy ${GITHUB_SHA::7}"
+          # Force-push: viora-site is a build artefact, its history is disposable.
+          git push -f git@github.com:Real-Mug/viora-site.git HEAD:main
