@@ -72,7 +72,7 @@ export function PropertyGallery({ images, propertyName }: { images: PropertyImag
         ))}
       </div>
 
-      <div className="snap-row -mx-4 gap-2 px-4 sm:hidden">
+      <div className="snap-row -mx-4 flex gap-2 px-4 sm:hidden">
         {images.map((image, index) => (
           <GalleryTile
             key={image.src}

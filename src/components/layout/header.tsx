@@ -32,6 +32,7 @@ export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   // Close everything on navigation.
   useEffect(() => {
@@ -39,10 +40,31 @@ export function Header() {
   }, [pathname]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
+    // One listener drives both the header's solid/transparent state and the
+    // progress hairline, and it is rAF-throttled so scrolling stays smooth.
+    let frame = 0;
+
+    const measure = () => {
+      frame = 0;
+      const top = window.scrollY;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      setScrolled(top > 8);
+      setProgress(scrollable > 0 ? Math.min(1, Math.max(0, top / scrollable)) : 0);
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(measure);
+    };
+
+    measure();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   // Lock body scroll only while the drawer is open.
@@ -58,18 +80,18 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 border-b transition-colors duration-300",
+        "sticky top-0 z-50 border-b transition-all duration-300 [transition-timing-function:var(--ease-out-quint)]",
         scrolled
-          ? "border-line bg-surface/92 backdrop-blur-md supports-[backdrop-filter]:bg-surface/80"
+          ? "border-line bg-surface/92 shadow-subtle backdrop-blur-md supports-[backdrop-filter]:bg-surface/80"
           : "border-transparent bg-surface",
       )}
     >
       <div className="container-page">
-        <div className="flex h-[var(--header-height)] items-center justify-between gap-6">
+        <div className="flex h-[var(--header-height)] items-center justify-between gap-4">
           <Logo />
 
-          <nav aria-label="Main" className="hidden lg:block">
-            <ul className="flex items-center gap-0.5">
+          <nav aria-label="Main" className="hidden min-w-0 xl:block">
+            <ul className="flex items-center">
               {mainNav.map((item) =>
                 item.children?.length ? (
                   <DesktopDropdown key={item.href} item={item} pathname={pathname} />
@@ -78,10 +100,12 @@ export function Header() {
                     <Link
                       href={item.href}
                       aria-current={isActive(pathname, item.href) ? "page" : undefined}
+                      data-active={isActive(pathname, item.href) ? "true" : undefined}
                       className={cn(
-                        "inline-flex h-10 items-center rounded-full px-3.5 text-[0.9375rem] transition-colors duration-200",
+                        "nav-underline relative inline-flex h-10 items-center whitespace-nowrap rounded-full px-2.5 2xl:px-3.5",
+                        "text-[0.9375rem] transition-colors duration-200",
                         isActive(pathname, item.href)
-                          ? "text-evergreen-900 font-medium"
+                          ? "font-medium text-evergreen-900"
                           : "text-ink-muted hover:text-evergreen-900",
                       )}
                     >
@@ -93,11 +117,14 @@ export function Header() {
             </ul>
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
-            <ButtonLink href={CTA.secondary.href} variant="secondary" size="sm">
-              {CTA.secondary.label}
-            </ButtonLink>
-            <ButtonLink href={CTA.primary.href} size="sm">
+          <div className="hidden shrink-0 items-center gap-2.5 xl:flex">
+            {/* Secondary CTA reappears only when there is genuinely room for it. */}
+            <div className="hidden 2xl:block">
+              <ButtonLink href={CTA.secondary.href} variant="secondary" size="sm">
+                {CTA.secondary.label}
+              </ButtonLink>
+            </div>
+            <ButtonLink href={CTA.primary.href} size="sm" className="transition-transform duration-300 hover:-translate-y-0.5">
               {CTA.primary.label}
             </ButtonLink>
           </div>
@@ -107,12 +134,24 @@ export function Header() {
             onClick={() => setMobileOpen(true)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-navigation"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-linen-200 lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-all duration-300 hover:border-line-strong hover:bg-linen-200 active:scale-95 xl:hidden"
           >
             <IconMenu className="h-5 w-5" />
             <span className="sr-only">Open menu</span>
           </button>
         </div>
+      </div>
+
+      {/*
+        Reading-progress hairline along the bottom edge of the header.
+        Purely decorative, so it is hidden from assistive tech; scaleX keeps it
+        on the compositor instead of animating width.
+      */}
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px overflow-hidden">
+        <div
+          className="h-full origin-left bg-brass-500/80"
+          style={{ transform: `scaleX(${progress})` }}
+        />
       </div>
 
       <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} pathname={pathname} />
@@ -183,8 +222,10 @@ function DesktopDropdown({ item, pathname }: { item: NavLink; pathname: string }
         aria-expanded={open}
         aria-controls={menuId}
         onClick={() => setOpen((value) => !value)}
+        data-active={active ? "true" : undefined}
         className={cn(
-          "inline-flex h-10 items-center gap-1 rounded-full px-3.5 text-[0.9375rem] transition-colors duration-200",
+          "nav-underline relative inline-flex h-10 items-center gap-1 whitespace-nowrap rounded-full px-2.5 2xl:px-3.5",
+          "text-[0.9375rem] transition-colors duration-200",
           active ? "font-medium text-evergreen-900" : "text-ink-muted hover:text-evergreen-900",
         )}
       >
@@ -200,6 +241,7 @@ function DesktopDropdown({ item, pathname }: { item: NavLink; pathname: string }
         className={cn(
           "absolute left-1/2 top-[calc(100%+0.5rem)] w-[26rem] -translate-x-1/2",
           "rounded-[var(--radius-panel)] border border-line bg-surface-raised p-2 shadow-lifted",
+          open && "menu-in",
         )}
       >
         <ul className="grid gap-0.5">
@@ -209,7 +251,8 @@ function DesktopDropdown({ item, pathname }: { item: NavLink; pathname: string }
                 href={child.href}
                 aria-current={pathname === child.href ? "page" : undefined}
                 className={cn(
-                  "block rounded-xl px-3.5 py-2.5 transition-colors duration-200",
+                  "block rounded-xl px-3.5 py-2.5 transition-all duration-200",
+                  "hover:translate-x-0.5",
                   pathname === child.href ? "bg-evergreen-50" : "hover:bg-linen-200",
                 )}
               >
@@ -263,7 +306,7 @@ function MobileNav({
   return (
     <div
       id="mobile-navigation"
-      className={cn("lg:hidden", !open && "pointer-events-none")}
+      className={cn("xl:hidden", !open && "pointer-events-none")}
       aria-hidden={!open}
     >
       {/* Backdrop */}

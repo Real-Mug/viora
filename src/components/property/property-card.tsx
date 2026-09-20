@@ -1,8 +1,9 @@
 import { Img as Image } from "@/components/ui/image";
 import Link from "next/link";
 
+import { RatingPill } from "@/components/property/external-rating";
 import { SampleBadge } from "@/components/ui/badge";
-import { IconBath, IconBed, IconGuests, IconMapPin } from "@/components/ui/icons";
+import { IconBath, IconBed, IconExternal, IconGuests, IconMapPin } from "@/components/ui/icons";
 import { cn } from "@/lib/cn";
 import { formatDollars } from "@/lib/pricing/quote";
 import type { Property } from "@/lib/types/property";
@@ -67,6 +68,18 @@ export function PropertyCard({
             </span>
           </div>
         ) : null}
+
+        {property.externalRating ? (
+          <div className="absolute right-3 top-3">
+            <RatingPill rating={property.externalRating} />
+          </div>
+        ) : null}
+
+        {/* A gentle wash on hover, so the whole card reacts rather than just the photo. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-evergreen-950/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        />
       </div>
 
       <div className="flex flex-1 flex-col p-5">
@@ -111,13 +124,29 @@ export function PropertyCard({
           </div>
         </dl>
 
-        <div className="mt-5 flex items-end justify-between gap-4 border-t border-line pt-4">
+        <div className="mt-5 flex items-center justify-between gap-4 border-t border-line pt-4">
           <p className="text-sm text-ink-subtle">{PROPERTY_TYPE_LABELS[property.propertyType]}</p>
+
           {rate ? (
             <p className="text-right text-sm text-ink-muted">
               <span className="text-[1.0625rem] font-semibold text-ink">{formatDollars(rate)}</span>
               <span className="text-ink-subtle"> / night from</span>
             </p>
+          ) : property.airbnbUrl ? (
+            <a
+              href={property.airbnbUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "relative z-10 inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-line bg-surface px-3 py-1.5",
+                "text-[0.8125rem] font-medium text-evergreen-800 transition-all duration-300",
+                "hover:-translate-y-0.5 hover:border-evergreen-300 hover:bg-evergreen-50 hover:shadow-subtle",
+              )}
+            >
+              Check on Airbnb
+              <IconExternal className="h-3.5 w-3.5" />
+              <span className="sr-only"> - {property.name} (opens in a new tab)</span>
+            </a>
           ) : (
             <p className="text-right text-sm text-ink-subtle">Rates on request</p>
           )}

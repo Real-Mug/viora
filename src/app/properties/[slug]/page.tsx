@@ -8,6 +8,7 @@ import { PropertyCard } from "@/components/property/property-card";
 import { PropertyGallery } from "@/components/property/property-gallery";
 import { PropertyAnalytics } from "@/components/property/property-analytics";
 import { CtaBand } from "@/components/marketing/sections";
+import { ExternalRatingPanel } from "@/components/property/external-rating";
 import { AggregateSummary, NoReviewsYet, ReviewList } from "@/components/reviews/review-list";
 import { JsonLd } from "@/components/seo/json-ld";
 import { SampleBadge } from "@/components/ui/badge";
@@ -360,7 +361,16 @@ export default async function PropertyPage({ params }: Params) {
                 </Note>
               </section>
 
-              {/* Reviews */}
+              {/* Platform rating, then reviews written on this site. */}
+              {property.externalRating ? (
+                <div className="pt-10">
+                  <ExternalRatingPanel
+                    rating={property.externalRating}
+                    propertyName={property.name}
+                  />
+                </div>
+              ) : null}
+
               <section className="pt-10" aria-labelledby="reviews">
                 <h2 id="reviews" className="text-display-sm text-ink">
                   Reviews
@@ -368,6 +378,20 @@ export default async function PropertyPage({ params }: Params) {
                 <div className="mt-6">
                   {propertyReviews.length ? (
                     <ReviewList reviews={propertyReviews} showProperty={false} columns={2} />
+                  ) : property.externalRating ? (
+                    <p className="rounded-[var(--radius-card)] border border-dashed border-line-strong bg-linen-200/50 px-5 py-4 text-sm leading-relaxed text-ink-muted">
+                      The written reviews for this home are on its{" "}
+                      <a
+                        href={property.externalRating.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-evergreen-800 underline underline-offset-4 hover:text-evergreen-900"
+                      >
+                        Airbnb listing
+                      </a>
+                      , and we have not republished them here. We only publish a review once we can
+                      point to where it came from, so the rating above links straight to the source.
+                    </p>
                   ) : (
                     <NoReviewsYet context="property" />
                   )}

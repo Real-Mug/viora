@@ -45,6 +45,21 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-CA" className={`${inter.variable} ${fraunces.variable}`}>
+      <head>
+        {/*
+          Marks the document as scripted before first paint.
+          The scroll-reveal start state in globals.css is scoped to `.js`, so
+          without this class every revealable element renders in its final,
+          visible state. That is the safe default: if scripting is off, or the
+          observer never runs, the page is still fully readable rather than
+          stuck at opacity 0.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add("js")`,
+          }}
+        />
+      </head>
       <body className="flex min-h-dvh flex-col antialiased">
         {/* Organization and WebSite schema belong on every page, once. */}
         <JsonLd data={graph(organizationSchema(), websiteSchema())} />

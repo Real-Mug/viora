@@ -137,6 +137,28 @@ export type AvailabilityCalendar = {
 
 export type PropertyStatus = "draft" | "active" | "paused" | "archived";
 
+/**
+ * A rating carried over from the platform a property is listed on.
+ *
+ * This is NOT a VioraRental average and is deliberately not mixed into one: it
+ * is a figure copied from a public listing page, so it is stored with the URL a
+ * reader can check it against and the date it was last verified. Guest reviews
+ * written on this site live in src/content/reviews.ts and are averaged
+ * separately.
+ */
+export type ExternalRating = {
+  source: "airbnb" | "vrbo" | "booking.com" | "google";
+  /** Overall score out of 5, exactly as the source publishes it. */
+  ratingValue: number;
+  reviewCount: number;
+  /** The public listing page this figure came from. */
+  url: string;
+  /** Per-category sub-scores where the source publishes them. */
+  categories?: { label: string; value: number }[];
+  /** ISO date this figure was last checked against the source. */
+  checkedAt: string;
+};
+
 export type Property = {
   id: string;
   /** URL segment: /properties/[slug] */
@@ -180,6 +202,9 @@ export type Property = {
   directBookingUrl?: string;
   /** Option B in the architecture: the property's own standalone website. */
   externalWebsiteUrl?: string;
+
+  /** Verified rating from the listing platform, shown with a link to its source. */
+  externalRating?: ExternalRating;
 
   status: PropertyStatus;
   /** Shown first on the properties index. */

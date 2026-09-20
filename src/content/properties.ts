@@ -8,19 +8,27 @@ import type { Property, PropertyImage } from "@/lib/types/property";
  * here is hardcoded into a component, and the repository in src/lib/data is
  * built to page and filter over hundreds of these records.
  *
- * IMPORTANT - every record below is marked `isPlaceholder: true`.
+ * Both records below are REAL inventory, transcribed from the live Airbnb
+ * listings linked in `airbnbUrl`. Neither carries `isPlaceholder`, so both are
+ * published in every content mode.
  *
- * They exist so the site can be reviewed and demonstrated before real inventory
- * is onboarded. They are NOT claims about properties under management:
- *   - with NEXT_PUBLIC_CONTENT_MODE=placeholder (the default) they render with
- *     a visible "Sample listing" label,
- *   - with NEXT_PUBLIC_CONTENT_MODE=live they disappear from the site, the
- *     sitemap and the structured data entirely.
+ * Rules that apply when editing these, or adding a third:
  *
- * To publish a real property: copy a record, replace every field with verified
- * information, swap the images for real photography, and DELETE the
- * `isPlaceholder` flag. Ratings and reviews live in src/content/reviews.ts and
- * must come from a real source.
+ *   - Copy comes from the host's own listing text. Do not embellish it.
+ *   - `pricing` is deliberately ABSENT. Airbnb only quotes a nightly rate once
+ *     dates are chosen, so there is no single honest "from $X" to publish. The
+ *     UI handles a missing `pricing` by pointing at Airbnb for live rates.
+ *     Do not invent a number to fill the gap.
+ *   - `houseRules` repeats only what the host states in their own description.
+ *     The full rule set lives on Airbnb and is linked from the property page.
+ *   - `externalRating` is copied from the public listing page, with the date it
+ *     was checked. Re-check it when you touch the record; it will drift.
+ *   - Photography is the host's own, exported from the listing and converted to
+ *     WebP at 1600x1067.
+ *
+ * To add a property: copy a record, replace every field with verified
+ * information, and put photography in /public/images/properties/<slug>/.
+ * Guest reviews live in src/content/reviews.ts and must come from a real source.
  */
 
 /** Builds the image set for a property from the files in /public/images/properties/<slug>/. */
@@ -35,465 +43,179 @@ function imageSet(slug: string, shots: { file: string; alt: string; caption?: st
   }));
 }
 
-const TIMESTAMP = "2026-01-15T00:00:00.000Z";
+const CREATED = "2026-09-20T00:00:00.000Z";
+const UPDATED = "2026-09-20T00:00:00.000Z";
+
+/** The date the Airbnb ratings below were last read off the listing pages. */
+const RATINGS_CHECKED = "2026-09-20";
 
 export const propertyRecords: Property[] = [
   {
-    id: "prop-001",
-    slug: "lakefront-retreat-muskoka",
-    name: "Lakefront Retreat, Muskoka",
+    id: "prop-kitchener-townhome",
+    slug: "modern-2br-townhome-kitchener",
+    name: "Modern 2-Bedroom Townhome, Kitchener",
     summary:
-      "A four-bedroom lakefront cottage on a quiet bay, set up for multi-family stays and long weekends on the water.",
+      "A three-level townhome in a quiet, family-friendly Kitchener neighbourhood, with free parking, a dedicated workspace and self check-in. Sleeps four.",
     description: [
-      "This cottage sits on a sheltered stretch of shoreline with a private dock, a deep swimming area and western exposure that holds the light well into the evening. The main floor opens onto a covered deck, so meals and mornings tend to move outside for most of the season.",
-      "Inside, the layout separates the sleeping wing from the living space, which makes it workable for two families sharing the week. The kitchen is fully equipped for cooking at home, and there is a dedicated workspace for anyone extending a stay into the working week.",
-      "VioraRental coordinates turnovers, guest communication and seasonal maintenance for this property, including dock and water-system checks at opening and close.",
+      "A modern three-level townhouse in a quiet, family-friendly neighbourhood in Kitchener. A private ground-floor entrance leads up to a bright open-concept living room, dining area, fully equipped kitchen and a powder room on the second floor. The third floor holds two bedrooms and a full bathroom, which keeps the sleeping space separate from the living space.",
+      "Free parking, high-speed Wi-Fi, a dedicated workspace, in-suite laundry and self check-in are all included, so the home works equally well for families, couples, business travellers and extended stays.",
+      "It sits minutes from Highway 7/8 and the 401, Fairview Park Mall, Chicopee Ski & Summer Resort, and the Waterloo Region's universities and business centres.",
+      "Please note the property is a three-level townhouse with stairs between every floor, so it may not suit guests with limited mobility.",
     ],
     location: {
-      city: "Muskoka Lakes",
-      region: "Muskoka",
+      city: "Kitchener",
+      region: "Waterloo Region",
       province: "ON",
       country: "CA",
-      coordinates: { lat: 45.1, lng: -79.6 },
-      locationSlug: "muskoka",
+      coordinates: { lat: 43.38036, lng: -80.47895 },
       neighbourhoodNotes: [
-        "About two and a half hours north of Toronto by car; a vehicle is necessary.",
-        "The nearest village for groceries, fuel and a liquor store is a ten-minute drive.",
-        "Cell coverage is reliable at the cottage but patchy on some of the surrounding side roads.",
-      ],
-    },
-    propertyType: "cottage",
-    bedrooms: 4,
-    beds: 6,
-    bathrooms: 2,
-    maxGuests: 8,
-    amenities: amenities(
-      "wifi", "heating", "washer", "dryer", "linens", "self-check-in",
-      "full-kitchen", "dishwasher", "coffee-maker", "dining-area",
-      "waterfront", "firepit", "bbq", "patio",
-      "smart-tv", "board-games",
-      "free-parking",
-      "dedicated-workspace",
-      "smoke-alarm", "carbon-monoxide-alarm", "fire-extinguisher", "first-aid-kit",
-    ),
-    images: imageSet("lakefront-retreat-muskoka", [
-      { file: "01-exterior-lake-view.svg", alt: "Placeholder image for the lakefront exterior and dock at the Muskoka cottage" },
-      { file: "02-living-room.svg", alt: "Placeholder image for the open-plan living room with lake-facing windows" },
-      { file: "03-kitchen.svg", alt: "Placeholder image for the cottage kitchen and dining area" },
-      { file: "04-primary-bedroom.svg", alt: "Placeholder image for the primary bedroom" },
-      { file: "05-deck.svg", alt: "Placeholder image for the covered deck overlooking the bay" },
-    ]),
-    houseRules: [
-      "No parties or events.",
-      "No smoking anywhere on the property, indoors or out.",
-      "Quiet hours between 11pm and 7am, in line with the local noise bylaw.",
-      "Maximum eight guests, including children.",
-      "Fires in the fire pit only, and only when no fire ban is in effect.",
-    ],
-    pricing: {
-      currency: "CAD",
-      baseNightlyRate: 475,
-      weekendNightlyRate: 545,
-      seasonalRates: [
-        { label: "Peak summer", startDate: "2026-06-26", endDate: "2026-09-07", nightlyRate: 695 },
-      ],
-      cleaningFee: 225,
-      serviceFeeRate: 0.05,
-      taxRate: 0.13,
-      minimumStayNights: 3,
-      guestsIncluded: 6,
-      additionalGuestFee: 35,
-      petsAllowed: true,
-      petFee: 75,
-      discounts: [{ label: "Weekly stay discount", type: "weekly", rate: 0.1 }],
-    },
-    status: "active",
-    featured: true,
-    seoTitle: "Lakefront Cottage Rental in Muskoka, Ontario",
-    seoDescription:
-      "Four-bedroom lakefront cottage in Muskoka with a private dock, sleeping eight. Professionally managed by VioraRental.",
-    createdAt: TIMESTAMP,
-    updatedAt: TIMESTAMP,
-    isPlaceholder: true,
-  },
-
-  {
-    id: "prop-002",
-    slug: "harbourfront-suite-toronto",
-    name: "Harbourfront Suite, Toronto",
-    summary:
-      "A two-bedroom condo near the waterfront, built for business travellers and couples who want to walk to most of downtown.",
-    description: [
-      "A corner suite on a high floor with south-facing windows over the harbour. The building sits within walking distance of Union Station, the financial district and the waterfront trail, which makes it a practical base for both short business trips and city weekends.",
-      "The second bedroom works as either a guest room or a quiet office, and the suite has a dedicated desk with an external monitor. Building amenities include a gym and a concierge desk.",
-      "VioraRental handles guest messaging, check-in coordination and cleaning for this suite, and manages the building access process with the concierge on each arrival.",
-    ],
-    location: {
-      city: "Toronto",
-      region: "Harbourfront",
-      province: "ON",
-      country: "CA",
-      coordinates: { lat: 43.64, lng: -79.38 },
-      locationSlug: "toronto",
-      neighbourhoodNotes: [
-        "Ten minutes on foot to Union Station for the UP Express to Pearson.",
-        "Streetcar and subway access within a few blocks.",
-        "Paid underground parking is available in the building; street parking is limited.",
-      ],
-    },
-    propertyType: "condo",
-    bedrooms: 2,
-    beds: 3,
-    bathrooms: 2,
-    maxGuests: 4,
-    amenities: amenities(
-      "wifi", "heating", "air-conditioning", "washer", "dryer", "linens", "self-check-in",
-      "full-kitchen", "dishwasher", "coffee-maker", "dining-area",
-      "balcony",
-      "smart-tv", "gym-access",
-      "elevator", "step-free-entry",
-      "dedicated-workspace", "monitor",
-      "smoke-alarm", "carbon-monoxide-alarm", "fire-extinguisher",
-    ),
-    images: imageSet("harbourfront-suite-toronto", [
-      { file: "01-living-room.svg", alt: "Placeholder image for the living room with floor-to-ceiling harbour views" },
-      { file: "02-kitchen.svg", alt: "Placeholder image for the open kitchen and island seating" },
-      { file: "03-primary-bedroom.svg", alt: "Placeholder image for the primary bedroom" },
-      { file: "04-workspace.svg", alt: "Placeholder image for the dedicated workspace with an external monitor" },
-      { file: "05-balcony.svg", alt: "Placeholder image for the balcony overlooking the harbour" },
-    ]),
-    houseRules: [
-      "No parties or events; the building enforces a strict noise policy.",
-      "No smoking, including on the balcony.",
-      "Quiet hours between 11pm and 7am.",
-      "Maximum four guests. Visitors must be registered with the concierge.",
-      "No pets, as required by the building.",
-    ],
-    pricing: {
-      currency: "CAD",
-      baseNightlyRate: 245,
-      weekendNightlyRate: 285,
-      cleaningFee: 120,
-      serviceFeeRate: 0.05,
-      taxRate: 0.13,
-      minimumStayNights: 2,
-      guestsIncluded: 2,
-      additionalGuestFee: 30,
-      petsAllowed: false,
-      discounts: [
-        { label: "Weekly stay discount", type: "weekly", rate: 0.12 },
-        { label: "Monthly stay discount", type: "monthly", rate: 0.2 },
-      ],
-    },
-    status: "active",
-    featured: true,
-    seoTitle: "Harbourfront Condo Rental, Downtown Toronto",
-    seoDescription:
-      "Two-bedroom condo near Toronto's waterfront with harbour views, a workspace and walkable downtown access. Managed by VioraRental.",
-    createdAt: TIMESTAMP,
-    updatedAt: TIMESTAMP,
-    isPlaceholder: true,
-  },
-
-  {
-    id: "prop-003",
-    slug: "mountain-view-chalet-whistler",
-    name: "Mountain View Chalet, Whistler",
-    summary:
-      "A three-bedroom chalet a short shuttle from the lifts, with a hot tub and a drying room for ski gear.",
-    description: [
-      "Built for winter use, with a mud room and drying space by the entry, in-floor heating through the main level and a hot tub on the rear deck. The chalet is on a quiet residential road with a shuttle stop nearby and a ten-minute drive to the village.",
-      "The main living space centres on a wood stove and opens to a deck with mountain views. In summer, the same location puts guests close to the bike park, the lake loop and the valley trail network.",
-      "VioraRental coordinates seasonal turnovers for this property, including hot-tub servicing, snow clearing and winter access checks.",
-    ],
-    location: {
-      city: "Whistler",
-      region: "Sea to Sky",
-      province: "BC",
-      country: "CA",
-      coordinates: { lat: 50.11, lng: -122.95 },
-      locationSlug: "whistler",
-      neighbourhoodNotes: [
-        "Roughly two hours from Vancouver on the Sea to Sky Highway; winter tyres are required in season.",
-        "The village shuttle stop is a short walk from the door.",
-        "Groceries and rentals are in Whistler Village, about ten minutes by car.",
-      ],
-    },
-    propertyType: "cabin",
-    bedrooms: 3,
-    beds: 5,
-    bathrooms: 2,
-    maxGuests: 6,
-    amenities: amenities(
-      "wifi", "heating", "washer", "dryer", "linens", "self-check-in",
-      "full-kitchen", "dishwasher", "coffee-maker", "dining-area",
-      "hot-tub", "patio", "bbq",
-      "smart-tv", "sound-system", "board-games",
-      "free-parking", "ev-charger",
-      "smoke-alarm", "carbon-monoxide-alarm", "fire-extinguisher", "first-aid-kit",
-    ),
-    images: imageSet("mountain-view-chalet-whistler", [
-      { file: "01-exterior.svg", alt: "Placeholder image for the chalet exterior in winter" },
-      { file: "02-living-room.svg", alt: "Placeholder image for the living room with a wood stove" },
-      { file: "03-kitchen.svg", alt: "Placeholder image for the chalet kitchen" },
-      { file: "04-bedroom.svg", alt: "Placeholder image for a bedroom with mountain views" },
-      { file: "05-hot-tub.svg", alt: "Placeholder image for the hot tub on the rear deck" },
-    ]),
-    houseRules: [
-      "No parties or events.",
-      "No smoking anywhere on the property.",
-      "Quiet hours between 10pm and 7am, including the hot tub deck.",
-      "Maximum six guests.",
-      "Ski and bike gear belongs in the drying room, not the living areas.",
-    ],
-    pricing: {
-      currency: "CAD",
-      baseNightlyRate: 520,
-      weekendNightlyRate: 610,
-      seasonalRates: [
-        { label: "Winter peak", startDate: "2026-12-18", endDate: "2027-01-05", nightlyRate: 895 },
-      ],
-      cleaningFee: 260,
-      serviceFeeRate: 0.05,
-      taxRate: 0.155,
-      minimumStayNights: 3,
-      guestsIncluded: 4,
-      additionalGuestFee: 45,
-      petsAllowed: false,
-      discounts: [{ label: "Weekly stay discount", type: "weekly", rate: 0.1 }],
-    },
-    status: "active",
-    featured: true,
-    seoTitle: "Three-Bedroom Chalet Rental in Whistler, BC",
-    seoDescription:
-      "Three-bedroom Whistler chalet with a hot tub, drying room and shuttle access to the lifts. Professionally managed by VioraRental.",
-    createdAt: TIMESTAMP,
-    updatedAt: TIMESTAMP,
-    isPlaceholder: true,
-  },
-
-  {
-    id: "prop-004",
-    slug: "plateau-apartment-montreal",
-    name: "Plateau Apartment, Montreal",
-    summary:
-      "A bright one-bedroom on a tree-lined street in the Plateau, with a balcony and a walkable neighbourhood.",
-    description: [
-      "A second-floor apartment in a classic Montreal walk-up, with tall windows, original mouldings and a small front balcony over the street. The Plateau location puts cafes, bakeries and Mont-Royal within a few minutes on foot.",
-      "The space suits couples and solo travellers on longer stays; there is a proper desk, fast internet and a well-equipped kitchen for cooking at home. The building has an exterior staircase typical of the neighbourhood, so it is not step-free.",
-      "VioraRental manages guest communication, self check-in and cleaning coordination for this apartment, with bilingual messaging for guests arriving from within Quebec.",
-    ],
-    location: {
-      city: "Montreal",
-      region: "Le Plateau-Mont-Royal",
-      province: "QC",
-      country: "CA",
-      coordinates: { lat: 45.52, lng: -73.58 },
-      locationSlug: "montreal",
-      neighbourhoodNotes: [
-        "Two metro stations are within a fifteen-minute walk.",
-        "Street parking requires a visitor permit; the listing includes instructions.",
-        "Quebec regulates short-term rentals through a provincial registration regime; the registration number is displayed on the listing.",
-      ],
-    },
-    propertyType: "apartment",
-    bedrooms: 1,
-    beds: 1,
-    bathrooms: 1,
-    maxGuests: 2,
-    amenities: amenities(
-      "wifi", "heating", "air-conditioning", "washer", "linens", "self-check-in",
-      "full-kitchen", "coffee-maker", "dining-area",
-      "balcony",
-      "smart-tv",
-      "street-parking",
-      "dedicated-workspace",
-      "smoke-alarm", "carbon-monoxide-alarm", "fire-extinguisher",
-    ),
-    images: imageSet("plateau-apartment-montreal", [
-      { file: "01-living-room.svg", alt: "Placeholder image for the living room with tall windows" },
-      { file: "02-kitchen.svg", alt: "Placeholder image for the apartment kitchen" },
-      { file: "03-bedroom.svg", alt: "Placeholder image for the bedroom" },
-      { file: "04-balcony.svg", alt: "Placeholder image for the front balcony over the street" },
-    ]),
-    houseRules: [
-      "No parties or events; this is a residential building with neighbours above and below.",
-      "No smoking.",
-      "Quiet hours between 10pm and 8am.",
-      "Maximum two guests.",
-      "No pets.",
-    ],
-    pricing: {
-      currency: "CAD",
-      baseNightlyRate: 155,
-      cleaningFee: 85,
-      serviceFeeRate: 0.05,
-      taxRate: 0.1498,
-      minimumStayNights: 2,
-      guestsIncluded: 2,
-      petsAllowed: false,
-      discounts: [{ label: "Monthly stay discount", type: "monthly", rate: 0.25 }],
-    },
-    status: "active",
-    seoTitle: "One-Bedroom Apartment Rental, Plateau Montreal",
-    seoDescription:
-      "Bright one-bedroom apartment in Montreal's Plateau with a balcony and workspace, suited to longer stays. Managed by VioraRental.",
-    createdAt: TIMESTAMP,
-    updatedAt: TIMESTAMP,
-    isPlaceholder: true,
-  },
-
-  {
-    id: "prop-005",
-    slug: "bow-river-townhouse-calgary",
-    name: "Bow River Townhouse, Calgary",
-    summary:
-      "A three-bedroom townhouse close to the river pathway, with a garage and a ground-floor bedroom.",
-    description: [
-      "An inner-city townhouse a few minutes from the Bow River pathway, with a private garage and a fenced patio. The ground floor includes a bedroom and full bathroom, which makes the property workable for guests who would rather not manage stairs.",
-      "The layout suits families and relocating professionals on medium-length stays: a full kitchen, in-suite laundry and a living area that is genuinely usable for a group of five or six.",
-      "VioraRental coordinates cleaning, maintenance and guest support for this property, including snow clearing on the walkway through the winter months.",
-    ],
-    location: {
-      city: "Calgary",
-      region: "Inner city",
-      province: "AB",
-      country: "CA",
-      coordinates: { lat: 51.05, lng: -114.07 },
-      locationSlug: "calgary",
-      neighbourhoodNotes: [
-        "A short walk to the Bow River pathway and a ten-minute drive to downtown.",
-        "Calgary requires a business licence for short-term rentals; the licence number is displayed on the listing.",
-        "The garage fits one vehicle, with additional street parking available.",
+        "Minutes from Highway 7/8 and Highway 401, so the drive to Toronto or Guelph is straightforward.",
+        "Fairview Park Mall, shopping and restaurants are a short drive away.",
+        "Chicopee Ski & Summer Resort is nearby, as are the University of Waterloo, Wilfrid Laurier and Conestoga College.",
       ],
     },
     propertyType: "townhouse",
-    bedrooms: 3,
-    beds: 4,
-    bathrooms: 3,
-    maxGuests: 6,
+    bedrooms: 2,
+    beds: 2,
+    bathrooms: 2.5,
+    maxGuests: 4,
     amenities: amenities(
-      "wifi", "heating", "air-conditioning", "washer", "dryer", "linens", "self-check-in",
-      "full-kitchen", "dishwasher", "coffee-maker", "dining-area",
-      "patio", "bbq",
+      "wifi", "air-conditioning", "heating", "washer", "dryer", "linens",
+      "self-check-in", "private-entrance", "bathtub", "hair-dryer", "iron", "long-term-stays",
+      "full-kitchen", "dishwasher", "dining-area", "refrigerator", "microwave", "oven", "kettle", "toaster",
+      "patio",
       "smart-tv",
-      "ground-floor-bedroom", "step-free-entry",
-      "garage", "street-parking",
+      "free-parking", "street-parking",
       "dedicated-workspace",
-      "smoke-alarm", "carbon-monoxide-alarm", "fire-extinguisher", "first-aid-kit",
+      "smoke-alarm", "carbon-monoxide-alarm",
     ),
-    images: imageSet("bow-river-townhouse-calgary", [
-      { file: "01-exterior.svg", alt: "Placeholder image for the townhouse exterior" },
-      { file: "02-living-room.svg", alt: "Placeholder image for the living room" },
-      { file: "03-kitchen.svg", alt: "Placeholder image for the kitchen and dining area" },
-      { file: "04-bedroom.svg", alt: "Placeholder image for the ground-floor bedroom" },
+    images: imageSet("modern-2br-townhome-kitchener", [
+      { file: "01-living-room.webp", alt: "Open-concept living room with a sofa, armchair and wall-mounted television" },
+      { file: "02-living-dining.webp", alt: "Living and dining area on the main level of the townhome" },
+      { file: "03-kitchen.webp", alt: "Fully equipped kitchen with full-size appliances and counter space" },
+      { file: "04-kitchen-dining.webp", alt: "Kitchen counter and adjoining dining seating" },
+      { file: "05-bedroom-one.webp", alt: "Primary bedroom with a queen bed and room-darkening shades" },
+      { file: "06-bedroom-two.webp", alt: "Second bedroom with a double bed and clothing storage" },
+      { file: "07-bathroom.webp", alt: "Full bathroom with a bathtub and shower" },
+      { file: "08-workspace.webp", alt: "Dedicated workspace with a desk and chair" },
+      { file: "09-laundry.webp", alt: "In-suite washer and dryer" },
+      { file: "10-exterior.webp", alt: "Exterior of the townhome showing the private entrance" },
     ]),
     houseRules: [
-      "No parties or events.",
-      "No smoking indoors or on the patio.",
-      "Quiet hours between 10pm and 7am.",
-      "Maximum six guests.",
-      "Pets considered on request; ask before booking.",
+      "Self check-in, so arrival is easy at any time after the check-in hour.",
+      "Quiet hours are observed - the townhouse sits in a family-friendly community and the hosts ask guests to respect the neighbours.",
+      "Maximum four guests.",
+      "The home has stairs between all three levels and may not suit guests with limited mobility.",
+      "The full, current house rules are on the Airbnb listing.",
     ],
-    pricing: {
-      currency: "CAD",
-      baseNightlyRate: 215,
-      weekendNightlyRate: 240,
-      cleaningFee: 140,
-      serviceFeeRate: 0.05,
-      taxRate: 0.09,
-      minimumStayNights: 2,
-      guestsIncluded: 4,
-      additionalGuestFee: 25,
-      petsAllowed: true,
-      petFee: 60,
-      discounts: [
-        { label: "Weekly stay discount", type: "weekly", rate: 0.1 },
-        { label: "Monthly stay discount", type: "monthly", rate: 0.22 },
+    airbnbUrl: "https://www.airbnb.ca/rooms/1526494136675906363",
+    externalRating: {
+      source: "airbnb",
+      ratingValue: 4.83,
+      reviewCount: 12,
+      url: "https://www.airbnb.ca/rooms/1526494136675906363",
+      categories: [
+        { label: "Cleanliness", value: 4.5 },
+        { label: "Accuracy", value: 4.8 },
+        { label: "Check-in", value: 4.9 },
+        { label: "Communication", value: 5.0 },
+        { label: "Location", value: 4.7 },
+        { label: "Value", value: 4.8 },
       ],
+      checkedAt: RATINGS_CHECKED,
     },
     status: "active",
-    seoTitle: "Three-Bedroom Townhouse Rental, Calgary",
+    featured: true,
+    seoTitle: "Modern 2-Bedroom Townhome in Kitchener, Ontario",
     seoDescription:
-      "Three-bedroom Calgary townhouse near the Bow River pathway with a garage and ground-floor bedroom. Managed by VioraRental.",
-    createdAt: TIMESTAMP,
-    updatedAt: TIMESTAMP,
-    isPlaceholder: true,
+      "Three-level, two-bedroom townhome in Kitchener with free parking, a dedicated workspace, in-suite laundry and self check-in. Sleeps four. Managed by VioraRental.",
+    createdAt: CREATED,
+    updatedAt: UPDATED,
   },
 
   {
-    id: "prop-006",
-    slug: "west-end-loft-vancouver",
-    name: "West End Loft, Vancouver",
+    id: "prop-waterloo-house",
+    slug: "spacious-3br-house-waterloo",
+    name: "Spacious 3-Bedroom House, Waterloo",
     summary:
-      "A one-bedroom loft between downtown and the seawall, set up for longer city stays.",
+      "A pet-friendly three-bedroom house minutes from the University of Waterloo and WLU, with two living areas, a fenced backyard and driveway parking. Sleeps six.",
     description: [
-      "A quiet loft in the West End, a few blocks from English Bay and within walking distance of downtown. The main space has high ceilings and a large window wall, with the sleeping area set back from the living room.",
-      "The property is aimed at longer stays: a real kitchen, in-suite laundry, a dedicated desk and a building with an elevator and secure entry. The seawall is close enough for a daily walk or run.",
-      "VioraRental manages this loft end to end, including guest screening, check-in coordination, cleaning and the building's rental registration requirements.",
-      "This listing also has its own standalone website; the link is on this page.",
+      "A spacious three-bedroom home in Waterloo, set up for families, visiting parents and students, business travellers and researchers, and long-term stays.",
+      "The house has two separate living areas, a fully stocked kitchen with a coffee and tea station, three bedrooms with queen beds and fresh linens, and a dedicated workspace with fast Wi-Fi for anyone working remotely. Outside there is a private, fully fenced backyard and driveway parking for multiple cars.",
+      "It sits in a quiet, family-friendly neighbourhood minutes from the University of Waterloo and Wilfrid Laurier, while staying close to Uptown Waterloo's restaurants and attractions. Pets are welcome.",
+      "Check-in is self-service via a keypad, with the access code shared a few days before arrival. Please note the property has stairs and an exterior security camera for safety.",
     ],
     location: {
-      city: "Vancouver",
-      region: "West End",
-      province: "BC",
+      city: "Waterloo",
+      region: "Waterloo Region",
+      province: "ON",
       country: "CA",
-      coordinates: { lat: 49.29, lng: -123.13 },
-      locationSlug: "vancouver",
+      coordinates: { lat: 43.4927, lng: -80.5055 },
       neighbourhoodNotes: [
-        "A ten-minute walk to English Bay and the seawall.",
-        "Vancouver restricts short-term rentals to a host's principal residence and requires a city licence; the licence number is displayed on the listing.",
-        "Parking is by paid underground space, arranged on request.",
+        "Minutes from the University of Waterloo and Wilfrid Laurier University.",
+        "Uptown Waterloo's restaurants, shops and attractions are a short drive away.",
+        "A quiet, residential street with driveway parking for several vehicles.",
       ],
     },
-    propertyType: "loft",
-    bedrooms: 1,
-    beds: 2,
-    bathrooms: 1,
-    maxGuests: 3,
+    propertyType: "house",
+    bedrooms: 3,
+    beds: 3,
+    bathrooms: 2.5,
+    maxGuests: 6,
     amenities: amenities(
-      "wifi", "heating", "washer", "dryer", "linens", "self-check-in",
-      "full-kitchen", "dishwasher", "coffee-maker", "dining-area",
-      "balcony",
-      "smart-tv", "gym-access",
-      "elevator",
-      "dedicated-workspace", "monitor",
-      "smoke-alarm", "carbon-monoxide-alarm", "fire-extinguisher",
+      "wifi", "air-conditioning", "heating", "washer", "dryer", "linens",
+      "self-check-in", "private-entrance", "bathtub", "hair-dryer", "iron",
+      "long-term-stays", "pets-allowed",
+      "full-kitchen", "dishwasher", "coffee-maker", "dining-area", "refrigerator", "microwave", "oven", "kettle",
+      "backyard", "bbq",
+      "smart-tv",
+      "free-parking",
+      "dedicated-workspace",
+      "smoke-alarm", "carbon-monoxide-alarm", "fire-extinguisher", "first-aid-kit",
+      "security-camera", "noise-monitor",
     ),
-    images: imageSet("west-end-loft-vancouver", [
-      { file: "01-living-room.svg", alt: "Placeholder image for the loft living room and window wall" },
-      { file: "02-kitchen.svg", alt: "Placeholder image for the loft kitchen" },
-      { file: "03-sleeping-area.svg", alt: "Placeholder image for the sleeping area" },
-      { file: "04-workspace.svg", alt: "Placeholder image for the dedicated workspace" },
+    images: imageSet("spacious-3br-house-waterloo", [
+      { file: "01-living-room.webp", alt: "Main living room with sectional seating, a television and an open dining area" },
+      { file: "02-second-living.webp", alt: "Second living area with natural light and additional seating" },
+      { file: "03-kitchen.webp", alt: "Fully stocked kitchen with full-size appliances" },
+      { file: "04-dining.webp", alt: "Dining area with a table and seating" },
+      { file: "05-bedroom-one.webp", alt: "First bedroom with a queen bed" },
+      { file: "06-bedroom-two.webp", alt: "Second bedroom with a queen bed" },
+      { file: "07-bedroom-three.webp", alt: "Third bedroom with a queen bed" },
+      { file: "08-bathroom.webp", alt: "Full bathroom with a bathtub" },
+      { file: "09-workspace.webp", alt: "Dedicated home-office workspace with a desk" },
+      { file: "10-backyard.webp", alt: "Private, fully fenced backyard" },
+      { file: "11-exterior.webp", alt: "Exterior of the house with driveway parking" },
     ]),
     houseRules: [
-      "No parties or events.",
-      "No smoking.",
-      "Quiet hours between 10pm and 7am.",
-      "Maximum three guests.",
-      "No pets, as required by the building.",
+      "Self check-in by keypad. The access code is shared a few days before arrival.",
+      "Pets are welcome.",
+      "Maximum six guests.",
+      "The property has stairs, and an exterior security camera is in use for safety.",
+      "The full, current house rules are on the Airbnb listing.",
     ],
-    pricing: {
-      currency: "CAD",
-      baseNightlyRate: 235,
-      cleaningFee: 110,
-      serviceFeeRate: 0.05,
-      taxRate: 0.155,
-      minimumStayNights: 3,
-      guestsIncluded: 2,
-      additionalGuestFee: 30,
-      petsAllowed: false,
-      discounts: [{ label: "Monthly stay discount", type: "monthly", rate: 0.25 }],
+    airbnbUrl: "https://www.airbnb.ca/rooms/1263786824290672744",
+    externalRating: {
+      source: "airbnb",
+      ratingValue: 4.75,
+      reviewCount: 16,
+      url: "https://www.airbnb.ca/rooms/1263786824290672744",
+      categories: [
+        { label: "Cleanliness", value: 4.3 },
+        { label: "Accuracy", value: 4.8 },
+        { label: "Check-in", value: 4.9 },
+        { label: "Communication", value: 5.0 },
+        { label: "Location", value: 4.9 },
+        { label: "Value", value: 4.8 },
+      ],
+      checkedAt: RATINGS_CHECKED,
     },
-    // Demonstrates Option B in the architecture: a property with its own site.
-    // Replace with the real domain, or delete the field to hide the button.
-    externalWebsiteUrl: "", // PLACEHOLDER: e.g. https://westendloft.ca
     status: "active",
-    seoTitle: "One-Bedroom Loft Rental, Vancouver West End",
+    featured: true,
+    seoTitle: "Spacious 3-Bedroom House in Waterloo, Ontario",
     seoDescription:
-      "One-bedroom West End loft near English Bay and the seawall, set up for longer Vancouver stays. Managed by VioraRental.",
-    createdAt: TIMESTAMP,
-    updatedAt: TIMESTAMP,
-    isPlaceholder: true,
+      "Pet-friendly three-bedroom house in Waterloo with two living areas, a fenced backyard, dedicated workspace and driveway parking. Sleeps six. Managed by VioraRental.",
+    createdAt: CREATED,
+    updatedAt: UPDATED,
   },
 ];

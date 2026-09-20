@@ -3,12 +3,14 @@ import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { PageHero } from "@/components/marketing/hero";
 import { CtaBand } from "@/components/marketing/sections";
+import { PropertyReviewBlock } from "@/components/reviews/property-reviews";
 import { AggregateSummary, NoReviewsYet, ReviewList } from "@/components/reviews/review-list";
+import { ReviewMarquee } from "@/components/reviews/review-marquee";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
-import { reviews } from "@/lib/data";
+import { Reveal } from "@/components/ui/reveal";
+import { properties, reviews } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo/metadata";
-import { REVIEW_SOURCE_LABELS } from "@/lib/types/review";
 import { breadcrumbSchema, graph, webPageSchema, type Crumb } from "@/lib/seo/schema";
 
 const crumbs: Crumb[] = [
@@ -19,20 +21,26 @@ const crumbs: Crumb[] = [
 export const metadata: Metadata = pageMetadata({
   title: "Reviews from Guests and Property Owners",
   description:
-    "Reviews of VioraRental-managed properties and our co-hosting service, published with their source attached.",
+    "Reviews of VioraRental-managed properties and our co-hosting service, grouped by property and published with their source attached.",
   path: "/reviews",
 });
 
 export default async function ReviewsPage() {
   const all = await reviews.list();
+  const managed = await properties.list({ status: ["active"], pageSize: 100 });
 
-  // Group by source so the provenance of each review is obvious at a glance.
-  const bySource = new Map<string, typeof all>();
+  // Two distinct things share this page, and conflating them would be
+  // misleading: reviews of a specific property, and reviews of VioraRental as
+  // a service. Anything carrying a propertySlug belongs to the former.
+  const byProperty = new Map<string, typeof all>();
   for (const review of all) {
-    const bucket = bySource.get(review.source);
+    if (!review.propertySlug) continue;
+    const bucket = byProperty.get(review.propertySlug);
     if (bucket) bucket.push(review);
-    else bySource.set(review.source, [review]);
+    else byProperty.set(review.propertySlug, [review]);
   }
+
+  const companyReviews = all.filter((review) => !review.propertySlug);
 
   return (
     <>
@@ -41,7 +49,7 @@ export default async function ReviewsPage() {
           webPageSchema({
             name: "Reviews from Guests and Property Owners",
             description:
-              "Verified reviews of VioraRental-managed properties, shown with the platform they came from.",
+              "Verified reviews of VioraRental-managed properties, grouped by property and shown with the platform they came from.",
             path: "/reviews",
             crumbs,
           }),
@@ -52,7 +60,7 @@ export default async function ReviewsPage() {
       <PageHero
         eyebrow="Reviews"
         title="What guests and owners say"
-        description="Every review here is published with its source attached, so you can check it rather than take our word for it."
+        description="Reviews are grouped under the property they describe, and every rating links back to the listing it came from - so you can check it rather than take our word for it."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
       >
         {all.length > 0 ? (
@@ -62,48 +70,99 @@ export default async function ReviewsPage() {
         ) : null}
       </PageHero>
 
-      <Section>
-        <Container>
-          {all.length > 0 ? (
-            <div className="grid gap-14">
-              {[...bySource.entries()].map(([source, items]) => (
-                <section key={source} aria-labelledby={`source-${source}`}>
-                  <SectionHeading
-                    id={`source-${source}`}
-                    title={REVIEW_SOURCE_LABELS[source as keyof typeof REVIEW_SOURCE_LABELS] ?? source}
-                    size="md"
-                    level={2}
-                  />
-                  <ReviewList reviews={items} className="mt-8" />
-                </section>
+      {/* ---------------------------------------------------------------- *
+       * Reviews grouped by property.
+       * Renders whether or not written reviews exist: the Airbnb rating per
+       * property is real, and each block links out to the listing.
+       * ---------------------------------------------------------------- */}
+      {managed.items.length > 0 ? (
+        <Section>
+          <Container>
+            <Reveal>
+              <SectionHeading
+                eyebrow="By property"
+                title="Reviews for the homes we manage"
+                description="Each home is rated on the platform it is listed on. Ratings below are Airbnb's own figures for that listing, not an average we calculated."
+                size="md"
+                level={2}
+              />
+            </Reveal>
+
+            <div className="mt-12 grid gap-16">
+              {managed.items.map((property) => (
+                <PropertyReviewBlock
+                  key={property.slug}
+                  property={property}
+                  reviews={byProperty.get(property.slug) ?? []}
+                />
               ))}
             </div>
-          ) : (
-            <>
-              <NoReviewsYet />
+          </Container>
+        </Section>
+      ) : null}
 
-              <div className="mx-auto mt-14 max-w-2xl">
-                <h2 className="text-display-sm text-ink">How we will publish reviews</h2>
-                <div className="prose-viora mt-5">
-                  <p>
-                    When reviews do appear here, each one will carry the platform it came from -
-                    Airbnb, another booking platform, or a direct guest - and a link to the original
-                    wherever the source makes one public.
-                  </p>
-                  <p>
-                    We will publish critical reviews alongside positive ones. A page of nothing but
-                    five stars tells a reader very little except that someone curated it.
-                  </p>
-                  <p>
-                    We will not display an average rating until there are enough verified reviews for
-                    the number to mean something, and the structured data this page emits follows the
-                    same rule. An average built from two reviews is a statistic in search results and
-                    nothing more.
-                  </p>
-                </div>
-              </div>
-            </>
+      {/* ---------------------------------------------------------------- *
+       * Reviews of the service itself, kept separate from property reviews.
+       * ---------------------------------------------------------------- */}
+      <Section tone="sunken">
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="About working with us"
+              title="Reviews of VioraRental"
+              description="Feedback about the co-hosting service from the owners and guests we work with, as opposed to any single property."
+              size="md"
+              level={2}
+            />
+          </Reveal>
+
+          {companyReviews.length > 0 ? (
+            <div className="mt-12">
+              {/* The wall scrolls on its own and pauses when you hover it. */}
+              <ReviewMarquee reviews={companyReviews} />
+
+              {/* A static, readable copy for anyone who would rather not chase
+                  moving text - and the version that prints. */}
+              <details className="mx-auto mt-10 max-w-3xl">
+                <summary className="cursor-pointer text-sm font-medium text-evergreen-800 underline-offset-4 hover:underline">
+                  Read all {companyReviews.length} as a plain list
+                </summary>
+                <ReviewList reviews={companyReviews} columns={2} className="mt-6" />
+              </details>
+            </div>
+          ) : (
+            <Reveal className="mt-12 block">
+              <NoReviewsYet />
+            </Reveal>
           )}
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <div className="mx-auto max-w-2xl">
+            <h2 className="text-display-sm text-ink">How we publish reviews</h2>
+            <div className="prose-viora mt-5">
+              <p>
+                Each review carries the platform it came from - Airbnb, another booking platform, or
+                a direct guest - and a link to the original wherever the source makes one public.
+              </p>
+              <p>
+                Ratings shown next to a property are the platform&rsquo;s own published figures for
+                that listing, recorded with the date we last checked them. They are not averaged
+                together with anything else, and they are not an average we calculated.
+              </p>
+              <p>
+                We publish critical reviews alongside positive ones. A page of nothing but five
+                stars tells a reader very little except that someone curated it.
+              </p>
+              <p>
+                We do not display an overall VioraRental average until there are enough verified
+                reviews for the number to mean something, and the structured data this page emits
+                follows the same rule.
+              </p>
+            </div>
+          </div>
         </Container>
       </Section>
 
