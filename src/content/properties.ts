@@ -68,6 +68,7 @@ export const propertyRecords: Property[] = [
       province: "ON",
       country: "CA",
       coordinates: { lat: 43.38036, lng: -80.47895 },
+      locationSlug: "waterloo-region",
       neighbourhoodNotes: [
         "Minutes from Highway 7/8 and Highway 401, so the drive to Toronto or Guelph is straightforward.",
         "Fairview Park Mall, shopping and restaurants are a short drive away.",
@@ -151,6 +152,7 @@ export const propertyRecords: Property[] = [
       province: "ON",
       country: "CA",
       coordinates: { lat: 43.4927, lng: -80.5055 },
+      locationSlug: "waterloo-region",
       neighbourhoodNotes: [
         "Minutes from the University of Waterloo and Wilfrid Laurier University.",
         "Uptown Waterloo's restaurants, shops and attractions are a short drive away.",

@@ -1,23 +1,18 @@
 import NextImage, { type ImageProps } from "next/image";
 
-import { withBasePath } from "@/lib/config/env";
-
 /**
  * Image wrapper.
  *
- * Next.js applies `basePath` to routes, scripts and stylesheets, but NOT to the
- * `src` of an image when `images.unoptimized` is set - the optimizer normally
- * does that rewriting, and the static export has no optimizer. Left alone,
- * every image 404s on a sub-path deployment such as a GitHub Pages project site.
+ * All image rendering goes through here rather than importing `next/image`
+ * directly, so there is one place to change how images are resolved.
  *
- * So all image rendering goes through here rather than importing `next/image`
- * directly. It is a no-op when the site is served from a domain root.
+ * The deployment sub-path (`/viora-site` on GitHub Pages) and the responsive
+ * `srcset` are both handled by the custom loader in src/lib/image-loader.ts,
+ * which next.config.ts wires up for the static build. A loader returns the
+ * final URL, so prefixing here as well would double the sub-path.
  *
- * Absolute URLs and data URIs are passed through untouched.
+ * See scripts/generate-image-variants.mjs for where the variants come from.
  */
-export function Img({ src, ...props }: ImageProps) {
-  const resolved =
-    typeof src === "string" && src.startsWith("/") ? withBasePath(src) : src;
-
-  return <NextImage src={resolved} {...props} />;
+export function Img(props: ImageProps) {
+  return <NextImage {...props} />;
 }

@@ -27,9 +27,24 @@ const nextConfig: NextConfig = {
   // Static hosts serve /about/index.html rather than /about, so emit directories.
   trailingSlash: isStatic,
   images: {
-    // The static exporter cannot run the on-demand optimizer. Source images are
-    // pre-optimised (see docs/IMAGES.md) and served directly.
-    unoptimized: isStatic,
+    /**
+     * The static exporter cannot run the on-demand optimizer, and the usual
+     * answer - `unoptimized: true` - makes next/image emit one `src` and no
+     * `srcset`, so a phone downloads the full 1600px original.
+     *
+     * Instead a custom loader maps each requested width onto a variant that
+     * `scripts/generate-image-variants.mjs` pre-rendered at build time, and
+     * next/image builds a normal srcset from it. The Node target keeps the
+     * built-in optimizer, which does the same job on demand.
+     *
+     * `deviceSizes` must stay in step with WIDTHS in that script: a width
+     * listed here with no generated file falls back to the full-size original.
+     */
+    ...(isStatic
+      ? { loader: "custom" as const, loaderFile: "./src/lib/image-loader.ts" }
+      : {}),
+    deviceSizes: [384, 640, 828, 1200, 1600],
+    imageSizes: [96, 176, 256],
     formats: ["image/avif", "image/webp"],
     remotePatterns: [],
   },

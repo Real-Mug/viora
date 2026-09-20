@@ -26,7 +26,6 @@ const safeText = (max: number, min = 0, minMessage?: string) =>
     .trim()
     .min(min, minMessage ?? `Please enter at least ${min} characters.`)
     .max(max, `Please keep this under ${max} characters.`)
-    // eslint-disable-next-line no-control-regex
     .refine((value) => !/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/.test(value), {
       message: "This field contains characters that are not allowed.",
     });

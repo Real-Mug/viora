@@ -165,8 +165,8 @@ export default function AboutPage() {
             <aside className="lg:pt-2">
               <div className="overflow-hidden rounded-[var(--radius-panel)] border border-line">
                 <Image
-                  src="/images/editorial/canadian-landscape.svg"
-                  alt="Placeholder image representing the Canadian markets VioraRental works in"
+                  src="/images/editorial/waterloo-region-home.webp"
+                  alt="A living area inside a VioraRental-managed house in Waterloo, Ontario"
                   width={1600}
                   height={900}
                   sizes="(min-width: 1024px) 420px, 92vw"
