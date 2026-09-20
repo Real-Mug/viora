@@ -2,6 +2,14 @@
 
 Professional short-term rental co-hosting and property management in Canada.
 
+### 🔗 Live preview — [real-mug.github.io/viora-site](https://real-mug.github.io/viora-site/)
+
+Share that link with anyone. It needs no GitHub account and no login, and it
+redeploys automatically on every push to `main`. This repository is private;
+the built site is served from the public
+[`Real-Mug/viora-site`](https://github.com/Real-Mug/viora-site) repo — see
+[Shareable preview](#shareable-preview-github-pages) for how that works.
+
 A Next.js 15 (App Router) + TypeScript + Tailwind v4 site, built to ship today as a
 static export to Hostinger and to grow into a direct-booking platform without a
 rewrite.
@@ -103,8 +111,8 @@ page component contains hardcoded property, service or location data.
 | File | What it holds |
 | --- | --- |
 | `src/lib/config/site.ts` | Brand, contact details, navigation, CTAs |
-| `src/content/properties.ts` | Property records |
-| `src/content/reviews.ts` | Guest and owner reviews (**empty by design**) |
+| `src/content/properties.ts` | Property records (the two live Airbnb listings) |
+| `src/content/reviews.ts` | Written guest and owner reviews (**empty by design**) |
 | `src/content/services.ts` | Services offered |
 | `src/content/locations.ts` | Service areas |
 | `src/content/posts.ts` | Blog / resources articles |
@@ -116,11 +124,19 @@ footer links, the sitemap entry, the internal links and the structured data.
 ### Adding a property
 
 1. Copy a record in `src/content/properties.ts`.
-2. Replace every field with verified information.
+2. Replace every field with verified information, taken from the listing
+   itself rather than written from memory.
 3. Put photography in `public/images/properties/<slug>/` and reference the
-   filenames. JPG or WebP; roughly 1600×1067; compress before committing.
-4. **Delete the `isPlaceholder: true` line.**
-5. `npm run verify`.
+   filenames. WebP, roughly 1600×1067, compressed before committing.
+4. Leave `pricing` out unless there is a real published nightly rate. An
+   absent `pricing` renders as "Rates on request", which is accurate; an
+   invented number is not.
+5. Fill `externalRating` from the listing page, including `checkedAt`. It is
+   shown as that platform's figure, linked to its source, and is never folded
+   into a VioraRental average.
+6. Do not set `isPlaceholder`. It exists only for demo records, and none ship
+   any more.
+7. `npm run verify`.
 
 ---
 
@@ -133,13 +149,26 @@ These are structural, not stylistic. Breaking them takes deliberate effort.
 - **No fake aggregate ratings.** `AggregateRating` structured data is emitted
   only from verified, non-placeholder reviews, and only above
   `MIN_REVIEWS_FOR_AGGREGATE`.
-- **Sample properties are labelled.** With `NEXT_PUBLIC_CONTENT_MODE=placeholder`
-  (the default) every sample carries a visible "Sample listing" badge. Set it to
-  `live` and samples vanish from the site, the sitemap and the structured data.
+- **No sample properties ship.** Both published records are real inventory,
+  transcribed from their live Airbnb listings. The placeholder machinery is
+  still there for future use: a record marked `isPlaceholder` carries a visible
+  "Sample listing" badge under `NEXT_PUBLIC_CONTENT_MODE=placeholder` (the
+  default) and vanishes entirely from the site, sitemap and structured data
+  under `live`. Nothing currently sets it.
+- **Platform ratings are never passed off as ours.** A property's
+  `externalRating` is shown as that platform's published figure for that
+  listing, with a link to it and the date it was last checked. It is not mixed
+  into any VioraRental average, and it is not a substitute for a written
+  review.
+- **No prices are invented.** Airbnb quotes a nightly rate only once dates are
+  chosen, so both records omit `pricing` and the UI says "Rates on request"
+  rather than publishing a guess.
 - **No fake availability.** No calendar source is connected, so property pages
   say availability is confirmed directly rather than showing an invented one.
-- **No fake booking or payment.** The stay panel produces a real price estimate
-  from published rates and then routes to an enquiry. There is no checkout.
+- **No fake booking or payment.** The stay panel routes to an enquiry, never a
+  checkout. Where a record publishes rates it shows an itemised estimate from
+  them; where it does not, as today, it says "Rates on request" and links to
+  the Airbnb listing.
 - **No invented company facts.** Phone, address, social profiles, founding date
   and team size are blank or marked `PLACEHOLDER` in `site.ts`, and the UI hides
   what is not set rather than showing a placeholder to visitors.
@@ -157,7 +186,8 @@ src/
     layout/               header, footer, breadcrumbs, legal shell
     marketing/            hero, trust, services grid, how-it-works, CTA, FAQ
     property/             card, explorer (filters), gallery, stay panel
-    reviews/              review card/list + the empty state
+    reviews/              review card/list, per-property grouping, scrolling
+                          wall, and the empty state
     seo/                  JSON-LD renderer
     ui/                   button, card, section, badge, accordion, icons
   content/                ALL editable content
