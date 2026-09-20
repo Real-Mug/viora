@@ -15,7 +15,7 @@ import { cn } from "@/lib/cn";
  */
 
 const controlBase =
-  "w-full rounded-xl border bg-surface-raised px-3.5 text-[0.9375rem] text-ink placeholder:text-linen-500 " +
+  "w-full rounded-xl border bg-surface-raised px-3.5 text-base sm:text-[0.9375rem] text-ink placeholder:text-linen-500 " +
   "transition-colors duration-200 hover:border-line-strong focus:border-evergreen-700 " +
   "disabled:cursor-not-allowed disabled:opacity-60";
 
@@ -216,7 +216,8 @@ export function RadioGroupField({
             <label
               key={option.value}
               className={cn(
-                "inline-flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-[0.9375rem] transition-colors",
+                "inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full border px-4 py-2",
+                "text-base sm:min-h-0 sm:text-[0.9375rem] transition-colors",
                 checked
                   ? "border-evergreen-800 bg-evergreen-50 text-evergreen-900"
                   : "border-line text-ink-muted hover:border-line-strong",
@@ -228,7 +229,7 @@ export function RadioGroupField({
                 value={option.value}
                 checked={checked}
                 onChange={() => onChange(option.value)}
-                className="h-4 w-4 accent-evergreen-800"
+                className="h-5 w-5 accent-evergreen-800 sm:h-4 sm:w-4"
               />
               {option.label}
             </label>
@@ -264,7 +265,7 @@ export function CheckboxField({
 
   return (
     <div className="grid gap-1.5">
-      <label htmlFor={id} className="flex cursor-pointer items-start gap-3 text-[0.875rem] leading-relaxed text-ink-muted">
+      <label htmlFor={id} className="flex min-h-11 cursor-pointer items-start gap-3 py-1.5 text-[0.875rem] leading-relaxed text-ink-muted sm:min-h-0 sm:py-0">
         <input
           id={id}
           name={name}
@@ -273,7 +274,7 @@ export function CheckboxField({
           onChange={(event) => onChange(event.target.checked)}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${id}-error` : undefined}
-          className="mt-0.5 h-4 w-4 shrink-0 rounded border-line-strong accent-evergreen-800"
+          className="mt-0.5 h-5 w-5 shrink-0 rounded border-line-strong accent-evergreen-800 sm:h-4 sm:w-4"
         />
         <span>
           {label ? <span className="sr-only">{label}</span> : null}

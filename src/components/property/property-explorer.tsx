@@ -170,7 +170,7 @@ export function PropertyExplorer({
     <div className="grid gap-8 lg:grid-cols-[17.5rem_minmax(0,1fr)] lg:gap-12">
       {/* Mobile filter trigger */}
       <div className="flex items-center justify-between gap-4 lg:hidden">
-        <Button variant="secondary" size="sm" onClick={() => setPanelOpen(true)}>
+        <Button variant="secondary" onClick={() => setPanelOpen(true)} className="h-11 sm:h-9 sm:px-4 sm:text-sm">
           <IconFilter className="h-4 w-4" />
           Filters
           {count > 0 ? (
@@ -267,7 +267,7 @@ export function PropertyExplorer({
 /* -------------------------------------------------------------------------- */
 
 const selectClasses =
-  "h-11 w-full rounded-xl border border-line bg-surface-raised px-3 text-[0.9375rem] text-ink " +
+  "h-11 w-full rounded-xl border border-line bg-surface-raised px-3 text-base sm:text-[0.9375rem] text-ink " +
   "transition-colors hover:border-line-strong focus:border-evergreen-700";
 
 function SortSelect({
@@ -402,7 +402,10 @@ function FilterPanel({
           {topAmenities.map((amenity) => {
             const checked = filters.amenities.includes(amenity.value);
             return (
-              <label key={amenity.value} className="flex cursor-pointer items-center gap-2.5 text-[0.9375rem] text-ink-muted">
+              <label
+                key={amenity.value}
+                className="flex min-h-11 cursor-pointer items-center gap-2.5 text-base text-ink-muted sm:min-h-0 sm:text-[0.9375rem]"
+              >
                 <input
                   type="checkbox"
                   checked={checked}
@@ -414,7 +417,7 @@ function FilterPanel({
                         : [...filters.amenities, amenity.value],
                     )
                   }
-                  className="h-4 w-4 shrink-0 rounded border-line-strong text-evergreen-800 accent-evergreen-800"
+                  className="h-5 w-5 shrink-0 rounded border-line-strong text-evergreen-800 accent-evergreen-800 sm:h-4 sm:w-4"
                 />
                 {amenity.label}
                 <span className="text-xs text-ink-subtle">({amenity.count})</span>
