@@ -104,33 +104,13 @@ function svg({ width, height, palette, seed, label }) {
 `;
 }
 
-/** Every image the shipped content references. */
-const propertyShots = {
-  "lakefront-retreat-muskoka": [
-    "01-exterior-lake-view",
-    "02-living-room",
-    "03-kitchen",
-    "04-primary-bedroom",
-    "05-deck",
-  ],
-  "harbourfront-suite-toronto": [
-    "01-living-room",
-    "02-kitchen",
-    "03-primary-bedroom",
-    "04-workspace",
-    "05-balcony",
-  ],
-  "mountain-view-chalet-whistler": [
-    "01-exterior",
-    "02-living-room",
-    "03-kitchen",
-    "04-bedroom",
-    "05-hot-tub",
-  ],
-  "plateau-apartment-montreal": ["01-living-room", "02-kitchen", "03-bedroom", "04-balcony"],
-  "bow-river-townhouse-calgary": ["01-exterior", "02-living-room", "03-kitchen", "04-bedroom"],
-  "west-end-loft-vancouver": ["01-living-room", "02-kitchen", "03-sleeping-area", "04-workspace"],
-};
+/**
+ * Property photography is real and lives in the repo as WebP, exported from the
+ * live Airbnb listings. Nothing here generates property images any more - this
+ * map is intentionally empty so a stray run cannot resurrect the old sample
+ * SVGs over real photos. Only the editorial and brand art below is generated.
+ */
+const propertyShots = {};
 
 const editorial = [
   { path: "images/hero/home-hero.svg", w: 2000, h: 1200, palette: PALETTES.water, label: "Placeholder hero image" },

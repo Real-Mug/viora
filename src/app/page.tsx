@@ -10,11 +10,13 @@ import {
   ServicesGrid,
   TrustSection,
 } from "@/components/marketing/sections";
-import { NoReviewsYet, ReviewList } from "@/components/reviews/review-list";
+import { NoReviewsYet } from "@/components/reviews/review-list";
+import { ReviewMarquee } from "@/components/reviews/review-marquee";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ArrowRight, ButtonLink } from "@/components/ui/button";
 import { SampleBadge } from "@/components/ui/badge";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
+import { Reveal } from "@/components/ui/reveal";
 import { IconMapPin } from "@/components/ui/icons";
 import { activeServiceAreas } from "@/content/locations";
 import { homepageFaqs } from "@/content/faqs";
@@ -41,7 +43,10 @@ export default async function HomePage() {
   const fallback = featured.items.length ? featured : await properties.list({ pageSize: 3 });
   const showcase = fallback.items;
 
-  const featuredReviews = await reviews.list({ featuredOnly: true, limit: 3 });
+  // Reviews about VioraRental itself. Property-specific reviews are shown on
+  // /reviews under the property they describe, so they are excluded here.
+  const allReviews = await reviews.list();
+  const companyReviews = allReviews.filter((review) => !review.propertySlug);
   const areas = activeServiceAreas();
   const faqs = homepageFaqs();
   const latestPosts = sortedPosts().slice(0, 3);
@@ -112,7 +117,7 @@ export default async function HomePage() {
       {/* --- Services ------------------------------------------------------ */}
       <Section tone="sunken" aria-labelledby="services-heading">
         <Container>
-          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <SectionHeading
               id="services-heading"
               eyebrow="What we do"
@@ -122,7 +127,7 @@ export default async function HomePage() {
             <ButtonLink href="/services" variant="secondary" className="shrink-0">
               All services
             </ButtonLink>
-          </div>
+          </Reveal>
 
           <ServicesGrid services={services} className="mt-12" />
         </Container>
@@ -132,7 +137,7 @@ export default async function HomePage() {
       {showcase.length > 0 ? (
         <Section aria-labelledby="properties-heading">
           <Container>
-            <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+            <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
               <SectionHeading
                 id="properties-heading"
                 eyebrow="Properties"
@@ -142,7 +147,7 @@ export default async function HomePage() {
               <ButtonLink href="/properties" variant="secondary" className="shrink-0">
                 {CTA.secondary.label}
               </ButtonLink>
-            </div>
+            </Reveal>
 
             {showPlaceholders && showcase.some((property) => property.isPlaceholder) ? (
               <div className="mt-8 flex flex-wrap items-center gap-3 rounded-[var(--radius-card)] border border-brass-200 bg-brass-50 p-4 text-sm text-brass-900">
@@ -157,7 +162,9 @@ export default async function HomePage() {
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {showcase.map((property, index) => (
-                <PropertyCard key={property.id} property={property} priority={index === 0} />
+                <Reveal key={property.id} delay={index * 90} className="h-full">
+                  <PropertyCard property={property} priority={index === 0} className="h-full" />
+                </Reveal>
               ))}
             </div>
           </Container>
@@ -170,16 +177,18 @@ export default async function HomePage() {
       {areas.length > 0 ? (
         <Section aria-labelledby="areas-heading">
           <Container>
-            <SectionHeading
-              id="areas-heading"
+            <Reveal>
+              <SectionHeading
+                id="areas-heading"
               eyebrow="Where we work"
               title="Canadian markets we know properly"
-              description="We only take on properties in markets where we have reliable cleaning and maintenance capacity. Each of these pages covers how short-term letting actually works there."
-            />
+                description="We only take on properties in markets where we have reliable cleaning and maintenance capacity. Each of these pages covers how short-term letting actually works there."
+              />
+            </Reveal>
 
             <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {areas.map((area) => (
-                <li key={area.slug}>
+              {areas.map((area, index) => (
+                <Reveal key={area.slug} as="li" delay={index * 60}>
                   <Link
                     href={`/locations/${area.slug}`}
                     className="group flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-surface-raised p-5 shadow-subtle transition-colors hover:border-line-strong"
@@ -196,7 +205,7 @@ export default async function HomePage() {
                       <ArrowRight />
                     </span>
                   </Link>
-                </li>
+                </Reveal>
               ))}
             </ul>
           </Container>
@@ -206,17 +215,25 @@ export default async function HomePage() {
       {/* --- Reviews -------------------------------------------------------- */}
       <Section tone="sunken" aria-labelledby="reviews-heading">
         <Container>
-          <SectionHeading
-            id="reviews-heading"
+          <Reveal>
+            <SectionHeading
+              id="reviews-heading"
             eyebrow="Reviews"
             title="What guests and owners say"
-            description="We publish reviews with their source attached, and only once we can point to where they came from."
-            align="center"
-          />
+              description="Reviews of VioraRental as a service. Reviews of a specific home are grouped under that property on the reviews page."
+              align="center"
+            />
+          </Reveal>
           <div className="mt-10">
-            {featuredReviews.length ? (
+            {companyReviews.length ? (
               <>
-                <ReviewList reviews={featuredReviews} />
+                {/*
+                  Full-bleed: the wall is pulled out of the container so cards
+                  run to the window edges and the mask does the framing.
+                */}
+                <div className="-mx-4 sm:-mx-6 lg:-mx-10">
+                  <ReviewMarquee reviews={companyReviews} />
+                </div>
                 <div className="mt-10 flex justify-center">
                   <ButtonLink href="/reviews" variant="secondary">
                     Read all reviews
@@ -249,8 +266,8 @@ export default async function HomePage() {
             </div>
 
             <ul className="mt-10 grid gap-6 md:grid-cols-3">
-              {latestPosts.map((post) => (
-                <li key={post.slug}>
+              {latestPosts.map((post, index) => (
+                <Reveal key={post.slug} as="li" delay={index * 80}>
                   <Link
                     href={`/blog/${post.slug}`}
                     className="group flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-surface-raised p-6 shadow-subtle transition-colors hover:border-line-strong"
@@ -269,7 +286,7 @@ export default async function HomePage() {
                       <ArrowRight />
                     </span>
                   </Link>
-                </li>
+                </Reveal>
               ))}
             </ul>
           </Container>
