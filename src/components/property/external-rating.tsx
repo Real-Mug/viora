@@ -115,7 +115,7 @@ export function ExternalRatingPanel({
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-evergreen-800",
+              "mt-4 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-evergreen-800 sm:min-h-0",
               "underline-offset-4 transition-colors hover:text-evergreen-900 hover:underline",
             )}
           >

@@ -60,7 +60,7 @@ export function Footer() {
               {contact.email ? (
                 <a
                   href={`mailto:${contact.email}`}
-                  className="inline-flex items-center gap-2 text-ink-muted underline-offset-4 hover:text-evergreen-800 hover:underline"
+                  className="inline-flex items-center gap-2 text-ink-muted underline-offset-4 hover:text-evergreen-800 hover:underline min-h-11 sm:min-h-0"
                 >
                   <IconMail className="h-4 w-4 text-brass-600" />
                   {contact.email}
@@ -69,7 +69,7 @@ export function Footer() {
               {contact.phone ? (
                 <a
                   href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`}
-                  className="inline-flex items-center gap-2 text-ink-muted underline-offset-4 hover:text-evergreen-800 hover:underline"
+                  className="inline-flex items-center gap-2 text-ink-muted underline-offset-4 hover:text-evergreen-800 hover:underline min-h-11 sm:min-h-0"
                 >
                   <IconPhone className="h-4 w-4 text-brass-600" />
                   {contact.phoneDisplay || contact.phone}
@@ -95,18 +95,18 @@ export function Footer() {
             ) : null}
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
             {footerNav.map((group) => (
               <nav key={group.title} aria-label={group.title}>
                 <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-ink">
                   {group.title}
                 </h2>
-                <ul className="mt-4 grid gap-2.5">
+                <ul className="mt-4 grid gap-0.5 sm:gap-2.5">
                   {group.links.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-sm text-ink-muted underline-offset-4 transition-colors hover:text-evergreen-800 hover:underline"
+                        className="flex min-h-11 items-center text-sm text-ink-muted underline-offset-4 transition-colors hover:text-evergreen-800 hover:underline sm:min-h-0"
                       >
                         {link.label}
                       </Link>

@@ -138,7 +138,7 @@ export function PropertyCard({
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "relative z-10 inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-line bg-surface px-3 py-1.5",
+                "relative z-10 inline-flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-line bg-surface px-3.5 py-1.5 sm:min-h-0",
                 "text-[0.8125rem] font-medium text-evergreen-800 transition-all duration-300",
                 "hover:-translate-y-0.5 hover:border-evergreen-300 hover:bg-evergreen-50 hover:shadow-subtle",
               )}

@@ -61,7 +61,7 @@ export function Logo({
       href={href}
       aria-label="VioraRental home"
       className={cn(
-        "inline-flex rounded-sm",
+        "inline-flex min-h-11 items-center rounded-sm sm:min-h-0",
         onDark ? "text-brass-300" : "text-evergreen-800",
       )}
     >

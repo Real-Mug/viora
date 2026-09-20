@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { BookingPanel } from "@/components/property/booking-panel";
+import { MobileActionBar } from "@/components/property/mobile-action-bar";
 import { PropertyCard } from "@/components/property/property-card";
 import { PropertyGallery } from "@/components/property/property-gallery";
 import { PropertyAnalytics } from "@/components/property/property-analytics";
@@ -400,7 +401,10 @@ export default async function PropertyPage({ params }: Params) {
             </div>
 
             {/* Sticky stay panel */}
-            <aside className="lg:sticky lg:top-[calc(var(--header-height)+1.5rem)]">
+            <aside
+              id="stay-panel"
+              className="pb-20 lg:sticky lg:top-[calc(var(--header-height)+1.5rem)] lg:pb-0"
+            >
               <BookingPanel property={property} />
 
               <div className="mt-5 rounded-[var(--radius-card)] border border-line bg-linen-200/60 p-5">
@@ -412,19 +416,19 @@ export default async function PropertyPage({ params }: Params) {
                 <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
                   <Link
                     href="/about"
-                    className="text-evergreen-800 underline-offset-4 hover:underline"
+                    className="inline-flex min-h-11 items-center text-evergreen-800 underline-offset-4 hover:underline sm:min-h-0"
                   >
                     About us
                   </Link>
                   <Link
                     href="/contact"
-                    className="text-evergreen-800 underline-offset-4 hover:underline"
+                    className="inline-flex min-h-11 items-center text-evergreen-800 underline-offset-4 hover:underline sm:min-h-0"
                   >
                     Contact
                   </Link>
                   <Link
                     href="/become-a-host"
-                    className="text-evergreen-800 underline-offset-4 hover:underline"
+                    className="inline-flex min-h-11 items-center text-evergreen-800 underline-offset-4 hover:underline sm:min-h-0"
                   >
                     List your property
                   </Link>
@@ -457,6 +461,9 @@ export default async function PropertyPage({ params }: Params) {
         title="Own a property like this one?"
         description="We manage properties across several Canadian markets. Tell us about yours and we will come back with an honest assessment."
       />
+
+      {/* Phones only: the sticky sidebar's two actions, kept within reach. */}
+      <MobileActionBar property={property} />
     </>
   );
 }
