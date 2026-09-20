@@ -167,7 +167,9 @@ async function write(relativePath, buffer) {
   console.log(`  ${relativePath} (${(buffer.length / 1024).toFixed(1)} KB)`);
 }
 
-await write("images/brand/og-default.png", render(1200, 630));
+// The Open Graph card is no longer a flat brand mark: it is a composed card
+// built from a real photograph by scripts/generate-og-image.mjs. Generating
+// a placeholder here would overwrite it.
 await write("images/brand/apple-touch-icon.png", render(180, 180, { scale: 1.5 }));
 await write("images/brand/icon-512.png", render(512, 512, { scale: 1.4 }));
 await write("images/brand/icon-192.png", render(192, 192, { scale: 1.4 }));

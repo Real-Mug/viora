@@ -1,0 +1,325 @@
+{
+  "/images/editorial/waterloo-region-home.webp": {
+    "width": 1600,
+    "height": 900,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/hero/home-hero.webp": {
+    "width": 2000,
+    "height": 1200,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600,
+      2000
+    ]
+  },
+  "/images/properties/modern-2br-townhome-kitchener/01-living-room.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/modern-2br-townhome-kitchener/02-living-dining.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/modern-2br-townhome-kitchener/03-kitchen.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/modern-2br-townhome-kitchener/04-kitchen-dining.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/modern-2br-townhome-kitchener/05-bedroom-one.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/modern-2br-townhome-kitchener/06-bedroom-two.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/modern-2br-townhome-kitchener/07-bathroom.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/modern-2br-townhome-kitchener/08-workspace.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/modern-2br-townhome-kitchener/09-laundry.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/modern-2br-townhome-kitchener/10-exterior.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-house-waterloo/01-living-room.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-house-waterloo/02-second-living.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-house-waterloo/03-kitchen.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-house-waterloo/04-dining.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-house-waterloo/05-bedroom-one.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-house-waterloo/06-bedroom-two.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-house-waterloo/07-bedroom-three.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-house-waterloo/08-bathroom.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-house-waterloo/09-workspace.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-house-waterloo/10-backyard.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-house-waterloo/11-exterior.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  }
+}

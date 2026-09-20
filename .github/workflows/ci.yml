@@ -35,6 +35,11 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      # Restored: the project now has an ESLint flat config, so this no longer
+      # hits `next lint`'s interactive setup prompt and hang the job.
+      - name: Lint
+        run: npm run lint
+
       - name: Build static export
         env:
           NEXT_PUBLIC_SITE_URL: https://viorarental.com

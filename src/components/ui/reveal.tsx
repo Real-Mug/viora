@@ -110,7 +110,6 @@ export function RevealGroup({
   return (
     <Tag className={cn(className)}>
       {children.map((child, index) => (
-        // eslint-disable-next-line react/no-array-index-key
         <Reveal key={index} variant={variant} delay={index * step}>
           {child}
         </Reveal>

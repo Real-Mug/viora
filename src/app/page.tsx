@@ -77,8 +77,8 @@ export default async function HomePage() {
         primaryCta={CTA.primary}
         secondaryCta={CTA.secondary}
         image={{
-          src: "/images/hero/home-hero.svg",
-          alt: "Placeholder image representing a Canadian waterfront property at dusk",
+          src: "/images/hero/home-hero.webp",
+          alt: "The fenced garden of a VioraRental-managed house in Waterloo, Ontario, on a summer afternoon",
         }}
         footnote={
           areas.length ? (

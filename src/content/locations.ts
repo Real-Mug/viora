@@ -23,6 +23,56 @@ import type { ServiceArea } from "@/lib/types/location";
  */
 export const serviceAreas: ServiceArea[] = [
   {
+    slug: "waterloo-region",
+    city: "Waterloo Region",
+    province: "ON",
+    active: true,
+    summary:
+      "Co-hosting and short-term rental management across Kitchener, Waterloo and Cambridge - the market our own managed properties sit in.",
+    intro: [
+      "Waterloo Region is where our own inventory is: a townhome in Kitchener and a family house in Waterloo, both run by the team that would run yours. Everything below comes from operating here rather than from a market report.",
+      "Demand is unusual for a mid-sized Ontario market because it is driven by institutions rather than tourism. The University of Waterloo's co-op calendar moves students in and out on four-month cycles, Wilfrid Laurier and Conestoga add their own terms, and the tech corridor around Uptown Waterloo brings contractors and relocating staff who need somewhere furnished for weeks rather than nights. Grand River Hospital and St Mary's add a steady stream of visiting families and travelling medical staff.",
+      "That mix rewards a different strategy from a cottage or a downtown Toronto condo. The strongest months here are rarely the ones a nightly-rate model would predict, and for many properties a blend of longer stays and shorter gaps earns more than chasing weekend bookings.",
+    ],
+    areasServed: [
+      "Kitchener",
+      "Waterloo",
+      "Cambridge",
+      "Uptown Waterloo",
+      "Downtown Kitchener",
+      "Elmira and Woolwich",
+      "Baden and Wilmot",
+    ],
+    localNotes: [
+      {
+        title: "The rules differ between Kitchener and Waterloo, and the gap is large",
+        body:
+          "These are neighbouring cities with opposite regimes, so the address decides the strategy. The City of Waterloo licenses short-term rentals - defined as stays of 30 days or less - and requires that the owner lives in the unit, caps rentals at 275 days a year, and adds criminal record checks and further documentation for applications from 1 July 2026. Kitchener council rejected a proposed licensing programme in 2025 and currently has no equivalent licence. Confirm the current position with the city your property sits in before listing: this is the single most consequential local fact in the region, and it has changed more than once.",
+      },
+      {
+        title: "Stays over 30 days are a different product, not a fallback",
+        body:
+          "Because Waterloo's licensing regime turns on the 30-day line, and because co-op terms and contract work run in months, mid-term furnished stays are a deliberate strategy here rather than what you do when nightly bookings dry up. They price differently, turn over far less often and attract a steadier guest - but they also change which platform, agreement and insurance you should be using.",
+      },
+      {
+        title: "The calendar follows the universities, not the summer",
+        body:
+          "Co-op terms begin in January, May and September, and the weeks around each transition are the busiest of the year. Convocation and Orientation create short, sharp peaks, and Oktoberfest fills the region in October. February and the back half of December are genuinely quiet. Pricing set to a generic Ontario seasonal curve misses all of this.",
+      },
+      {
+        title: "Parking, stairs and winter are the recurring operational facts",
+        body:
+          "Much of the region's rental stock is multi-level townhouses and older houses with stairs between floors, which needs saying plainly in a listing rather than discovered on arrival. Driveway parking is a genuine selling point to guests driving in from Toronto, and winter brings snow clearing obligations that have to be somebody's named responsibility before December.",
+      },
+    ],
+    highlightedServices: ["airbnb-co-hosting", "short-term-rental-management", "revenue-management", "property-care"],
+    coordinates: { lat: 43.4516, lng: -80.4925 },
+    seoTitle: "Airbnb Co-Hosting in Kitchener and Waterloo",
+    seoDescription:
+      "Short-term rental co-hosting across Kitchener, Waterloo and Cambridge. Licensing-aware operations, mid-term stay strategy and turnovers run by a local team.",
+  },
+
+  {
     slug: "toronto",
     city: "Toronto",
     province: "ON",

@@ -112,14 +112,7 @@ function svg({ width, height, palette, seed, label }) {
  */
 const propertyShots = {};
 
-const editorial = [
-  { path: "images/hero/home-hero.svg", w: 2000, h: 1200, palette: PALETTES.water, label: "Placeholder hero image" },
-  { path: "images/hero/about-hero.svg", w: 2000, h: 1000, palette: PALETTES.exterior, label: "Placeholder image" },
-  { path: "images/hero/host-hero.svg", w: 2000, h: 1000, palette: PALETTES.outdoor, label: "Placeholder image" },
-  { path: "images/editorial/owner-workspace.svg", w: 1400, h: 1050, palette: PALETTES.interior, label: "Placeholder image" },
-  { path: "images/editorial/turnover.svg", w: 1400, h: 1050, palette: PALETTES.kitchen, label: "Placeholder image" },
-  { path: "images/editorial/canadian-landscape.svg", w: 1600, h: 900, palette: PALETTES.water, label: "Placeholder image" },
-];
+const editorial = [];
 
 async function write(relativePath, contents) {
   const target = join(publicDir, relativePath);

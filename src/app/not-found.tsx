@@ -17,7 +17,8 @@ import { CTA } from "@/lib/config/site";
  */
 export const metadata: Metadata = {
   title: "Page not found",
-  description: "The page you were looking for does not exist.",
+  description:
+    "That page does not exist. Browse the properties VioraRental manages in Kitchener and Waterloo, or get in touch and we will point you the right way.",
   robots: { index: false, follow: true },
 };
 
