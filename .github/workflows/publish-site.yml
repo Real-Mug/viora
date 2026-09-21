@@ -1,13 +1,11 @@
-# Builds the static export and publishes it to the public Real-Mug/viora-site
-# repository, which is what GitHub Pages actually serves.
+# Builds the static export and publishes it straight to GitHub Pages from this
+# repository.
 #
-# This repository is private, and GitHub Pages will not publish from a private
-# repository on a free plan. So the source stays here and only the built HTML is
-# pushed to the public repo - the same split used by rental / rental-site.
-#
-# The push authenticates with an ed25519 deploy key: the public half is a
-# read-write deploy key on viora-site, the private half is the SITE_DEPLOY_KEY
-# secret here. GITHUB_TOKEN cannot be used because it is scoped to this repo only.
+# This used to build here and force-push the result into a second public repo,
+# Real-Mug/viora-site, because Pages will not serve from a private repository on
+# the free plan and this repo was private. It is public now, so the second repo,
+# its ed25519 deploy key and the SITE_DEPLOY_KEY secret are all redundant:
+# source and site live together and Pages deploys the artefact directly.
 name: Publish site
 
 on:
@@ -15,23 +13,28 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# pages and id-token are what actions/deploy-pages needs in order to publish.
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
+# Never let two deploys race. Queue rather than cancel, so a build that has
+# already been handed to Pages is not thrown away halfway through publishing.
 concurrency:
-  group: publish-site
-  cancel-in-progress: true
+  group: pages
+  cancel-in-progress: false
 
 env:
   # A Pages project site is served from /<repo>/, so the export must be built
-  # with that prefix. The repo serving Pages is viora-site, not viora.
-  NEXT_PUBLIC_BASE_PATH: /viora-site
-  NEXT_PUBLIC_SITE_URL: https://real-mug.github.io/viora-site
+  # with that prefix. The repo serving Pages is this one, so it is /viora.
+  NEXT_PUBLIC_BASE_PATH: /viora
+  NEXT_PUBLIC_SITE_URL: https://real-mug.github.io/viora
   NEXT_PUBLIC_CONTENT_MODE: placeholder
   DEPLOY_TARGET: static
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -49,22 +52,23 @@ jobs:
       - name: Audit the export
         run: npm run audit:site
 
-      - name: Publish to viora-site
-        run: |
-          # .nojekyll ships in public/ and is required: Jekyll would otherwise
-          # strip the /_next directory and the site would load unstyled.
-          test -f out/.nojekyll || touch out/.nojekyll
+      # .nojekyll ships in public/ and is required: Jekyll would otherwise strip
+      # the /_next directory and the site would load unstyled.
+      - name: Guarantee .nojekyll
+        run: test -f out/.nojekyll || touch out/.nojekyll
 
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SITE_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null
+      - uses: actions/configure-pages@v5
 
-          cd out
-          git init -q
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -q -m "Deploy ${GITHUB_SHA::7}"
-          # Force-push: viora-site is a build artefact, its history is disposable.
-          git push -f git@github.com:Real-Mug/viora-site.git HEAD:main
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
