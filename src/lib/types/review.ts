@@ -8,7 +8,7 @@
 export type ReviewSource = "direct" | "airbnb" | "vrbo" | "booking.com" | "google" | "other";
 
 export const REVIEW_SOURCE_LABELS: Record<ReviewSource, string> = {
-  direct: "Direct VioraRental guest",
+  direct: "Direct Viora Hosting guest",
   airbnb: "Airbnb",
   vrbo: "Vrbo",
   "booking.com": "Booking.com",

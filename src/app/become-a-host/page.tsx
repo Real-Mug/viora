@@ -19,9 +19,9 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "List Your Property - Request a Property Assessment",
+  title: "List Your Property - Request an Assessment",
   description:
-    "Tell VioraRental about your Canadian property and get a free, no-obligation assessment: what we would manage, what we would change first, and what it would cost.",
+    "Tell Viora Hosting about your Canadian property and get a free, no-obligation assessment: what we would manage, what we would change first, and what it would cost.",
   path: "/become-a-host",
 });
 
@@ -45,7 +45,7 @@ export default function BecomeAHostPage() {
       <JsonLd
         data={graph(
           webPageSchema({
-            name: "List Your Property with VioraRental",
+            name: "List Your Property with Viora Hosting",
             description:
               "Request a free property assessment for short-term rental co-hosting or management in Canada.",
             path: "/become-a-host",
@@ -58,7 +58,7 @@ export default function BecomeAHostPage() {
 
       <PageHero
         eyebrow="Become a host"
-        title="List your property with VioraRental"
+        title="List your property with Viora Hosting"
         description="Send us the details and we will come back with an honest assessment: what we would manage, what we would change first, what it would cost, and whether we think short-term letting suits the property at all."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
       />

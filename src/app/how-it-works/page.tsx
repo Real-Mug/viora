@@ -3,7 +3,8 @@ import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { PageHero } from "@/components/marketing/hero";
-import { CtaBand, FaqSection, HowItWorks } from "@/components/marketing/sections";
+import { CtaBand, FaqSection } from "@/components/marketing/sections";
+import { HostingWalkthrough } from "@/components/marketing/hosting-walkthrough";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ButtonLink } from "@/components/ui/button";
 import { IconCheck, IconInfo } from "@/components/ui/icons";
@@ -20,7 +21,7 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "How VioraRental Works with Property Owners",
+  title: "How Viora Hosting Works with Property Owners",
   description:
     "From first enquiry to ongoing management: the assessment, what we agree in writing, how we take over operations, and what reporting you receive.",
   path: "/how-it-works",
@@ -52,7 +53,7 @@ export default function HowItWorksPage() {
       <JsonLd
         data={graph(
           webPageSchema({
-            name: "How VioraRental Works with Property Owners",
+            name: "How Viora Hosting Works with Property Owners",
             description:
               "The process from first enquiry through assessment, agreement and ongoing management.",
             path: "/how-it-works",
@@ -66,7 +67,7 @@ export default function HowItWorksPage() {
       <PageHero
         eyebrow="How it works"
         title="From first enquiry to a property that runs without you"
-        description="Four steps. Nothing is committed until the scope and the fee are agreed in writing, and the assessment costs you nothing."
+        description="Nothing is committed until the scope and fee are agreed in writing. The assessment costs you nothing."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
         actions={
           <ButtonLink href={CTA.primary.href} size="lg">
@@ -75,7 +76,7 @@ export default function HowItWorksPage() {
         }
       />
 
-      <HowItWorks tone="default" heading="The four steps" showCta={false} />
+      <HostingWalkthrough tone="default" showCta={false} />
 
       <Section tone="sunken" aria-labelledby="assessment-heading">
         <Container>

@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Booking Terms",
   description:
-    "The terms that will apply to direct bookings at VioraRental-managed properties, and what applies while direct booking is not yet live.",
+    "The terms that will apply to direct bookings at Viora Hosting properties, and what applies while direct booking is not yet live.",
   path: "/legal/booking-terms",
 });
 

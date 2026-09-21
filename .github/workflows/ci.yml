@@ -42,7 +42,7 @@ jobs:
 
       - name: Build static export
         env:
-          NEXT_PUBLIC_SITE_URL: https://viorarental.com
+          NEXT_PUBLIC_SITE_URL: https://viorahosting.com
           NEXT_PUBLIC_CONTENT_MODE: placeholder
           DEPLOY_TARGET: static
         run: npm run build

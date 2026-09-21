@@ -1,6 +1,6 @@
 # Launch checklist
 
-Written for: the VioraRental team and whoever deploys the site.
+Written for: the Viora Hosting team and whoever deploys the site.
 
 Items marked **BLOCKER** should not go live without being resolved. Everything
 else is a quality improvement that can follow.
@@ -42,7 +42,7 @@ statement that you take on work in that market.**
 
 In `src/lib/config/site.ts`:
 
-- [ ] `contact.email` — currently `hello@viorarental.com`; confirm it exists and
+- [ ] `contact.email` — currently `hello@viorahosting.com`; confirm it exists and
       is monitored
 - [ ] `contact.phone` / `phoneDisplay` — blank, so no phone link renders. Fill in
       or leave blank deliberately.

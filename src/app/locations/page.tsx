@@ -21,7 +21,7 @@ const crumbs: Crumb[] = [
 export const metadata: Metadata = pageMetadata({
   title: "Service Areas Across Canada",
   description:
-    "The Canadian markets where VioraRental provides short-term rental co-hosting and property management, with local rules and operating context for each.",
+    "The Canadian markets where Viora Hosting provides short-term rental co-hosting and property management, with local rules and operating context for each.",
   path: "/locations",
 });
 
@@ -41,8 +41,8 @@ export default function LocationsPage() {
       <JsonLd
         data={graph(
           webPageSchema({
-            name: "Service Areas - Where VioraRental Operates in Canada",
-            description: "Canadian markets served by VioraRental short-term rental management.",
+            name: "Service Areas - Where Viora Hosting Operates in Canada",
+            description: "Canadian markets served by Viora Hosting short-term rental management.",
             path: "/locations",
             crumbs,
           }),

@@ -12,7 +12,7 @@ export type ContentMode = "placeholder" | "live";
 
 export const env = {
   /** Canonical origin used for canonical tags, OG URLs and the sitemap. */
-  siteUrl: trimTrailingSlash(process.env.NEXT_PUBLIC_SITE_URL || "https://viorarental.com"),
+  siteUrl: trimTrailingSlash(process.env.NEXT_PUBLIC_SITE_URL || "https://viorahosting.com"),
 
   /** `static` disables anything that needs a running server. */
   deployTarget: (process.env.DEPLOY_TARGET === "node" ? "node" : "static") as DeployTarget,

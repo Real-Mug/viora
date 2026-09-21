@@ -115,7 +115,7 @@ export function serviceSchema(service: Service): JsonLd {
     url: absoluteUrl(`/services/${service.slug}`),
     provider: { "@id": ORG_ID },
     areaServed: { "@type": "Country", name: "Canada" },
-    // No `offers` block: VioraRental does not publish fixed service pricing,
+    // No `offers` block: Viora Hosting does not publish fixed service pricing,
     // and inventing a price here would be false markup.
   };
 }

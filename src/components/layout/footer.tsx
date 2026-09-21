@@ -52,8 +52,8 @@ export function Footer() {
           <div className="max-w-sm">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-              Professional short-term rental co-hosting and property management in Canada. We look
-              after listings, guests and operations so owners do not have to.
+              We host Canadian short-term rentals end to end - listing, guests, turnovers,
+              reporting.
             </p>
 
             <div className="mt-6 grid gap-2 text-sm">
@@ -143,9 +143,8 @@ export function Footer() {
             &copy; {year} {siteConfig.legalName}. All rights reserved.
           </p>
           <p className="max-w-xl text-xs leading-relaxed">
-            VioraRental provides co-hosting and rental management services. We do not guarantee
-            occupancy or revenue, and owners remain responsible for meeting the short-term rental
-            rules that apply to their property.
+            We do not guarantee occupancy or revenue. Owners stay responsible for the short-term
+            rental rules that apply to their property.
           </p>
         </div>
       </div>

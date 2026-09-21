@@ -32,32 +32,32 @@ const TRUST_PILLARS = [
   {
     icon: IconShield,
     title: "Professional management",
-    body: "Defined standards for how your property is cleaned, presented and maintained, with the work checked rather than assumed.",
+    body: "Set standards for cleaning and upkeep, checked rather than assumed.",
   },
   {
     icon: IconClock,
     title: "Responsive guest support",
-    body: "Guests reach a real person across the stay, with response standards agreed with you in writing rather than implied.",
+    body: "Guests reach a real person, to response times agreed in writing.",
   },
   {
     icon: IconSparkle,
     title: "Listing optimization",
-    body: "Content, structure and positioning built around the guest making the decision, kept current as the property changes.",
+    body: "Written for the guest deciding, kept current as the property changes.",
   },
   {
     icon: IconCheck,
     title: "Reliable operations",
-    body: "Turnovers, maintenance and suppliers coordinated against the live calendar, including the last-minute changes.",
+    body: "Turnovers, trades and suppliers run against the live calendar.",
   },
   {
     icon: IconDocument,
     title: "Transparent communication",
-    body: "Regular written reporting on what happened at the property, what it cost, and what we think is worth changing.",
+    body: "What happened, what it cost, what we would change. In writing.",
   },
   {
     icon: IconSparkle,
     title: "Technology-supported",
-    body: "Systems for scheduling, messaging and reporting, used to remove repetitive work rather than to replace judgement.",
+    body: "Tools take the repetitive work. People still make the calls.",
   },
 ] as const;
 
@@ -68,8 +68,8 @@ export function TrustSection() {
         <SectionHeading
           id="trust-heading"
           eyebrow="Why owners work with us"
-          title="Built for property owners. Designed around guests."
-          description="Short-term rentals succeed on the boring things done consistently: a clean property, a quick reply, an accurate listing and an owner who knows what is happening. That is the work we take on."
+          title="Built for owners. Run for guests."
+          description="Short-term rentals are won on the boring things, done every time. That is the work we take on."
         />
 
         <ul className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
@@ -155,32 +155,32 @@ const STEPS = [
   {
     number: "01",
     title: "Tell us about your property",
-    body: "Send us the details through the host form: where the property is, what it is, and where you are with it now. It takes a few minutes and commits you to nothing.",
-    detail: "Everything you send stays private. Owner details are never published on this site.",
+    body: "Where it is, what it is, where you are with it now. A few minutes, no commitment.",
+    detail: "Owner details are never published on this site.",
   },
   {
     number: "02",
     title: "Property assessment",
-    body: "We look at the property, the market and the local rules, then come back to you with what we would manage, what we would change first, and what we think the realistic constraints are.",
-    detail: "If we do not think short-term letting is right for the property, we will say so.",
+    body: "We read the property, the market and the local rules, then tell you what we would run and change first.",
+    detail: "If short-term letting is wrong for the property, we say so.",
   },
   {
     number: "03",
-    title: "We manage the operations",
-    body: "Once the scope and fee are agreed in writing, we take over the agreed work: guests, turnovers, maintenance coordination and the listing itself.",
-    detail: "You set the spending thresholds we work within before anything starts.",
+    title: "We run the operation",
+    body: "Guests, turnovers, maintenance and the listing itself, once the scope and fee are agreed in writing.",
+    detail: "You set the spending thresholds before anything starts.",
   },
   {
     number: "04",
     title: "You stay informed",
-    body: "You get regular written updates on what happened at the property, what it cost, and what we recommend next - plus a direct line to us whenever you want one.",
-    detail: "Owner dashboards are on the roadmap; until then, reporting is written and direct.",
+    body: "What happened, what it cost, what we would change next. In writing, plus a direct line to us.",
+    detail: "Owner dashboards are on the roadmap. Until then, reporting is written and direct.",
   },
 ] as const;
 
 export function HowItWorks({
   tone = "sunken",
-  heading = "How working with VioraRental starts",
+  heading = "How it starts",
   showCta = true,
 }: {
   tone?: "default" | "sunken";
@@ -194,7 +194,7 @@ export function HowItWorks({
           id="how-it-works-heading"
           eyebrow="How it works"
           title={heading}
-          description="Four steps, no obligation until the scope and the fee are agreed in writing."
+          description="Nothing is owed until the scope and fee are agreed in writing."
         />
 
         <ol className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">

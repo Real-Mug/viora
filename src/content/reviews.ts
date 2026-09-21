@@ -35,7 +35,7 @@ import type { Review } from "@/lib/types/review";
  * WHERE EACH ONE APPEARS
  *   - `propertySlug` set    -> grouped under that property on /reviews, and on
  *                              that property's own page.
- *   - `propertySlug` omitted -> treated as a review of VioraRental the service,
+ *   - `propertySlug` omitted -> treated as a review of Viora Hosting the service,
  *                              and fed into the animated wall on the homepage.
  *
  * The homepage wall needs roughly five or more to look right; below that it
@@ -66,7 +66,7 @@ import type { Review } from "@/lib/types/review";
  *   propertyName: "Spacious 3-Bedroom House, Waterloo"
  *   sourceUrl:    "https://www.airbnb.ca/rooms/1263786824290672744"
  *
- * TEMPLATE - review of VioraRental itself (drives the homepage wall)
+ * TEMPLATE - review of Viora Hosting itself (drives the homepage wall)
  * {
  *   id: "rev-owner-001",
  *   guestName: "Firstname L.",

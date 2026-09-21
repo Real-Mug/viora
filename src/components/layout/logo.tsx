@@ -49,7 +49,7 @@ export function Logo({
           onDark ? "text-linen-50" : "text-ink",
         )}
       >
-        Viora<span className={onDark ? "text-brass-300" : "text-brass-600"}>Rental</span>
+        Viora<span className={onDark ? "text-brass-300" : "text-brass-600"}>Hosting</span>
       </span>
     </span>
   );
@@ -59,7 +59,7 @@ export function Logo({
   return (
     <Link
       href={href}
-      aria-label="VioraRental home"
+      aria-label="Viora Hosting home"
       className={cn(
         "inline-flex min-h-11 items-center rounded-sm sm:min-h-0",
         onDark ? "text-brass-300" : "text-evergreen-800",

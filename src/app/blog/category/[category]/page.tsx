@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   return pageMetadata({
     title: `${name} Guides for Canadian Hosts`,
-    description: `Articles on ${name.toLowerCase()} for Canadian short-term rental owners, from the VioraRental team.`,
+    description: `Articles on ${name.toLowerCase()} for Canadian short-term rental owners, from the Viora Hosting team.`,
     path: `/blog/category/${category}`,
   });
 }

@@ -19,7 +19,7 @@ const crumbs: Crumb[] = [
 export const metadata: Metadata = pageMetadata({
   title: "Frequently Asked Questions",
   description:
-    "Answers about Airbnb co-hosting, short-term rental management, fees, control, direct booking and the Canadian markets VioraRental serves.",
+    "Answers about Airbnb co-hosting, short-term rental management, fees, control, direct booking and the Canadian markets Viora Hosting serves.",
   path: "/faq",
 });
 
@@ -31,7 +31,7 @@ export default function FaqPage() {
           webPageSchema({
             name: "Frequently Asked Questions",
             description:
-              "Common questions from property owners and guests about VioraRental's co-hosting and management services.",
+              "Common questions from property owners and guests about Viora Hosting's co-hosting and management services.",
             path: "/faq",
             crumbs,
           }),
@@ -96,7 +96,7 @@ export default function FaqPage() {
       <CtaBand
         title="Still have a question?"
         description="Ask us directly. If the answer is useful to other owners, it usually ends up on this page."
-        primary={{ label: "Contact VioraRental", href: "/contact" }}
+        primary={{ label: "Contact Viora Hosting", href: "/contact" }}
         secondary={{ label: "List Your Property", href: "/become-a-host" }}
       />
     </>
