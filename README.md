@@ -1,4 +1,4 @@
-# VioraRental
+# Viora Hosting
 
 Professional short-term rental co-hosting and property management in Canada.
 
@@ -133,7 +133,7 @@ footer links, the sitemap entry, the internal links and the structured data.
    invented number is not.
 5. Fill `externalRating` from the listing page, including `checkedAt`. It is
    shown as that platform's figure, linked to its source, and is never folded
-   into a VioraRental average.
+   into a Viora Hosting average.
 6. Do not set `isPlaceholder`. It exists only for demo records, and none ship
    any more.
 7. `npm run verify`.
@@ -158,7 +158,7 @@ These are structural, not stylistic. Breaking them takes deliberate effort.
 - **Platform ratings are never passed off as ours.** A property's
   `externalRating` is shown as that platform's published figure for that
   listing, with a link to it and the date it was last checked. It is not mixed
-  into any VioraRental average, and it is not a substitute for a written
+  into any Viora Hosting average, and it is not a substitute for a written
   review.
 - **No prices are invented.** Airbnb quotes a nightly rate only once dates are
   chosen, so both records omit `pricing` and the UI says "Rates on request"
@@ -227,7 +227,7 @@ the registry rather than assuming a capability exists.
 `/properties/<slug>`, or additionally have its own domain. Set
 `externalWebsiteUrl` on the record and a "Visit property website" button appears
 and is added to the property's `sameAs` structured data. The standalone site
-links back to its VioraRental property page as "Managed by VioraRental".
+links back to its Viora Hosting property page as "Managed by Viora Hosting".
 
 **Future dashboards.** `/owner/` and `/admin/` are already disallowed in
 `robots.txt` so they can never be indexed by accident. Nothing else is stubbed —

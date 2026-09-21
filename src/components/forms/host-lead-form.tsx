@@ -382,7 +382,7 @@ export function HostLeadForm({ sourcePath = "/become-a-host" }: { sourcePath?: s
         onChange={(checked) => set("consent")(String(checked))}
         error={fieldError("consent")}
       >
-        I agree that VioraRental may contact me about this enquiry, and I have read the{" "}
+        I agree that Viora Hosting may contact me about this enquiry, and I have read the{" "}
         <Link href="/legal/privacy-policy" className="text-evergreen-800 underline underline-offset-4">
           privacy policy
         </Link>

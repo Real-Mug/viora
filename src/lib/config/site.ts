@@ -45,18 +45,18 @@ export type SiteConfig = {
 };
 
 export const siteConfig: SiteConfig = {
-  name: "VioraRental",
-  legalName: "VioraRental", // PLACEHOLDER: registered legal entity name
-  tagline: "Professional co-hosting and short-term rental management for property owners in Canada.",
+  name: "Viora Hosting",
+  legalName: "Viora Hosting", // PLACEHOLDER: registered legal entity name
+  tagline: "Short-term rental hosting for property owners in Canada.",
   shortDescription:
-    "VioraRental helps Canadian property owners simplify short-term rental management through professional co-hosting, listing optimization, guest support and property operations.",
+    "We host short-term rentals for Canadian owners. Listing, guests, turnovers and reporting - handled.",
   country: "CA",
   countryName: "Canada",
   locale: "en-CA",
 
   contact: {
     // PLACEHOLDER: replace with the real published inbox before launch.
-    email: "hello@viorarental.com",
+    email: "hello@viorahosting.com",
     // PLACEHOLDER: leave empty to hide the phone link site-wide.
     phone: "",
     phoneDisplay: "",
@@ -155,5 +155,5 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
 export const CTA = {
   primary: { label: "List Your Property", href: "/become-a-host" },
   secondary: { label: "Explore Properties", href: "/properties" },
-  contact: { label: "Contact VioraRental", href: "/contact" },
+  contact: { label: "Contact Viora Hosting", href: "/contact" },
 } as const;

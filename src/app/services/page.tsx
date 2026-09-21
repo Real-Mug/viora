@@ -33,7 +33,7 @@ export default function ServicesPage() {
           webPageSchema({
             name: "Short-Term Rental and Airbnb Management Services",
             description:
-              "The co-hosting, management and operational services VioraRental delivers for Canadian property owners.",
+              "The co-hosting, management and operational services Viora Hosting delivers for Canadian property owners.",
             path: "/services",
             crumbs,
           }),

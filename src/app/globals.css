@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   VioraRental design system
+   Viora Hosting design system
    --------------------------------------------------------------------------
    One warm, quiet palette: deep evergreen as the brand colour, brass as the
    single accent, and a linen paper tone instead of pure white. Type pairs a
@@ -564,5 +564,294 @@
   .prose-viora strong {
     color: var(--color-ink);
     font-weight: 600;
+  }
+}
+
+/* ==========================================================================
+   Hosting walkthrough
+
+   The animated explainer on the homepage and /how-it-works. Scene children
+   start hidden and play only while their scene carries data-state="active",
+   so switching step replays the sequence rather than showing a finished frame.
+   The reduced-motion block near the top of this file collapses every duration,
+   which lands each element on its end state instantly - visible, not hidden.
+   ========================================================================== */
+
+@layer components {
+  /* ---------------------------------------------------------------- steps */
+
+  .walk-step {
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    transition:
+      background-color 450ms var(--ease-out-quint),
+      border-color 450ms var(--ease-out-quint);
+  }
+
+  .walk-step[data-state="active"] {
+    background: var(--color-linen-200);
+    border-color: var(--color-line);
+  }
+
+  .walk-step:focus-visible {
+    outline: 2px solid var(--color-brass-500);
+    outline-offset: 2px;
+  }
+
+  .walk-step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-brass-200);
+    background: var(--color-surface-raised);
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-brass-700);
+    transition:
+      background-color 450ms var(--ease-out-quint),
+      border-color 450ms var(--ease-out-quint),
+      color 450ms var(--ease-out-quint);
+  }
+
+  .walk-step[data-state="done"] .walk-step-num {
+    background: var(--color-brass-50);
+  }
+
+  .walk-step[data-state="active"] .walk-step-num {
+    background: var(--color-evergreen-800);
+    border-color: var(--color-evergreen-800);
+    color: var(--color-linen-50);
+  }
+
+  .walk-step-title {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--color-ink-muted);
+    transition: color 450ms var(--ease-out-quint);
+  }
+
+  .walk-step[data-state="active"] .walk-step-title {
+    color: var(--color-ink);
+  }
+
+  .walk-step-body {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--color-ink-subtle);
+  }
+
+  /* ---------------------------------------------------------------- stage */
+
+  .walk-stage {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-panel);
+    border: 1px solid var(--color-evergreen-700);
+    background:
+      radial-gradient(38rem 20rem at 78% -12%, rgba(185, 138, 75, 0.22), transparent 68%),
+      linear-gradient(165deg, var(--color-evergreen-900), var(--color-evergreen-950));
+    box-shadow: var(--shadow-card, 0 18px 46px -26px rgba(11, 26, 23, 0.8));
+    overflow: hidden;
+  }
+
+  .walk-scene {
+    position: absolute;
+    inset: 0;
+    padding: clamp(0.75rem, 2vw, 1.25rem);
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 600ms var(--ease-out-quint),
+      transform 600ms var(--ease-out-quint);
+    pointer-events: none;
+  }
+
+  .walk-scene[data-state="active"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ------------------------------------------------------ progress + dots */
+
+  .walk-track {
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-line);
+    overflow: hidden;
+  }
+
+  .walk-track-bar {
+    display: block;
+    height: 100%;
+    width: var(--walk-progress, 20%);
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--color-brass-600), var(--color-brass-400));
+    transition: width 700ms var(--ease-out-quint);
+  }
+
+  .walk-dot {
+    height: 2.25rem;
+    min-width: 2.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: transparent;
+    font-size: 0.75rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink-subtle);
+    cursor: pointer;
+    transition:
+      background-color 350ms var(--ease-out-quint),
+      border-color 350ms var(--ease-out-quint),
+      color 350ms var(--ease-out-quint);
+  }
+
+  .walk-dot:hover {
+    border-color: var(--color-line-strong);
+    color: var(--color-ink);
+  }
+
+  .walk-dot[data-state="active"] {
+    background: var(--color-evergreen-800);
+    border-color: var(--color-evergreen-800);
+    color: var(--color-linen-50);
+  }
+
+  .walk-dot:focus-visible {
+    outline: 2px solid var(--color-brass-500);
+    outline-offset: 2px;
+  }
+
+  /* ------------------------------------------------------- scene painting */
+
+  .walk-stroke { stroke: rgba(242, 239, 232, 0.55); }
+  .walk-stroke-gold { stroke: var(--color-brass-300); }
+  .walk-stroke-dark { stroke: var(--color-evergreen-950); }
+  .walk-fill-gold { fill: var(--color-brass-400); }
+  .walk-fill-gold-soft { fill: rgba(206, 160, 87, 0.5); }
+  .walk-fill-soft { fill: rgba(242, 239, 232, 0.17); }
+  .walk-fill-line { fill: rgba(242, 239, 232, 0.45); }
+  .walk-fill-panel {
+    fill: rgba(242, 239, 232, 0.07);
+    stroke: rgba(242, 239, 232, 0.22);
+    stroke-width: 1;
+  }
+
+  .walk-label {
+    fill: rgba(242, 239, 232, 0.78);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .walk-caption {
+    fill: rgba(242, 239, 232, 0.72);
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  .walk-job {
+    fill: rgba(242, 239, 232, 0.85);
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .walk-price {
+    fill: var(--color-linen-50);
+    font-family: var(--font-display);
+    font-size: 16px;
+  }
+
+  .walk-badge {
+    fill: var(--color-evergreen-950);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .walk-payout {
+    fill: rgba(242, 239, 232, 0.85);
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  /* ------------------------------------------------------ scene animation */
+
+  .walk-in,
+  .walk-pop,
+  .walk-grow,
+  .walk-sweep,
+  .walk-draw {
+    opacity: 0;
+  }
+
+  .walk-scene[data-state="active"] .walk-in,
+  .walk-scene[data-state="active"] .walk-pop,
+  .walk-scene[data-state="active"] .walk-grow,
+  .walk-scene[data-state="active"] .walk-sweep,
+  .walk-scene[data-state="active"] .walk-draw {
+    animation-duration: 700ms;
+    animation-timing-function: var(--ease-out-quint);
+    animation-fill-mode: forwards;
+    animation-delay: var(--walk-delay, 0ms);
+  }
+
+  .walk-scene[data-state="active"] .walk-in { animation-name: walk-in; }
+  .walk-scene[data-state="active"] .walk-pop { animation-name: walk-pop; }
+  .walk-scene[data-state="active"] .walk-sweep {
+    animation-name: walk-sweep;
+    transform-origin: left center;
+  }
+  .walk-scene[data-state="active"] .walk-grow { animation-name: walk-grow; }
+  .walk-scene[data-state="active"] .walk-draw {
+    animation-name: walk-draw;
+    animation-duration: 1000ms;
+    stroke-dasharray: var(--walk-len, 400);
+    stroke-dashoffset: var(--walk-len, 400);
+  }
+
+  @keyframes walk-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes walk-pop {
+    0% { opacity: 0; transform: scale(0.5); }
+    65% { opacity: 1; transform: scale(1.08); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes walk-sweep {
+    from { opacity: 1; transform: scaleX(0); }
+    to { opacity: 1; transform: scaleX(1); }
+  }
+
+  @keyframes walk-grow {
+    from { opacity: 1; transform: scaleY(0); }
+    to { opacity: 1; transform: scaleY(1); }
+  }
+
+  @keyframes walk-draw {
+    from { opacity: 1; stroke-dashoffset: var(--walk-len, 400); }
+    to { opacity: 1; stroke-dashoffset: 0; }
+  }
+
+  /* Keeps breathing while its step is on screen: the one signal that the
+     operation is ongoing rather than a finished diagram. */
+  .walk-scene[data-state="active"] .walk-pulse {
+    animation: walk-pulse 2.4s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  @keyframes walk-pulse {
+    0%, 100% { opacity: 0.45; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.35); }
   }
 }

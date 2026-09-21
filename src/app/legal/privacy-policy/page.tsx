@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy",
   description:
-    "How VioraRental collects, uses, stores and protects personal information from property owners, guests and website visitors in Canada.",
+    "How Viora Hosting collects, uses, stores and protects personal information from property owners, guests and website visitors in Canada.",
   path: "/legal/privacy-policy",
 });
 
@@ -40,7 +40,7 @@ export default function PrivacyPolicyPage() {
     >
       <h2 id="who-we-are">Who we are</h2>
       <p>
-        VioraRental provides short-term rental co-hosting and property management services in
+        Viora Hosting provides short-term rental co-hosting and property management services in
         Canada. In this policy, &quot;we&quot; and &quot;us&quot; mean {siteConfig.legalName}.
       </p>
       <p>

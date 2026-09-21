@@ -91,7 +91,7 @@ export type PropertyVideo = {
 
 /**
  * Pricing rules. Every field is optional because a property may be managed
- * without VioraRental publishing its rates. `null`/absent means "not published"
+ * without Viora Hosting publishing its rates. `null`/absent means "not published"
  * and the UI says so rather than inventing a number.
  */
 export type PricingRule = {
@@ -140,7 +140,7 @@ export type PropertyStatus = "draft" | "active" | "paused" | "archived";
 /**
  * A rating carried over from the platform a property is listed on.
  *
- * This is NOT a VioraRental average and is deliberately not mixed into one: it
+ * This is NOT a Viora Hosting average and is deliberately not mixed into one: it
  * is a figure copied from a public listing page, so it is stored with the URL a
  * reader can check it against and the date it was last verified. Guest reviews
  * written on this site live in src/content/reviews.ts and are averaged

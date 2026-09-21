@@ -152,7 +152,7 @@ async function main() {
   written.push(
     await write(
       "images/brand/logo.svg",
-      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 44" width="220" height="44" role="img" aria-label="VioraRental">
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 44" width="220" height="44" role="img" aria-label="Viora Hosting">
   <path d="M6 15 18 7l12 8" fill="none" stroke="#b98a4b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M11 18 18 34l7-16" fill="none" stroke="#1e3a34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
   <text x="42" y="29" font-family="Georgia, 'Times New Roman', serif" font-size="23" fill="#23211e">Viora<tspan fill="#9d7040">Rental</tspan></text>

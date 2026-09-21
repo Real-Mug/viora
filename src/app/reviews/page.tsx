@@ -21,7 +21,7 @@ const crumbs: Crumb[] = [
 export const metadata: Metadata = pageMetadata({
   title: "Reviews from Guests and Property Owners",
   description:
-    "Reviews of VioraRental-managed properties and our co-hosting service, grouped by property and published with their source attached.",
+    "Reviews of Viora Hosting properties and our co-hosting service, grouped by property and published with their source attached.",
   path: "/reviews",
 });
 
@@ -30,7 +30,7 @@ export default async function ReviewsPage() {
   const managed = await properties.list({ status: ["active"], pageSize: 100 });
 
   // Two distinct things share this page, and conflating them would be
-  // misleading: reviews of a specific property, and reviews of VioraRental as
+  // misleading: reviews of a specific property, and reviews of Viora Hosting as
   // a service. Anything carrying a propertySlug belongs to the former.
   const byProperty = new Map<string, typeof all>();
   for (const review of all) {
@@ -49,7 +49,7 @@ export default async function ReviewsPage() {
           webPageSchema({
             name: "Reviews from Guests and Property Owners",
             description:
-              "Verified reviews of VioraRental-managed properties, grouped by property and shown with the platform they came from.",
+              "Verified reviews of Viora Hosting properties, grouped by property and shown with the platform they came from.",
             path: "/reviews",
             crumbs,
           }),
@@ -109,7 +109,7 @@ export default async function ReviewsPage() {
           <Reveal>
             <SectionHeading
               eyebrow="About working with us"
-              title="Reviews of VioraRental"
+              title="Reviews of Viora Hosting"
               description="Feedback about the co-hosting service from the owners and guests we work with, as opposed to any single property."
               size="md"
               level={2}
@@ -157,7 +157,7 @@ export default async function ReviewsPage() {
                 stars tells a reader very little except that someone curated it.
               </p>
               <p>
-                We do not display an overall VioraRental average until there are enough verified
+                We do not display an overall Viora Hosting average until there are enough verified
                 reviews for the number to mean something, and the structured data this page emits
                 follows the same rule.
               </p>

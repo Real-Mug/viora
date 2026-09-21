@@ -3,10 +3,10 @@ import Link from "next/link";
 
 import { PropertyCard } from "@/components/property/property-card";
 import { HomeHero } from "@/components/marketing/hero";
+import { HostingWalkthrough } from "@/components/marketing/hosting-walkthrough";
 import {
   CtaBand,
   FaqSection,
-  HowItWorks,
   ServicesGrid,
   TrustSection,
 } from "@/components/marketing/sections";
@@ -31,7 +31,7 @@ import { faqSchema, graph, webPageSchema } from "@/lib/seo/schema";
 export const metadata: Metadata = pageMetadata({
   // The homepage sets its own brand-bearing title: the layout's title template
   // is not applied to the root segment, so the brand has to be explicit here.
-  title: "VioraRental | Short-Term Rental Co-Hosting in Canada",
+  title: "Viora Hosting | Short-Term Rental Co-Hosting in Canada",
   description:
     "Professional co-hosting and short-term rental management for Canadian property owners: guest support, listing optimization and property operations.",
   path: "/",
@@ -43,7 +43,7 @@ export default async function HomePage() {
   const fallback = featured.items.length ? featured : await properties.list({ pageSize: 3 });
   const showcase = fallback.items;
 
-  // Reviews about VioraRental itself. Property-specific reviews are shown on
+  // Reviews about Viora Hosting itself. Property-specific reviews are shown on
   // /reviews under the property they describe, so they are excluded here.
   const allReviews = await reviews.list();
   const companyReviews = allReviews.filter((review) => !review.propertySlug);
@@ -56,7 +56,7 @@ export default async function HomePage() {
       <JsonLd
         data={graph(
           webPageSchema({
-            name: "VioraRental - Short-Term Rental Co-Hosting and Property Management in Canada",
+            name: "Viora Hosting - Short-Term Rental Co-Hosting and Property Management in Canada",
             description:
               "Professional co-hosting and short-term rental management for property owners in Canada.",
             path: "/",
@@ -66,19 +66,19 @@ export default async function HomePage() {
       />
 
       <HomeHero
-        eyebrow="Short-term rental management in Canada"
+        eyebrow="Short-term rental hosting in Canada"
         title={
           <>
-            Your property. Our expertise.
-            <br className="hidden sm:block" /> Better short-term rentals.
+            Your property,
+            <br className="hidden sm:block" /> hosted properly.
           </>
         }
-        description="VioraRental helps Canadian property owners simplify short-term rental management through professional co-hosting, listing optimization, guest support and property operations."
+        description="We host short-term rentals for Canadian owners. Listing, guests, turnovers and reporting - handled."
         primaryCta={CTA.primary}
         secondaryCta={CTA.secondary}
         image={{
           src: "/images/hero/home-hero.webp",
-          alt: "The fenced garden of a VioraRental-managed house in Waterloo, Ontario, on a summer afternoon",
+          alt: "The fenced garden of a Viora Hosting house in Waterloo, Ontario, on a summer afternoon",
         }}
         footnote={
           areas.length ? (
@@ -121,8 +121,8 @@ export default async function HomePage() {
             <SectionHeading
               id="services-heading"
               eyebrow="What we do"
-              title="Services built around how a rental actually runs"
-              description="Take the whole operation or just the part that is costing you your evenings. Every service below is one we deliver ourselves."
+              title="Services built around how a rental runs"
+              description="Take the whole operation, or just the part costing you your evenings."
             />
             <ButtonLink href="/services" variant="secondary" className="shrink-0">
               All services
@@ -141,8 +141,8 @@ export default async function HomePage() {
               <SectionHeading
                 id="properties-heading"
                 eyebrow="Properties"
-                title="A look at the kind of properties we manage"
-                description="Every property we take on is presented properly, kept to a standard and supported by a real team behind the listing."
+                title="The kind of properties we host"
+                description="Presented properly, kept to a standard, with a real team behind the listing."
               />
               <ButtonLink href="/properties" variant="secondary" className="shrink-0">
                 {CTA.secondary.label}
@@ -153,9 +153,8 @@ export default async function HomePage() {
               <div className="mt-8 flex flex-wrap items-center gap-3 rounded-[var(--radius-card)] border border-brass-200 bg-brass-50 p-4 text-sm text-brass-900">
                 <SampleBadge />
                 <p>
-                  These are sample listings used while the site is prepared for launch. They are not
-                  properties currently under management, and they are removed as soon as real
-                  inventory is published.
+                  Sample listings, shown while the site is prepared for launch. Not properties under
+                  management.
                 </p>
               </div>
             ) : null}
@@ -171,7 +170,7 @@ export default async function HomePage() {
         </Section>
       ) : null}
 
-      <HowItWorks />
+      <HostingWalkthrough />
 
       {/* --- Service areas -------------------------------------------------- */}
       {areas.length > 0 ? (
@@ -180,9 +179,9 @@ export default async function HomePage() {
             <Reveal>
               <SectionHeading
                 id="areas-heading"
-              eyebrow="Where we work"
-              title="Canadian markets we know properly"
-                description="We only take on properties in markets where we have reliable cleaning and maintenance capacity. Each of these pages covers how short-term letting actually works there."
+                eyebrow="Where we work"
+                title="Markets we know properly"
+                description="We only take on markets where we have reliable cleaning and maintenance capacity."
               />
             </Reveal>
 
@@ -218,9 +217,9 @@ export default async function HomePage() {
           <Reveal>
             <SectionHeading
               id="reviews-heading"
-            eyebrow="Reviews"
-            title="What guests and owners say"
-              description="Reviews of VioraRental as a service. Reviews of a specific home are grouped under that property on the reviews page."
+              eyebrow="Reviews"
+              title="What guests and owners say"
+              description="Reviews of the service. Reviews of a specific home sit under that property."
               align="center"
             />
           </Reveal>
@@ -258,7 +257,7 @@ export default async function HomePage() {
                 id="resources-heading"
                 eyebrow="Resources"
                 title="Guides for Canadian hosts"
-                description="Practical writing on co-hosting, operations and pricing - useful whether or not you ever work with us."
+                description="Co-hosting, operations and pricing. Useful whether or not you work with us."
               />
               <ButtonLink href="/blog" variant="secondary" className="shrink-0">
                 All resources
@@ -295,8 +294,8 @@ export default async function HomePage() {
 
       <CtaBand
         title="Tell us about your property"
-        description="Send us the details and we will come back with an honest assessment: what we would manage, what we would change first, and what it would cost. No obligation."
-        note="We will also tell you if we think short-term letting is the wrong use for your property. That is a more useful answer than a quote."
+        description="Send the details. You get an honest read on what we would run, what we would change first, and what it costs."
+        note="If short-term letting is the wrong use for your property, we will say so."
       />
     </>
   );

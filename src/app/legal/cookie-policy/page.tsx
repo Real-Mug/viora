@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Cookie Policy",
   description:
-    "What cookies and similar technologies the VioraRental website uses, and how to control them.",
+    "What cookies and similar technologies the Viora Hosting website uses, and how to control them.",
   path: "/legal/cookie-policy",
 });
 

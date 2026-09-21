@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       `${property.name} - ${PROPERTY_TYPE_LABELS[property.propertyType]} in ${property.location.city}`,
     description:
       property.seoDescription ??
-      `${property.summary} Sleeps ${property.maxGuests}. Managed by VioraRental.`,
+      `${property.summary} Sleeps ${property.maxGuests}. Managed by Viora Hosting.`,
     path: `/properties/${property.slug}`,
     ...(cover ? { image: { url: cover.src, alt: cover.alt } } : {}),
   });
@@ -408,7 +408,7 @@ export default async function PropertyPage({ params }: Params) {
               <BookingPanel property={property} />
 
               <div className="mt-5 rounded-[var(--radius-card)] border border-line bg-linen-200/60 p-5">
-                <p className="text-sm font-medium text-ink">Managed by VioraRental</p>
+                <p className="text-sm font-medium text-ink">Managed by Viora Hosting</p>
                 <p className="mt-2 text-[0.8125rem] leading-relaxed text-ink-muted">
                   This property is operated by our team: guest support, cleaning, maintenance and
                   the listing itself.
@@ -459,7 +459,7 @@ export default async function PropertyPage({ params }: Params) {
 
       <CtaBand
         title="Own a property like this one?"
-        description="We manage properties across several Canadian markets. Tell us about yours and we will come back with an honest assessment."
+        description="We host across several Canadian markets. Tell us about yours."
       />
 
       {/* Phones only: the sticky sidebar's two actions, kept within reach. */}

@@ -5,7 +5,7 @@ import type { ServiceArea } from "@/lib/types/location";
  * ----------------------------------------------------------------------------
  * READ BEFORE LAUNCH
  *
- * 1. CONFIRM EVERY MARKET. A location page is a statement that VioraRental
+ * 1. CONFIRM EVERY MARKET. A location page is a statement that Viora Hosting
  *    takes on work in that market. Set `active: false` for any market you do
  *    not serve - the page, its nav links, its sitemap entry and its structured
  *    data all disappear. Do not leave a market listed "to see if it ranks".
@@ -78,7 +78,7 @@ export const serviceAreas: ServiceArea[] = [
     province: "ON",
     active: true,
     summary:
-      "Short-term rental co-hosting and management for condo and house owners across Toronto, in a market shaped by principal-residence rules and building bylaws.",
+      "Condos and houses, in a market shaped by principal-residence rules and building bylaws.",
     intro: [
       "Toronto is a dense, year-round market with steady business travel, a heavy events calendar and one of the most tightly regulated short-term rental regimes in the country. That combination rewards owners who run a genuinely professional operation and punishes those who treat it casually.",
       "The practical constraints here are less about demand and more about permission. Whether a property can be let short-term at all depends on the city's registration regime, the condominium declaration and rules, and in some buildings a blanket prohibition that no amount of listing work can get around.",
@@ -129,7 +129,7 @@ export const serviceAreas: ServiceArea[] = [
     province: "BC",
     active: true,
     summary:
-      "Co-hosting and rental management for Vancouver owners, in a market where provincial and city rules tightly define what can be let short-term.",
+      "A market where provincial and city rules tightly define what can be let.",
     intro: [
       "Vancouver has consistent visitor demand across the year and a short-term rental framework that is among the strictest in Canada. British Columbia's provincial legislation and the city's own licensing regime both apply, and the two do not always work the same way.",
       "For owners, this means the first question is never how to price the property. It is whether the property qualifies at all, and under which set of rules.",
@@ -169,7 +169,7 @@ export const serviceAreas: ServiceArea[] = [
     ],
     highlightedServices: ["airbnb-co-hosting", "guest-communication", "revenue-management"],
     coordinates: { lat: 49.2827, lng: -123.1207 },
-    seoTitle: "Airbnb Co-Hosting and Rental Management, Vancouver",
+    seoTitle: "Airbnb Co-Hosting and Management, Vancouver",
     seoDescription:
       "Short-term rental co-hosting and management for Vancouver property owners, with licensing-aware operations, guest support and listing optimization.",
   },
@@ -180,7 +180,7 @@ export const serviceAreas: ServiceArea[] = [
     province: "QC",
     active: true,
     summary:
-      "Co-hosting and management for Montreal owners, in a market with provincial registration requirements and strong festival-driven seasonality.",
+      "Provincial registration, and demand that swings hard with the festival calendar.",
     intro: [
       "Montreal is one of Canada's strongest leisure markets, with a summer festival season that concentrates demand into a few months and a guest mix that skews heavily toward short city breaks.",
       "It is also a market with a distinct regulatory structure: Quebec operates a provincial registration regime for tourist accommodation, with registration numbers required on listings, alongside borough-level zoning rules that decide where short-term letting is permitted at all.",
@@ -230,7 +230,7 @@ export const serviceAreas: ServiceArea[] = [
     province: "AB",
     active: true,
     summary:
-      "Co-hosting and rental management for Calgary owners, in a licensed market with strong event and corporate demand.",
+      "A licensed market with strong event and corporate demand.",
     intro: [
       "Calgary is a comparatively accessible short-term rental market: licensing is required but the framework is workable, and the city does not impose the principal-residence restrictions found in Toronto or Vancouver.",
       "Demand has two distinct drivers. Corporate and relocation stays run through the year and favour longer bookings, well-equipped kitchens and a proper workspace. Event demand spikes hard around the Stampede and major conferences, and rewards owners who price for it deliberately.",
@@ -280,7 +280,7 @@ export const serviceAreas: ServiceArea[] = [
     province: "ON",
     active: true,
     summary:
-      "Vacation rental management for cottage owners across Muskoka, where the season is short, suppliers are stretched and township rules differ.",
+      "A short season, stretched suppliers and township rules that differ.",
     intro: [
       "Muskoka concentrates most of its revenue into a short summer, with a shoulder season that works for the right property and a winter that does not work for most. That shape changes almost everything about how a property should be priced and run.",
       "It is also a market where operations are genuinely hard. Cleaners and trades are booked out months ahead in July and August, drive times between properties are long, and cottages carry systems - wells, septic, docks, propane, generators - that a city apartment does not have.",
@@ -330,7 +330,7 @@ export const serviceAreas: ServiceArea[] = [
     province: "BC",
     active: true,
     summary:
-      "Management for Whistler owners, in a zoning-defined market with two strong seasons and demanding guest expectations.",
+      "Zoning-defined, two strong seasons, and guests who expect a lot.",
     intro: [
       "Whistler is one of the few Canadian markets with two genuine peak seasons: winter for the mountain, summer for the bike park and the trail network. That makes the annual calendar more workable than most resort markets, and it makes pricing more complicated.",
       "The defining constraint here is zoning. Whether a property may be let nightly is determined by its zoning and covenants, not by a licence you can apply for after the fact. Owners buying into the market should establish this before purchase, not after.",

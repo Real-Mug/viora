@@ -19,9 +19,9 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "About VioraRental",
+  title: "About Viora Hosting",
   description:
-    "VioraRental is a Canadian short-term rental co-hosting and property management company. Here is what we do, how we work with owners, and what we will not promise.",
+    "Viora Hosting is a Canadian short-term rental co-hosting and property management company. Here is what we do, how we work with owners, and what we will not promise.",
   path: "/about",
 });
 
@@ -60,7 +60,7 @@ export default function AboutPage() {
       <JsonLd
         data={graph(
           webPageSchema({
-            name: "About VioraRental",
+            name: "About Viora Hosting",
             description:
               "A Canadian short-term rental co-hosting and property management company working with owners across several markets.",
             path: "/about",
@@ -73,7 +73,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         title="A short-term rental company built around the operational work"
-        description="VioraRental manages the day-to-day reality of short-term rentals for Canadian property owners: guests, turnovers, listings and the constant small decisions that come with letting a property nightly."
+        description="Viora Hosting manages the day-to-day reality of short-term rentals for Canadian property owners: guests, turnovers, listings and the constant small decisions that come with letting a property nightly."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
       />
 
@@ -96,7 +96,7 @@ export default function AboutPage() {
                 convenient time, and none of it pauses because you are at work or away.
               </p>
               <p>
-                VioraRental takes that work on. We are a co-hosting and rental management company:
+                Viora Hosting takes that work on. We are a co-hosting and rental management company:
                 we run the operation, keep the property to a standard, look after guests, and report
                 back to the owner in writing.
               </p>
@@ -166,7 +166,7 @@ export default function AboutPage() {
               <div className="overflow-hidden rounded-[var(--radius-panel)] border border-line">
                 <Image
                   src="/images/editorial/waterloo-region-home.webp"
-                  alt="A living area inside a VioraRental-managed house in Waterloo, Ontario"
+                  alt="A living area inside a Viora Hosting house in Waterloo, Ontario"
                   width={1600}
                   height={900}
                   sizes="(min-width: 1024px) 420px, 92vw"

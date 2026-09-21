@@ -3,7 +3,7 @@ import type { Service } from "@/lib/types/service";
 /**
  * SERVICES
  * ----------------------------------------------------------------------------
- * Only list a service here if VioraRental actually delivers it. Adding one is
+ * Only list a service here if Viora Hosting actually delivers it. Adding one is
  * a matter of appending a record: the services index, the nav dropdown, the
  * homepage grid, the sitemap and the internal links all read from this array.
  *
@@ -16,7 +16,7 @@ export const services: Service[] = [
     name: "Airbnb Co-Hosting",
     heading: "Airbnb co-hosting for Canadian property owners",
     summary:
-      "We handle the operational side of your short-term rental while you keep ownership, pricing authority and the listing itself.",
+      "We run the day-to-day. You keep ownership, pricing and the listing.",
     icon: "co-hosting",
     featured: true,
     intro: [
@@ -95,7 +95,7 @@ export const services: Service[] = [
     name: "Short-Term Rental Management",
     heading: "Full short-term rental management",
     summary:
-      "End-to-end management of your rental: listing, guests, pricing, cleaning, maintenance and reporting, with one point of contact.",
+      "Listing, guests, pricing, cleaning, maintenance and reporting. One point of contact.",
     icon: "management",
     featured: true,
     intro: [
@@ -174,7 +174,7 @@ export const services: Service[] = [
     name: "Vacation Rental Management",
     heading: "Vacation rental management for seasonal properties",
     summary:
-      "Management built around cottages, chalets and second homes, where the season, the weather and the drive time all shape the operation.",
+      "For cottages, chalets and second homes, where the season and the drive time shape everything.",
     icon: "vacation",
     featured: true,
     intro: [
@@ -248,7 +248,7 @@ export const services: Service[] = [
     name: "Listing Optimization",
     heading: "Listing optimization for short-term rentals",
     summary:
-      "Improve how your property is presented, structured and positioned so the right guests find it and understand it before they book.",
+      "Presentation, structure and positioning, so the right guests find you and book.",
     icon: "listing",
     featured: true,
     intro: [
@@ -322,7 +322,7 @@ export const services: Service[] = [
     name: "Guest Communication",
     heading: "Guest communication and support",
     summary:
-      "Professional, consistent messaging across the whole guest journey, from the first enquiry to the review that follows checkout.",
+      "Consistent guest messaging, from first enquiry to the review after checkout.",
     icon: "communication",
     featured: true,
     intro: [
@@ -396,7 +396,7 @@ export const services: Service[] = [
     name: "Revenue Management",
     heading: "Revenue and pricing management",
     summary:
-      "Data-informed pricing, minimum-stay and calendar strategy, reviewed against how your property actually performs.",
+      "Pricing, minimum-stay and calendar strategy, reviewed against real performance.",
     icon: "revenue",
     featured: true,
     intro: [
@@ -470,7 +470,7 @@ export const services: Service[] = [
     name: "Property Care",
     heading: "Cleaning, turnovers and maintenance coordination",
     summary:
-      "Coordinating the cleaning, restocking and maintenance that decide whether a guest walks in impressed or disappointed.",
+      "Cleaning, restocking and maintenance - the things a guest notices first.",
     icon: "care",
     featured: true,
     intro: [

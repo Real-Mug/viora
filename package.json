@@ -1,9 +1,9 @@
 {
-  "name": "viorarental",
+  "name": "viorahosting",
   "version": "0.1.0",
   "private": true,
   "license": "UNLICENSED",
-  "description": "VioraRental - Professional short-term rental co-hosting and property management in Canada.",
+  "description": "Viora Hosting - Professional short-term rental co-hosting and property management in Canada.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

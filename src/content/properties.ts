@@ -129,7 +129,7 @@ export const propertyRecords: Property[] = [
     featured: true,
     seoTitle: "Modern 2-Bedroom Townhome in Kitchener, Ontario",
     seoDescription:
-      "Three-level, two-bedroom townhome in Kitchener with free parking, a dedicated workspace, in-suite laundry and self check-in. Sleeps four. Managed by VioraRental.",
+      "Three-level, two-bedroom townhome in Kitchener with free parking, a dedicated workspace, in-suite laundry and self check-in. Sleeps four. Managed by Viora Hosting.",
     createdAt: CREATED,
     updatedAt: UPDATED,
   },
@@ -216,7 +216,7 @@ export const propertyRecords: Property[] = [
     featured: true,
     seoTitle: "Spacious 3-Bedroom House in Waterloo, Ontario",
     seoDescription:
-      "Pet-friendly three-bedroom house in Waterloo with two living areas, a fenced backyard, dedicated workspace and driveway parking. Sleeps six. Managed by VioraRental.",
+      "Pet-friendly three-bedroom house in Waterloo with two living areas, a fenced backyard, workspace and driveway parking. Sleeps six. Managed by Viora Hosting.",
     createdAt: CREATED,
     updatedAt: UPDATED,
   },

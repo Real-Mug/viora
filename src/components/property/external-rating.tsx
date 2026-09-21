@@ -6,7 +6,7 @@ import type { ExternalRating } from "@/lib/types/property";
 /**
  * Ratings carried over from a listing platform.
  *
- * Kept visibly separate from anything VioraRental calculates. Every surface
+ * Kept visibly separate from anything Viora Hosting calculates. Every surface
  * below names the platform, links to the listing the number came from, and
  * says when it was last checked - so a reader can verify the claim in one
  * click, and a stale figure is obvious rather than hidden.
@@ -161,7 +161,7 @@ export function ExternalRatingPanel({
         <time dateTime={rating.checkedAt}>
           {checkedFormatter.format(new Date(rating.checkedAt))}
         </time>
-        . They are {source}&rsquo;s figures, not a VioraRental average.
+        . They are {source}&rsquo;s figures, not a Viora Hosting average.
       </p>
     </section>
   );

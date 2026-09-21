@@ -19,9 +19,9 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact VioraRental",
+  title: "Contact Viora Hosting",
   description:
-    "Get in touch with VioraRental about co-hosting, short-term rental management, or staying at a property we manage in Canada.",
+    "Get in touch with Viora Hosting about co-hosting, short-term rental management, or staying at a property we manage in Canada.",
   path: "/contact",
 });
 
@@ -34,9 +34,9 @@ export default function ContactPage() {
       <JsonLd
         data={graph(
           webPageSchema({
-            name: "Contact VioraRental",
+            name: "Contact Viora Hosting",
             description:
-              "Contact details and enquiry form for VioraRental short-term rental management in Canada.",
+              "Contact details and enquiry form for Viora Hosting short-term rental management in Canada.",
             path: "/contact",
             crumbs,
           }),

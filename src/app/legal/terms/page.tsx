@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Terms of Service",
   description:
-    "The terms that govern use of the VioraRental website, including what this site does and does not do.",
+    "The terms that govern use of the Viora Hosting website, including what this site does and does not do.",
   path: "/legal/terms",
 });
 
@@ -37,7 +37,7 @@ export default function TermsPage() {
     >
       <h2 id="about">About these terms</h2>
       <p>
-        These terms govern your use of the VioraRental website. They do not govern a management
+        These terms govern your use of the Viora Hosting website. They do not govern a management
         agreement between {siteConfig.legalName} and a property owner - that is a separate written
         agreement - and they do not govern a stay at a property, which is covered by the{" "}
         <Link href="/legal/booking-terms">booking terms</Link> and the terms of whichever platform a

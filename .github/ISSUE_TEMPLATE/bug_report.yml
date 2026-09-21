@@ -14,7 +14,7 @@ body:
     id: url
     attributes:
       label: Page URL
-      placeholder: https://viorarental.com/services
+      placeholder: https://viorahosting.com/services
     validations:
       required: true
 
@@ -34,7 +34,7 @@ body:
     attributes:
       label: Where did you see it
       options:
-        - Production (viorarental.com)
+        - Production (viorahosting.com)
         - GitHub Pages preview
         - Local dev (npm run dev)
     validations:

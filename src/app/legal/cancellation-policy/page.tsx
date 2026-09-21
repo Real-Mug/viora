@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Cancellation Policy",
   description:
-    "How cancellations are handled for stays at VioraRental-managed properties, and what applies to platform bookings.",
+    "How cancellations are handled for stays at Viora Hosting properties, and what applies to platform bookings.",
   path: "/legal/cancellation-policy",
 });
 

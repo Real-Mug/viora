@@ -23,7 +23,7 @@ const crumbs: Crumb[] = [
 export const metadata: Metadata = pageMetadata({
   title: "Short-Term Rental Properties in Canada",
   description:
-    "Browse the short-term rental properties managed by VioraRental across Canada. Filter by location, property type, guests, bedrooms and amenities.",
+    "Browse the short-term rental properties managed by Viora Hosting across Canada. Filter by location, property type, guests, bedrooms and amenities.",
   path: "/properties",
 });
 
@@ -42,7 +42,7 @@ export default async function PropertiesPage() {
         data={graph(
           webPageSchema({
             name: "Short-Term Rental Properties in Canada",
-            description: "Properties managed by VioraRental across Canadian markets.",
+            description: "Properties managed by Viora Hosting across Canadian markets.",
             path: "/properties",
             crumbs,
           }),
@@ -64,7 +64,7 @@ export default async function PropertiesPage() {
 
       <PageHero
         eyebrow="Properties"
-        title="Properties managed by VioraRental"
+        title="Properties managed by Viora Hosting"
         description="Every property here is run by the same team, to the same standard: presented properly, kept clean, and supported by someone who answers."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
       />
@@ -113,7 +113,7 @@ export default async function PropertiesPage() {
 
       <CtaBand
         title="Want your property managed like these?"
-        description="Send us the details and we will come back with an honest assessment of what we would manage, what we would change, and what it would cost."
+        description="Send the details. You get an honest read on what we would run and what it costs."
         secondary={CTA.contact}
       />
     </>

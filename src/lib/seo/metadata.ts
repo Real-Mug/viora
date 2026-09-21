@@ -30,7 +30,7 @@ export type PageMetadataInput = {
 
 const DEFAULT_OG_IMAGE = {
   url: "/images/brand/og-default.jpg",
-  alt: "VioraRental - short-term rental co-hosting and property management in Canada",
+  alt: "Viora Hosting - short-term rental co-hosting and property management in Canada",
   width: 1200,
   height: 630,
 };

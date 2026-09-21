@@ -1,5 +1,5 @@
 /**
- * Location pages exist only for markets VioraRental genuinely serves. There is
+ * Location pages exist only for markets Viora Hosting genuinely serves. There is
  * deliberately no generator that fans a template out across every Canadian
  * city - each record must carry unique, locally useful content.
  */

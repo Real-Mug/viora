@@ -126,8 +126,7 @@ export default async function LocationPage({ params }: Params) {
                   ))}
                 </ul>
                 <p className="mt-5 border-t border-line pt-5 text-[0.8125rem] leading-relaxed text-ink-subtle">
-                  Nearby but not listed? Ask - coverage depends on travel time for cleaners and
-                  trades rather than a hard boundary.
+                  Nearby but not listed? Ask - coverage follows travel time, not a hard boundary.
                 </p>
               </div>
             </aside>
@@ -207,7 +206,7 @@ export default async function LocationPage({ params }: Params) {
       {/* --- Internal links -------------------------------------------------- */}
       <Section aria-labelledby="more-heading">
         <Container>
-          <SectionHeading id="more-heading" eyebrow="Keep reading" title="More from VioraRental" />
+          <SectionHeading id="more-heading" eyebrow="Keep reading" title="More from Viora Hosting" />
 
           <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {otherAreas.length > 0 ? (
