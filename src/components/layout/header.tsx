@@ -102,7 +102,7 @@ export function Header() {
                       aria-current={isActive(pathname, item.href) ? "page" : undefined}
                       data-active={isActive(pathname, item.href) ? "true" : undefined}
                       className={cn(
-                        "nav-underline relative inline-flex h-10 items-center whitespace-nowrap rounded-full px-2.5 2xl:px-3.5",
+                        "nav-underline relative inline-flex h-10 items-center whitespace-nowrap rounded-full px-3",
                         "text-[0.9375rem] transition-colors duration-200",
                         isActive(pathname, item.href)
                           ? "font-medium text-evergreen-900"
@@ -117,13 +117,19 @@ export function Header() {
             </ul>
           </nav>
 
-          <div className="hidden shrink-0 items-center gap-2.5 xl:flex">
-            {/* Secondary CTA reappears only when there is genuinely room for it. */}
-            <div className="hidden 2xl:block">
-              <ButtonLink href={CTA.secondary.href} variant="secondary" size="sm">
-                {CTA.secondary.label}
-              </ButtonLink>
-            </div>
+          {/*
+            One CTA only, at every width.
+
+            A second button used to appear at 2xl. That could never fit: the row
+            lives inside .container-page, which is capped at 80rem, so the space
+            available here stops growing at 1280px while the 2xl rule fires at
+            1536px and adds ~165px. The result was "Explore Properties" sitting
+            on top of the Contact link at every viewport from 1536px up.
+
+            Dropping it rather than widening the container also removes a
+            duplicate: "Properties" is already in the nav, two links away.
+          */}
+          <div className="hidden shrink-0 items-center xl:flex">
             <ButtonLink href={CTA.primary.href} size="sm" className="transition-transform duration-300 hover:-translate-y-0.5">
               {CTA.primary.label}
             </ButtonLink>
@@ -224,7 +230,7 @@ function DesktopDropdown({ item, pathname }: { item: NavLink; pathname: string }
         onClick={() => setOpen((value) => !value)}
         data-active={active ? "true" : undefined}
         className={cn(
-          "nav-underline relative inline-flex h-10 items-center gap-1 whitespace-nowrap rounded-full px-2.5 2xl:px-3.5",
+          "nav-underline relative inline-flex h-10 items-center gap-1 whitespace-nowrap rounded-full px-3",
           "text-[0.9375rem] transition-colors duration-200",
           active ? "font-medium text-evergreen-900" : "text-ink-muted hover:text-evergreen-900",
         )}
