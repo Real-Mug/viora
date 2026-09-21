@@ -17,7 +17,7 @@ import manifest from "@/lib/data/image-manifest.json";
  * returned untouched, so it behaves exactly as it did before.
  *
  * NOTE ON basePath: a loader returns the final URL, so it is responsible for
- * the deployment sub-path (`/viora-site` on GitHub Pages). Next does not
+ * the deployment sub-path (`/viora` on GitHub Pages). Next does not
  * prefix a custom loader's output. This is why `Img` no longer applies it.
  */
 

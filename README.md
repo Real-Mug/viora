@@ -1,14 +1,12 @@
 # Viora Hosting
 
-Professional short-term rental co-hosting and property management in Canada.
+Short-term rental hosting for property owners in Canada.
 
-### 🔗 Live preview — [real-mug.github.io/viora-site](https://real-mug.github.io/viora-site/)
+### 🔗 Live site — [real-mug.github.io/viora](https://real-mug.github.io/viora/)
 
 Share that link with anyone. It needs no GitHub account and no login, and it
-redeploys automatically on every push to `main`. This repository is private;
-the built site is served from the public
-[`Real-Mug/viora-site`](https://github.com/Real-Mug/viora-site) repo — see
-[Shareable preview](#shareable-preview-github-pages) for how that works.
+redeploys automatically on every push to `main`. Source and site live in this
+one repository — see [Deployment](#deployment-github-pages).
 
 A Next.js 15 (App Router) + TypeScript + Tailwind v4 site, built to ship today as a
 static export to Hostinger and to grow into a direct-booking platform without a
@@ -79,27 +77,23 @@ browser forms need no changes — they post wherever the env var points.
 
 ---
 
-## Shareable preview (GitHub Pages)
+## Deployment (GitHub Pages)
 
-**https://real-mug.github.io/viora-site/**
+**https://real-mug.github.io/viora/**
 
-This repository is private, and GitHub Pages will not publish from a private
-repository on a free plan. So the split is:
+Source and site live in this one repository.
+`.github/workflows/publish-site.yml` builds the static export on every push to
+`main`, audits it, and hands `./out` straight to Pages through
+`actions/deploy-pages`.
 
-| Repo | Visibility | Holds |
-| --- | --- | --- |
-| `Real-Mug/viora` | private | the source (this repo) |
-| `Real-Mug/viora-site` | public | the built `./out`, served by Pages |
+This used to be a two-repo split: the build was force-pushed to a public
+`Real-Mug/viora-site` because Pages will not serve from a private repository on
+the free plan. This repo is public now, so that second repo, its ed25519 deploy
+key and the `SITE_DEPLOY_KEY` secret are all gone.
 
-`.github/workflows/publish-site.yml` rebuilds and force-pushes `./out` to
-`viora-site` on every push to `main`. It authenticates with an ed25519 deploy
-key — the public half is a read-write deploy key on `viora-site`, the private
-half is the `SITE_DEPLOY_KEY` secret here. `GITHUB_TOKEN` cannot be used because
-it is scoped to a single repository.
-
-Never commit to `viora-site` by hand; the workflow force-pushes over it. The
-preview builds with `NEXT_PUBLIC_BASE_PATH=/viora-site`, which is why every link
-must go through `<Link>` or `next/image` rather than a hardcoded `/about`.
+A project site is served from `/<repo>/`, so the workflow builds with
+`NEXT_PUBLIC_BASE_PATH=/viora`. That is why every link must go through `<Link>`
+or `next/image` rather than a hardcoded `/about`.
 
 ---
 
