@@ -4,6 +4,7 @@ import Link from "next/link";
 import { PropertyCard } from "@/components/property/property-card";
 import { HomeHero } from "@/components/marketing/hero";
 import { DayInTheLife } from "@/components/marketing/day-in-the-life";
+import { Estimator } from "@/components/marketing/estimator";
 import { MoneyFlow } from "@/components/marketing/money-flow";
 import { HostingWalkthrough } from "@/components/marketing/hosting-walkthrough";
 import {
@@ -177,6 +178,8 @@ export default async function HomePage() {
       <DayInTheLife />
 
       <MoneyFlow tone="default" />
+
+      <Estimator />
 
       {/* --- Service areas -------------------------------------------------- */}
       {areas.length > 0 ? (
