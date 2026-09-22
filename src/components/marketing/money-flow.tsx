@@ -83,7 +83,7 @@ export function MoneyFlow({ tone = "default" }: { tone?: "default" | "sunken" })
     <Section tone={tone} aria-labelledby="money-heading">
       <Container>
         <div className="max-w-2xl">
-          <p className="eyebrow text-brass-600">Straight answer</p>
+          <p className="eyebrow text-brass-700">Straight answer</p>
           <h2 id="money-heading" className="mt-4 text-display-md text-ink">
             Where a $100 booking actually goes
           </h2>
