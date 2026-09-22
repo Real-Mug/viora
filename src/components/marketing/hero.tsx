@@ -35,16 +35,25 @@ export function HomeHero({
   footnote?: ReactNode;
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-evergreen-950">
-      <Image
-        src={image.src}
-        alt={image.alt}
-        fill
-        priority
-        fetchPriority="high"
-        sizes="100vw"
-        className="object-cover"
-      />
+    <section className="hero-parallax relative isolate overflow-hidden bg-evergreen-950">
+      {/*
+        The photograph drifts rather than sitting still: a slow scale-and-pan on
+        its own wrapper, plus a scroll-linked rise driven by CSS alone. It costs
+        no extra bytes over the still image it replaces, animates only transform
+        (so it stays on the compositor and never triggers layout), and is turned
+        off wholesale by prefers-reduced-motion.
+      */}
+      <div className="hero-drift absolute inset-0">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
       <div aria-hidden="true" className="scrim-hero absolute inset-0" />
 
       <Container className="relative">
