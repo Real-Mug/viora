@@ -28,7 +28,7 @@
  */
 import { readdir, mkdir, stat, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { dirname, extname, join, relative, sep } from "node:path";
+import { basename, dirname, extname, join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
@@ -50,7 +50,18 @@ const SKIP_DIRS = new Set(["brand"]);
 const RASTER = new Set([".webp", ".jpg", ".jpeg", ".png"]);
 
 /** Matches a file this script itself produced, so runs are idempotent. */
-const VARIANT = /-\d+w\.webp$/;
+const VARIANT = /-\d+w\.(webp|avif)$/;
+
+/**
+ * Directories that also get AVIF variants.
+ *
+ * AVIF is 40-50% smaller than WebP at matching quality, which is worth a lot
+ * on the LCP image and very little further down a page nobody has scrolled to
+ * yet. Encoding it is roughly an order of magnitude slower than WebP, so it is
+ * spent only where it changes a Core Web Vital: the hero. Widen this set if a
+ * large above-the-fold image is ever added elsewhere.
+ */
+const AVIF_DIRS = new Set(["hero"]);
 
 async function walk(dir) {
   const out = [];
@@ -104,6 +115,27 @@ async function main() {
 
       await sharp(file).resize(width).webp({ quality: 78 }).toFile(outPath);
       written += 1;
+    }
+
+    // AVIF for the hero only - see AVIF_DIRS. quality 50 in AVIF is visually
+    // comparable to WebP 78 on photographs; effort 4 keeps a cold build from
+    // stalling on the encoder.
+    if (AVIF_DIRS.has(basename(dirname(file)))) {
+      for (const width of targets) {
+        const avifPath = join(root, "public", `${base}-${width}w.avif`.slice(1));
+        await mkdir(dirname(avifPath), { recursive: true });
+
+        if (existsSync(avifPath)) {
+          const [a, b] = await Promise.all([stat(avifPath), stat(file)]);
+          if (a.mtimeMs >= b.mtimeMs) {
+            skipped += 1;
+            continue;
+          }
+        }
+
+        await sharp(file).resize(width).avif({ quality: 50, effort: 4 }).toFile(avifPath);
+        written += 1;
+      }
     }
 
     manifest[publicPath] = { width: meta.width, height: meta.height ?? 0, widths: available };

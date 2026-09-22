@@ -1,9 +1,10 @@
-import { Img as Image } from "@/components/ui/image";
 import type { ReactNode } from "react";
 
 import { ButtonLink } from "@/components/ui/button";
 import { Container, Eyebrow } from "@/components/ui/section";
 import { cn } from "@/lib/cn";
+import { withBasePath } from "@/lib/config/env";
+import manifest from "@/lib/data/image-manifest.json";
 
 /**
  * Hero variants.
@@ -13,9 +14,55 @@ import { cn } from "@/lib/cn";
  * every page would flatten the hierarchy and cost a large image on pages where
  * it earns nothing.
  *
- * LCP: the hero image is `priority` and served at a single large size, with the
- * scrim applied as a CSS gradient rather than a second image request.
+ * LCP: the hero image is the largest thing on the page and the thing Core Web
+ * Vitals is measuring, so it is the one image served as AVIF as well as WebP -
+ * roughly 40% fewer bytes for the same picture. The scrim is a CSS gradient
+ * rather than a second image request.
+ *
+ * This is the one image that does not go through `Img`/next/image: next/image
+ * emits a single `<img>`, and a second format needs `<picture>` with a typed
+ * `<source>`. The preload below is typed too, so a browser without AVIF
+ * ignores it rather than fetching bytes it cannot use, and one that has it
+ * never downloads the WebP.
  */
+
+type Variants = { width: number; height: number; widths: number[] };
+
+const VARIANTS = manifest as Record<string, Variants>;
+
+/** Where `scripts/generate-image-variants.mjs` also renders AVIF. */
+const AVIF_PREFIX = "/images/hero/";
+
+function heroSources(src: string) {
+  const entry = VARIANTS[src];
+  if (!entry) return { fallback: withBasePath(src) };
+
+  const stem = src.replace(/\.[^.]+$/, "");
+  // Widths actually written to disk: every candidate below the source's own.
+  // At or above it the original file is the best available, exactly as
+  // src/lib/image-loader.ts resolves it.
+  const rendered = entry.widths.filter((w) => w < entry.width);
+  // A full-bleed hero is never painted at thumbnail size, so the smallest
+  // variants would only pad the srcset with candidates nothing picks.
+  const useful = rendered.filter((w) => w >= 384);
+
+  const webpSrcSet = [
+    ...useful.map((w) => `${withBasePath(`${stem}-${w}w.webp`)} ${w}w`),
+    `${withBasePath(src)} ${entry.width}w`,
+  ].join(", ");
+
+  const avifSrcSet = src.startsWith(AVIF_PREFIX)
+    ? useful.map((w) => `${withBasePath(`${stem}-${w}w.avif`)} ${w}w`).join(", ")
+    : undefined;
+
+  return {
+    fallback: withBasePath(src),
+    webpSrcSet,
+    avifSrcSet,
+    width: entry.width,
+    height: entry.height,
+  };
+}
 
 export function HomeHero({
   eyebrow,
@@ -34,6 +81,8 @@ export function HomeHero({
   image: { src: string; alt: string };
   footnote?: ReactNode;
 }) {
+  const hero = heroSources(image.src);
+
   return (
     <section className="hero-parallax relative isolate overflow-hidden bg-evergreen-950">
       {/*
@@ -43,17 +92,54 @@ export function HomeHero({
         (so it stays on the compositor and never triggers layout), and is turned
         off wholesale by prefers-reduced-motion.
       */}
-      <div className="hero-drift absolute inset-0">
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          priority
+      {/*
+        Preloads the AVIF specifically. `type` is what makes this safe: a
+        browser without AVIF skips the preload entirely rather than fetching
+        an image it cannot decode, and falls back to the WebP srcset below.
+      */}
+      {hero.avifSrcSet ? (
+        <link
+          rel="preload"
+          as="image"
+          type="image/avif"
+          imageSrcSet={hero.avifSrcSet}
+          imageSizes="100vw"
           fetchPriority="high"
-          sizes="100vw"
-          className="object-cover"
         />
+      ) : null}
+
+      <div className="hero-drift absolute inset-0">
+        <picture>
+          {hero.avifSrcSet ? (
+            <source type="image/avif" srcSet={hero.avifSrcSet} sizes="100vw" />
+          ) : null}
+          {/*
+            A raw <img> rather than next/image: next/image renders a single
+            <img> and cannot offer a second format. Serving AVIF needs
+            <picture> with a typed <source>, and this is the LCP element, so
+            the bytes are worth the exception.
+          */}
+          <img
+            src={hero.fallback}
+            srcSet={hero.webpSrcSet}
+            sizes="100vw"
+            alt={image.alt}
+            width={hero.width}
+            height={hero.height}
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </picture>
       </div>
+      {/*
+        Aurora: slow blooms of brass and evergreen light over the photograph.
+        It sits above the image and below the scrim, so the scrim still
+        governs headline contrast. Decorative, so it is hidden from assistive
+        technology, and it is pure CSS - no image, no script, no extra bytes.
+      */}
+      <div aria-hidden="true" className="hero-aurora" />
+
       <div aria-hidden="true" className="scrim-hero absolute inset-0" />
 
       <Container className="relative">
