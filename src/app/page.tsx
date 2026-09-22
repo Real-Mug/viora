@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { PropertyCard } from "@/components/property/property-card";
 import { HomeHero } from "@/components/marketing/hero";
+import { DayInTheLife } from "@/components/marketing/day-in-the-life";
 import { HostingWalkthrough } from "@/components/marketing/hosting-walkthrough";
 import {
   CtaBand,
@@ -171,6 +172,8 @@ export default async function HomePage() {
       ) : null}
 
       <HostingWalkthrough />
+
+      <DayInTheLife />
 
       {/* --- Service areas -------------------------------------------------- */}
       {areas.length > 0 ? (
