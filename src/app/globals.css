@@ -1155,9 +1155,7 @@
     font-size: 0.875rem;
     line-height: 1.55;
     color: var(--color-ink-subtle);
-    opacity: 0;
-    margin-top: 0;
-    max-height: 0;
+    margin-top: 0.375rem;
     overflow: hidden;
     transition:
       opacity 400ms var(--ease-out-quint),
@@ -1165,7 +1163,14 @@
       margin-top 400ms var(--ease-out-quint);
   }
 
-  .day-moment[data-state="active"] .day-moment-body {
+  /* Collapsed only where JS can expand it again. */
+  .js .day-moment-body {
+    opacity: 0;
+    margin-top: 0;
+    max-height: 0;
+  }
+
+  .js .day-moment[data-state="active"] .day-moment-body {
     opacity: 1;
     margin-top: 0.375rem;
     max-height: 8rem;
@@ -1186,6 +1191,181 @@
       opacity: 1;
       max-height: none;
       margin-top: 0.375rem;
+      transition: none;
+    }
+  }
+}
+
+/* ==========================================================================
+   Money flow
+
+   The bar is decoration: every figure in it is repeated in the <dl> beneath,
+   so it is aria-hidden and the definition list carries the meaning.
+   ========================================================================== */
+
+@layer components {
+  .money-bar {
+    display: flex;
+    height: 4.5rem;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: var(--color-linen-200);
+  }
+
+  .money-slice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    transform-origin: left center;
+    transition:
+      transform 900ms var(--ease-out-quint),
+      opacity 400ms var(--ease-out-quint);
+  }
+
+  /*
+     The collapsed start state is scoped to html.js, matching [data-reveal]:
+     with JS off nothing sets data-shown, and an unscoped scaleX(0) would leave
+     the whole bar permanently invisible.
+  */
+  .js .money-slice {
+    transform: scaleX(0);
+  }
+
+  .js .money-bar[data-shown="true"] .money-slice {
+    transform: scaleX(1);
+  }
+
+  .money-slice[data-dim="true"] {
+    opacity: 0.45;
+  }
+
+  .money-slice[data-tone="channel"] {
+    background: var(--color-linen-400);
+  }
+
+  .money-slice[data-tone="management"] {
+    background: var(--color-brass-400);
+  }
+
+  .money-slice[data-tone="owner"] {
+    background: var(--color-evergreen-800);
+  }
+
+  .money-slice-amount {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    color: var(--color-linen-50);
+    transition: opacity 400ms var(--ease-out-quint) 500ms;
+  }
+
+  .js .money-slice-amount {
+    opacity: 0;
+  }
+
+  .js .money-bar[data-shown="true"] .money-slice-amount {
+    opacity: 1;
+  }
+
+  .money-slice[data-tone="channel"] .money-slice-amount {
+    color: var(--color-linen-900);
+  }
+
+  .money-slice[data-tone="management"] .money-slice-amount {
+    color: var(--color-evergreen-950);
+  }
+
+  /* ---------------------------------------------------------------- legend */
+
+  .money-legend {
+    margin-top: 1.75rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .money-legend {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+  }
+
+  .money-item {
+    padding: 1rem 1.125rem;
+    border-radius: var(--radius-card);
+    border: 1px solid transparent;
+    transition:
+      background-color 350ms var(--ease-out-quint),
+      border-color 350ms var(--ease-out-quint);
+  }
+
+  .money-item[data-active="true"] {
+    border-color: var(--color-line);
+    background: var(--color-surface-raised);
+  }
+
+  .money-item-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+
+  .money-item-amount {
+    margin-left: auto;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink-muted);
+  }
+
+  .money-dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 999px;
+    flex: none;
+  }
+
+  .money-dot[data-tone="channel"] {
+    background: var(--color-linen-400);
+  }
+
+  .money-dot[data-tone="management"] {
+    background: var(--color-brass-400);
+  }
+
+  .money-dot[data-tone="owner"] {
+    background: var(--color-evergreen-800);
+  }
+
+  .money-item-note {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-ink-subtle);
+  }
+
+  .money-aside {
+    margin-top: 1.75rem;
+    padding: 1.125rem 1.25rem;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-brass-200);
+    background: var(--color-brass-50);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-brass-900);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .money-slice {
+      transform: scaleX(1);
+      transition: none;
+    }
+
+    .money-slice-amount {
+      opacity: 1;
       transition: none;
     }
   }
