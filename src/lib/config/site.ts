@@ -83,9 +83,24 @@ export const siteConfig: SiteConfig = {
   },
 };
 
-/** Primary navigation. `Services` is the only dropdown. */
+/**
+ * Primary navigation. `Services` is the only dropdown.
+ *
+ * Two entries were removed here rather than reworded, because each pointed at
+ * a destination the header already offered:
+ *
+ *   Home            - the logo links to "/" (see components/layout/logo.tsx),
+ *                     which is where a visitor looks for it.
+ *   Become a Host   - the "List Your Property" button sits in the same header
+ *                     and goes to the same /become-a-host page. Two controls,
+ *                     two labels, one destination, is a choice a visitor has
+ *                     to stop and resolve.
+ *
+ * Both are still reachable from the footer, so nothing is orphaned and the
+ * internal linking crawlers see is unchanged. Restoring either is a one-line
+ * edit to this array.
+ */
 export const mainNav: NavLink[] = [
-  { label: "Home", href: "/" },
   {
     label: "Services",
     href: "/services",
@@ -103,7 +118,6 @@ export const mainNav: NavLink[] = [
   { label: "How It Works", href: "/how-it-works" },
   { label: "About", href: "/about" },
   { label: "Reviews", href: "/reviews" },
-  { label: "Become a Host", href: "/become-a-host" },
   { label: "Contact", href: "/contact" },
 ];
 
