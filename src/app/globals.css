@@ -912,6 +912,94 @@
 }
 
 /* ==========================================================================
+   Hero aurora
+
+   Slow blooms of brass and evergreen light drifting across the hero
+   photograph, between the image and the scrim so the scrim still does the
+   work of keeping the headline legible.
+
+   Built from radial gradients on two pseudo-elements rather than blurred
+   boxes: a filter: blur() over a full-bleed layer has to be rasterized every
+   frame, while a gradient is painted once and then only transformed. Nothing
+   here animates anything but translate, scale and opacity, so it stays on the
+   compositor and never triggers layout or paint. It costs no network bytes -
+   there is no image behind it - and it is removed wholesale, not merely
+   slowed, under prefers-reduced-motion.
+   ========================================================================== */
+
+@layer components {
+  .hero-aurora {
+    position: absolute;
+    /* Overscanned, so a drifting bloom never reveals a hard edge. */
+    inset: -25%;
+    pointer-events: none;
+    /* Screen lifts the photograph's own highlights rather than veiling it. */
+    mix-blend-mode: screen;
+    opacity: 0.55;
+  }
+
+  .hero-aurora::before,
+  .hero-aurora::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
+    will-change: transform;
+  }
+
+  .hero-aurora::before {
+    background-image:
+      radial-gradient(38% 46% at 22% 32%, rgb(206 160 87 / 0.34), transparent 70%),
+      radial-gradient(32% 40% at 80% 22%, rgb(40 71 64 / 0.55), transparent 72%);
+    animation: aurora-drift-a 34s ease-in-out infinite alternate;
+  }
+
+  .hero-aurora::after {
+    background-image:
+      radial-gradient(36% 42% at 68% 72%, rgb(220 187 126 / 0.28), transparent 70%),
+      radial-gradient(30% 34% at 12% 78%, rgb(30 58 52 / 0.5), transparent 74%);
+    animation: aurora-drift-b 46s ease-in-out infinite alternate;
+  }
+
+  @keyframes aurora-drift-a {
+    from {
+      translate: -3% -2%;
+      scale: 1;
+    }
+    to {
+      translate: 3% 2%;
+      scale: 1.12;
+    }
+  }
+
+  @keyframes aurora-drift-b {
+    from {
+      translate: 2.5% 1.5%;
+      scale: 1.08;
+    }
+    to {
+      translate: -2.5% -1.5%;
+      scale: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-aurora {
+      /* The still gradient is the decoration; the movement was the risk. */
+      opacity: 0.4;
+    }
+
+    .hero-aurora::before,
+    .hero-aurora::after {
+      animation: none;
+      translate: none;
+      scale: 1;
+      will-change: auto;
+    }
+  }
+}
+
+/* ==========================================================================
    Day in the life
 
    A timeline of one turnover day. The rail is decoration over a real ordered
