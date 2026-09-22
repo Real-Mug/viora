@@ -18,6 +18,7 @@ const sections = [
   { id: "control", title: "How to change your choice" },
   { id: "browser", title: "Browser controls" },
   { id: "changes", title: "Changes" },
+  { id: "contact", title: "Contact" },
 ];
 
 export default function CookiePolicyPage() {
@@ -80,8 +81,8 @@ export default function CookiePolicyPage() {
       <h2 id="control">How to change your choice</h2>
       <p>
         Clear this site&apos;s data in your browser and the banner will appear again on your next
-        visit, letting you choose differently. You can also contact us and we will confirm exactly
-        what is in use.
+        visit, letting you choose differently. You can also{" "}
+        <Link href="/contact">contact us</Link> and we will confirm exactly what is in use.
       </p>
 
       <h2 id="browser">Browser controls</h2>
@@ -96,6 +97,12 @@ export default function CookiePolicyPage() {
         If we add a tool that sets cookies, this page is updated before it goes live. How personal
         information is handled more generally is covered in the{" "}
         <Link href="/legal/privacy-policy">privacy policy</Link>.
+      </p>
+
+      <h2 id="contact">Contact</h2>
+      <p>
+        Questions about cookies or site storage can be sent through our{" "}
+        <Link href="/contact">contact page</Link>.
       </p>
     </LegalPage>
   );

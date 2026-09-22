@@ -40,7 +40,11 @@ const variants: Record<ButtonVariant, string> = {
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "h-9 px-4 text-sm",
+  // 44px on touch screens, 36px from the sm breakpoint up. A small button is
+  // still a real target on a phone - the cookie banner and the estimator both
+  // use this size - and 36px is below what a fingertip reliably hits. This is
+  // the same min-h-11 / sm: pattern the forms and property cards already use.
+  sm: "h-11 px-4 text-sm sm:h-9",
   md: "h-11 px-6 text-[0.9375rem]",
   lg: "h-13 px-8 text-base",
 };
