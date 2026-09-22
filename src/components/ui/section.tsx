@@ -67,7 +67,12 @@ export function Eyebrow({
   onDark?: boolean;
 }) {
   return (
-    <p className={cn("eyebrow", onDark ? "text-brass-300" : "text-brass-600", className)}>{children}</p>
+    // brass-700 rather than brass-600 on light: the eyebrow is 12px, which is
+    // normal-sized text to WCAG, and brass-600 measured 4.24:1 on linen-50 and
+    // 3.79:1 on the sunken linen-200 sections - both short of the 4.5:1 AA
+    // needs. brass-700 is 6.23:1 and 5.56:1. On dark, brass-300 is already
+    // 9.75:1 and is left alone.
+    <p className={cn("eyebrow", onDark ? "text-brass-300" : "text-brass-700", className)}>{children}</p>
   );
 }
 

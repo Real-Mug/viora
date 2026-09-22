@@ -49,8 +49,17 @@ export default function ServicesPage() {
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
       />
 
-      <Section>
+      <Section aria-labelledby="all-services-heading">
         <Container>
+          {/*
+            The grid's cards are h3, because everywhere else they sit under a
+            section heading. Here they follow the page h1 directly, which left
+            a h1 -> h3 gap for anyone navigating by heading. The name is in the
+            hero above, so this heading is for assistive technology only.
+          */}
+          <h2 id="all-services-heading" className="sr-only">
+            All services
+          </h2>
           <ServicesGrid services={services} />
         </Container>
       </Section>
