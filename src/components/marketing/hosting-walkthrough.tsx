@@ -387,7 +387,7 @@ export function HostingWalkthrough({
     <Section tone={tone} aria-labelledby="walkthrough-heading">
       <Container>
         <div className="max-w-2xl">
-          <p className="eyebrow text-brass-600">How we host your property</p>
+          <p className="eyebrow text-brass-700">How we host your property</p>
           <h2 id="walkthrough-heading" className="mt-4 text-display-md text-ink">
             Five steps, start to payout
           </h2>

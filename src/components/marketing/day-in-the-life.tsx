@@ -173,7 +173,7 @@ export function DayInTheLife({ tone = "sunken" }: { tone?: "default" | "sunken" 
     <Section tone={tone} aria-labelledby="day-heading">
       <Container>
         <div className="max-w-2xl">
-          <p className="eyebrow text-brass-600">A day at a managed property</p>
+          <p className="eyebrow text-brass-700">A day at a managed property</p>
           <h2 id="day-heading" className="mt-4 text-display-md text-ink">
             The work you never see
           </h2>

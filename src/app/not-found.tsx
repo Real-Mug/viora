@@ -27,7 +27,7 @@ export default function NotFound() {
     <Container>
       <div className="flex min-h-[60vh] flex-col justify-center py-20">
         <div className="max-w-2xl">
-          <p className="eyebrow text-brass-600">Error 404</p>
+          <p className="eyebrow text-brass-700">Error 404</p>
           <h1 className="mt-5 text-display-lg text-ink">This page does not exist</h1>
           <p className="mt-5 text-lead text-ink-muted">
             The link may be out of date, or a property may no longer be listed. Everything below is

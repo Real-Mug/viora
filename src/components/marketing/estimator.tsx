@@ -69,7 +69,7 @@ export function Estimator({ tone = "sunken" }: { tone?: "default" | "sunken" }) 
     <Section tone={tone} aria-labelledby="estimator-heading">
       <Container>
         <div className="max-w-2xl">
-          <p className="eyebrow text-brass-600">Your numbers, not ours</p>
+          <p className="eyebrow text-brass-700">Your numbers, not ours</p>
           <h2 id="estimator-heading" className="mt-4 text-display-md text-ink">
             The estimator that will not flatter you
           </h2>
