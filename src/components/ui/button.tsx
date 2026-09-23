@@ -18,7 +18,13 @@ const base =
   "inline-flex items-center justify-center gap-2 font-medium tracking-tight " +
   "rounded-full border transition-[background-color,border-color,color,transform,box-shadow] duration-300 " +
   "[transition-timing-function:var(--ease-out-quint)] " +
-  "active:translate-y-px disabled:pointer-events-none disabled:opacity-55 " +
+  // A 2px lift on hover, matching the .lift used on cards. transform is
+  // already in the transition list above, and the global
+  // prefers-reduced-motion rule in globals.css neutralises it, so this needs
+  // no guard of its own. It is dropped while the button is pressed, so the
+  // existing active state still reads as a press.
+  "hover:-translate-y-0.5 active:translate-y-px " +
+  "disabled:pointer-events-none disabled:opacity-55 disabled:hover:translate-y-0 " +
   "whitespace-nowrap";
 
 const variants: Record<ButtonVariant, string> = {

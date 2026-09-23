@@ -130,7 +130,7 @@ export function Header() {
             duplicate: "Properties" is already in the nav, two links away.
           */}
           <div className="hidden shrink-0 items-center xl:flex">
-            <ButtonLink href={CTA.primary.href} size="sm" className="transition-transform duration-300 hover:-translate-y-0.5">
+            <ButtonLink href={CTA.primary.href} size="sm">
               {CTA.primary.label}
             </ButtonLink>
           </div>
