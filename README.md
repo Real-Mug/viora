@@ -254,6 +254,52 @@ there is no fake dashboard UI.
   everything else is lazy.
 - Long-cache headers for fingerprinted assets, no-cache for HTML (`.htaccess`).
 
+## Hero background video
+
+The home hero can play a muted, looping clip behind the headline. **No footage
+ships with the repository.** With nothing at `public/video/`, the hero renders
+the photograph and nothing else — the video layer removes itself, along with its
+pause control. Adding the two files turns it on; no code change is needed.
+
+### Adding or swapping footage
+
+1. Get a clip you are licensed to use. It wants to be calm and slow-moving —
+   bright Canadian homes, a cozy interior, a summer garden — with no audio and
+   no recognisable faces. [Pexels](https://www.pexels.com/videos/) and
+   [Coverr](https://coverr.co/) both allow commercial use without attribution;
+   keep a note of the source URL and licence with the project records.
+
+2. Encode it:
+
+   ```bash
+   node scripts/encode-hero-video.mjs ~/Downloads/clip.mp4 --seconds 15 --crossfade 0.8
+   ```
+
+   That writes `public/video/home-hero.mp4` and `public/video/home-hero.webm`,
+   capped at 1080p with the audio track stripped. `--crossfade` dissolves the
+   tail into the head so the loop point is not a visible cut, which stock
+   footage almost always has; pass `--crossfade 0` if your clip already loops.
+
+3. Check the reported size. The script prints the **worst case for one
+   visitor** — a browser downloads one file, not both — and warns above 3 MB.
+   To get under it, raise `--crf` in the script or shorten with `--seconds`.
+
+4. Commit both files.
+
+### What it does at runtime
+
+- The photograph is the `poster` and stays the LCP element. The video is not in
+  the initial markup: it mounts after the `load` event on `requestIdleCallback`,
+  so it never competes for bandwidth during the load Core Web Vitals measures.
+- It does not load at all under `prefers-reduced-motion`, on `Save-Data`, or on
+  a 2g connection. The still photograph *is* the reduced-motion experience.
+- A missing or undecodable file retires the element and leaves the poster up.
+- The pause control is required, not decorative: a background clip that cannot
+  be stopped fails WCAG 2.2.2 once it runs past five seconds.
+
+To remove the video entirely, delete `public/video/` or drop the `video` prop
+from `<HomeHero>` in `src/app/page.tsx`.
+
 ## Accessibility
 
 Semantic landmarks, a skip link, one H1 per page, visible focus states, labelled
