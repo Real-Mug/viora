@@ -272,13 +272,22 @@ pause control. Adding the two files turns it on; no code change is needed.
 2. Encode it:
 
    ```bash
-   node scripts/encode-hero-video.mjs ~/Downloads/clip.mp4 --seconds 15 --crossfade 0.8
+   node scripts/encode-hero-video.mjs ~/Downloads/clip.mp4 \
+     --seconds 15 --crossfade 0.8 --fps 24 --crf-mp4 30 --crf-webm 40
    ```
 
    That writes `public/video/home-hero.mp4` and `public/video/home-hero.webm`,
-   capped at 1080p with the audio track stripped. `--crossfade` dissolves the
-   tail into the head so the loop point is not a visible cut, which stock
-   footage almost always has; pass `--crossfade 0` if your clip already loops.
+   capped at 1080p with the audio track stripped.
+
+   `--crossfade` is what makes the clip loop: it dissolves the tail over the
+   head and drops the tail, so the clip starts and ends on the same moment of
+   the shot. Pass `--crossfade 0` only if your footage already loops.
+
+   The quality flags exist because the right value depends entirely on the
+   footage — dense foliage costs far more bits than a still interior. The
+   current clip needed `--crf-mp4 30 --crf-webm 40` at 24fps to fit the budget;
+   the defaults (26/36) produced a 3,994 KB MP4, which was over. Higher is
+   smaller, and each +2 is roughly 15–20% off the file.
 
 3. Check the reported size. The script prints the **worst case for one
    visitor** — a browser downloads one file, not both — and warns above 3 MB.

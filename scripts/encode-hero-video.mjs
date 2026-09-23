@@ -37,13 +37,31 @@ const flag = (name, fallback) => {
 };
 
 if (!source || !existsSync(source)) {
-  console.error("Usage: node scripts/encode-hero-video.mjs <source> [--seconds 15] [--crossfade 0.8]");
+  console.error(
+    "Usage: node scripts/encode-hero-video.mjs <source> [--seconds 15]\n" +
+      "       [--crossfade 0.8] [--fps 24] [--crf-mp4 26] [--crf-webm 36]",
+  );
   console.error(source ? `Source not found: ${source}` : "No source file given.");
   process.exit(1);
 }
 
 const seconds = flag("seconds", 15);
 const crossfade = flag("crossfade", 0.8);
+
+/**
+ * Quality knobs, as flags rather than edits, because the right value depends
+ * entirely on the footage: dense foliage or water costs far more bits than a
+ * still interior at the same CRF. Higher is smaller. Each +2 is roughly
+ * 15-20% off the file.
+ */
+const crfMp4 = flag("crf-mp4", 26);
+const crfWebm = flag("crf-webm", 36);
+
+/**
+ * Frame rate. A slow, drifting hero shot loses nothing at 24fps and costs
+ * noticeably fewer bits than 30. Pass 0 to keep the source rate.
+ */
+const fps = flag("fps", 24);
 
 function ffmpeg(label, args) {
   const result = spawnSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", ...args], {
@@ -59,15 +77,35 @@ function ffmpeg(label, args) {
  * Scale to fit inside 1920x1080 without upscaling, and force even dimensions -
  * H.264 rejects odd ones.
  */
-const scale = "scale='min(1920,iw)':'min(1080,ih)':force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2";
+const scale =
+  "scale='min(1920,iw)':'min(1080,ih)':force_original_aspect_ratio=decrease,scale=trunc(iw/2)*2:trunc(ih/2)*2" +
+  (fps > 0 ? `,fps=${fps}` : "");
 
-/** Dissolve the tail into the head so the loop point is not a visible cut. */
+/**
+ * Makes the clip loop without a visible cut.
+ *
+ * The trick is to dissolve the TAIL over the HEAD and then drop the tail, so
+ * the finished clip both starts and ends on the same moment of the shot:
+ *
+ *   head  = 0 .. cf          the first moments, faded in under the tail
+ *   body  = cf .. D-cf       the middle, untouched
+ *   tail  = D-cf .. D        the last moments, faded out over the head
+ *
+ *   output = xfade(tail, head) + body        length D - cf
+ *
+ * The first frame is then the frame at D-cf, and so is the last, which is what
+ * makes the wrap seamless. Blending the tail against its own neighbours - the
+ * obvious reading of "crossfade the ends" - does nothing for looping, because
+ * the clip still finishes on a frame the start knows nothing about.
+ */
 const loopFilter =
   crossfade > 0
-    ? `[0:v]${scale},split[body][tail];` +
-      `[body]trim=0:${seconds - crossfade},setpts=PTS-STARTPTS[main];` +
-      `[tail]trim=${seconds - crossfade}:${seconds},setpts=PTS-STARTPTS[fade];` +
-      `[main][fade]xfade=transition=fade:duration=${crossfade}:offset=${seconds - 2 * crossfade}[v]`
+    ? `[0:v]${scale},split=3[h][b][t];` +
+      `[h]trim=0:${crossfade},setpts=PTS-STARTPTS[head];` +
+      `[b]trim=${crossfade}:${seconds - crossfade},setpts=PTS-STARTPTS[body];` +
+      `[t]trim=${seconds - crossfade}:${seconds},setpts=PTS-STARTPTS[tail];` +
+      `[tail][head]xfade=transition=fade:duration=${crossfade}:offset=0[blend];` +
+      `[blend][body]concat=n=2:v=1:a=0[v]`
     : `[0:v]${scale}[v]`;
 
 mkdirSync(outDir, { recursive: true });
@@ -85,7 +123,7 @@ ffmpeg("MP4", [
   "-an",
   "-c:v", "libx264",
   "-profile:v", "high",
-  "-crf", "26",
+  "-crf", String(crfMp4),
   "-preset", "slow",
   "-pix_fmt", "yuv420p",
   // Puts the index at the front so playback can start before the full download.
@@ -100,7 +138,7 @@ ffmpeg("WebM", [
   "-map", "[v]",
   "-an",
   "-c:v", "libvpx-vp9",
-  "-crf", "36",
+  "-crf", String(crfWebm),
   "-b:v", "0",
   "-row-mt", "1",
   "-deadline", "good",
@@ -124,8 +162,8 @@ console.log(`  added to the repository     ${kb(mp4) + kb(webm)} KB`);
 
 if (worst > 3072) {
   console.warn(
-    `\nOver the 3 MB budget for a single visitor. Raise --crf in this script\n` +
-      `(26/36 are the current values; each +2 is roughly 15-20% smaller), or\n` +
-      `shorten with --seconds.`,
+    `\nOver the 3 MB budget for a single visitor. Re-run with a higher\n` +
+      `--crf-mp4 / --crf-webm (currently ${crfMp4}/${crfWebm}; each +2 is\n` +
+      `roughly 15-20% smaller), or shorten with --seconds.`,
   );
 }
