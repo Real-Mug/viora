@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { ButtonLink } from "@/components/ui/button";
 import { Container, Eyebrow } from "@/components/ui/section";
 import { cn } from "@/lib/cn";
+import { HeroVideo } from "@/components/marketing/hero-video";
 import { withBasePath } from "@/lib/config/env";
 import manifest from "@/lib/data/image-manifest.json";
 
@@ -71,6 +72,7 @@ export function HomeHero({
   primaryCta,
   secondaryCta,
   image,
+  video,
   footnote,
 }: {
   eyebrow: string;
@@ -79,6 +81,11 @@ export function HomeHero({
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
   image: { src: string; alt: string };
+  /**
+   * Optional background footage. The photograph above is its poster and stays
+   * the LCP element; omit this and the hero is exactly the still it was.
+   */
+  video?: { mp4: string; webm: string };
   footnote?: ReactNode;
 }) {
   const hero = heroSources(image.src);
@@ -132,6 +139,10 @@ export function HomeHero({
           />
         </picture>
       </div>
+      {video ? (
+        <HeroVideo mp4={video.mp4} webm={video.webm} poster={hero.fallback} />
+      ) : null}
+
       {/*
         Aurora: slow blooms of brass and evergreen light over the photograph.
         It sits above the image and below the scrim, so the scrim still
