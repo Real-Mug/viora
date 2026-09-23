@@ -83,6 +83,10 @@ export default async function HomePage() {
           src: "/images/hero/home-hero.webp",
           alt: "The fenced garden of a Viora Hosting house in Waterloo, Ontario, on a summer afternoon",
         }}
+        video={{
+          mp4: "/video/home-hero.mp4",
+          webm: "/video/home-hero.webm",
+        }}
         footnote={
           areas.length ? (
             <p>
