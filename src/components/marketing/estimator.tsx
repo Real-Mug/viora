@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 
 import { ButtonLink } from "@/components/ui/button";
+import { CountUp } from "@/components/ui/count-up";
 import { Container, Section } from "@/components/ui/section";
 import { CTA } from "@/lib/config/site";
 
@@ -131,7 +132,9 @@ export function Estimator({ tone = "sunken" }: { tone?: "default" | "sunken" }) 
             <dl className="est-breakdown">
               <div>
                 <dt>Gross a year</dt>
-                <dd>{money.format(figures.grossYear)}</dd>
+                <dd>
+                  <CountUp value={figures.grossYear} format={(n) => money.format(n)} />
+                </dd>
               </div>
               <div>
                 <dt>Channel fee</dt>
@@ -149,9 +152,13 @@ export function Estimator({ tone = "sunken" }: { tone?: "default" | "sunken" }) 
             <p className="est-result-label">What reaches you, before your own costs</p>
 
             <p className="est-band">
-              <span className="est-band-low">{money.format(figures.low)}</span>
+              <span className="est-band-low">
+                <CountUp value={figures.low} format={(n) => money.format(n)} />
+              </span>
               <span className="est-band-dash" aria-hidden="true" />
-              <span className="est-band-high">{money.format(figures.high)}</span>
+              <span className="est-band-high">
+                <CountUp value={figures.high} format={(n) => money.format(n)} />
+              </span>
             </p>
 
             <div className="est-bar" aria-hidden="true">

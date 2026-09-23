@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { Accordion, type FaqItem } from "@/components/ui/accordion";
 import { ArrowRight, ButtonLink } from "@/components/ui/button";
 import { Container, Eyebrow, Section, SectionHeading } from "@/components/ui/section";
+import { Reveal } from "@/components/ui/reveal";
 import {
   IconCheck,
   IconClock,
@@ -140,8 +141,17 @@ export function ServicesGrid({
         className,
       )}
     >
-      {services.map((service) => (
-        <ServiceCard key={service.slug} service={service} />
+      {/*
+        Staggered entrance, using the Reveal already in the codebase rather than
+        a motion library: it reveals once, short-circuits under
+        prefers-reduced-motion, and falls back to fully visible when
+        IntersectionObserver is missing. h-full on both wrapper and card so the
+        extra element does not break the grid's equal heights.
+      */}
+      {services.map((service, index) => (
+        <Reveal key={service.slug} delay={index * 90} className="h-full">
+          <ServiceCard service={service} className="h-full" />
+        </Reveal>
       ))}
     </div>
   );
