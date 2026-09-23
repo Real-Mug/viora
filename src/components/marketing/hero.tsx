@@ -139,8 +139,9 @@ export function HomeHero({
           />
         </picture>
       </div>
+      {/* image.src, not hero.fallback: HeroVideo applies the base path itself. */}
       {video ? (
-        <HeroVideo mp4={video.mp4} webm={video.webm} poster={hero.fallback} />
+        <HeroVideo mp4={video.mp4} webm={video.webm} poster={image.src} />
       ) : null}
 
       {/*

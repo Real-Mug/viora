@@ -99,6 +99,24 @@ export function HeroVideo({ mp4, webm, poster }: Props) {
     return whenIdle(() => setMounted(true));
   }, []);
 
+  /**
+   * React sets `muted` as a DOM property and does not render the attribute, so
+   * the element can reach the autoplay check unmuted - and an unmuted video is
+   * refused. Setting it on the node before play is what makes autoplay work in
+   * a real browser rather than only behind a test flag.
+   */
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    const attempt = video.play();
+    if (attempt && typeof attempt.catch === "function") {
+      // A refusal is not an error worth surfacing: the poster is still correct.
+      attempt.catch(() => setPaused(true));
+    }
+  }, [mounted]);
+
   const toggle = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
