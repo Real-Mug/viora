@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
  * navigates should not be a button, and vice versa.
  */
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "onDark" | "onDarkGhost";
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "onDark" | "onDarkGhost" | "accent";
 export type ButtonSize = "sm" | "md" | "lg";
 
 const base =
@@ -43,6 +43,12 @@ const variants: Record<ButtonVariant, string> = {
   onDarkGhost:
     "bg-white/10 text-white border-white/35 backdrop-blur-[2px] " +
     "hover:bg-white/20 hover:border-white/60",
+  // The one loud button, reserved for the main conversion point on a screen.
+  // evergreen-950 on brass-300/400 clears 4.5:1 comfortably.
+  accent:
+    "bg-gradient-to-b from-brass-300 to-brass-400 text-evergreen-950 border-brass-300 " +
+    "shadow-[0_10px_30px_-10px_rgb(206_160_87/0.7)] " +
+    "hover:from-brass-200 hover:to-brass-300 hover:shadow-[0_16px_40px_-12px_rgb(206_160_87/0.85)]",
 };
 
 const sizes: Record<ButtonSize, string> = {

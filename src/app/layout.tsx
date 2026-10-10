@@ -30,6 +30,8 @@ const fraunces = Fraunces({
   // A variable font: no fixed weight list, so the display face can be optically
   // sized and softened without shipping several static files.
   weight: "variable",
+  // Italic is loaded for the brass accent word in display headings (<em>).
+  style: ["normal", "italic"],
   axes: ["SOFT", "opsz"],
 });
 

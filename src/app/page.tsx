@@ -5,6 +5,12 @@ import { PropertyCard } from "@/components/property/property-card";
 import { HomeHero } from "@/components/marketing/hero";
 import { DayInTheLife } from "@/components/marketing/day-in-the-life";
 import { Estimator } from "@/components/marketing/estimator";
+import {
+  GuestRatings,
+  HeroRatingCard,
+  PhotoStrip,
+  ProofBand,
+} from "@/components/marketing/showcase";
 import { MoneyFlow } from "@/components/marketing/money-flow";
 import { HostingWalkthrough } from "@/components/marketing/hosting-walkthrough";
 import {
@@ -73,7 +79,7 @@ export default async function HomePage() {
         title={
           <>
             Your property,
-            <br className="hidden sm:block" /> hosted properly.
+            <br className="hidden sm:block" /> <em>hosted properly.</em>
           </>
         }
         description="We host short-term rentals for Canadian owners. Listing, guests, turnovers and reporting - handled."
@@ -117,9 +123,18 @@ export default async function HomePage() {
             </p>
           ) : null
         }
+        aside={<HeroRatingCard properties={showcase} />}
       />
 
-      <TrustSection />
+      <ProofBand properties={showcase} />
+
+      <TrustSection
+        image={{
+          src: "/images/editorial/waterloo-region-home.webp",
+          alt: "A living area inside a Viora Hosting house in Waterloo, Ontario",
+          caption: "Every stay, run to the same standard.",
+        }}
+      />
 
       {/* --- Services ------------------------------------------------------ */}
       <Section tone="sunken" aria-labelledby="services-heading">
@@ -128,7 +143,11 @@ export default async function HomePage() {
             <SectionHeading
               id="services-heading"
               eyebrow="What we do"
-              title="Services built around how a rental runs"
+              title={
+                <>
+                  Services built around <em>how a rental runs</em>
+                </>
+              }
               description="Take the whole operation, or just the part costing you your evenings."
             />
             <ButtonLink href="/services" variant="secondary" className="shrink-0">
@@ -148,7 +167,11 @@ export default async function HomePage() {
               <SectionHeading
                 id="properties-heading"
                 eyebrow="Properties"
-                title="The kind of properties we host"
+                title={
+                  <>
+                    The kind of properties <em>we host</em>
+                  </>
+                }
                 description="Presented properly, kept to a standard, with a real team behind the listing."
               />
               <ButtonLink href="/properties" variant="secondary" className="shrink-0">
@@ -174,6 +197,11 @@ export default async function HomePage() {
               ))}
             </div>
           </Container>
+
+          {/* Full-bleed ribbon of the real interiors behind those listings. */}
+          <div className="mt-14">
+            <PhotoStrip properties={showcase} />
+          </div>
         </Section>
       ) : null}
 
@@ -193,7 +221,11 @@ export default async function HomePage() {
               <SectionHeading
                 id="areas-heading"
                 eyebrow="Where we work"
-                title="Markets we know properly"
+                title={
+                  <>
+                    Markets we know <em>properly</em>
+                  </>
+                }
                 description="We only take on markets where we have reliable cleaning and maintenance capacity."
               />
             </Reveal>
@@ -231,8 +263,16 @@ export default async function HomePage() {
             <SectionHeading
               id="reviews-heading"
               eyebrow="Reviews"
-              title="What guests and owners say"
-              description="Reviews of the service. Reviews of a specific home sit under that property."
+              title={
+                <>
+                  What guests <em>actually</em> say
+                </>
+              }
+              description={
+                companyReviews.length
+                  ? "Reviews of the service. Reviews of a specific home sit under that property."
+                  : "Guest scores from the public Airbnb pages of the homes we run, category by category."
+              }
               align="center"
             />
           </Reveal>
@@ -251,6 +291,14 @@ export default async function HomePage() {
                     Read all reviews
                   </ButtonLink>
                 </div>
+              </>
+            ) : showcase.some((property) => property.externalRating) ? (
+              <>
+                <GuestRatings properties={showcase} />
+                <p className="mt-8 text-center text-sm text-ink-subtle">
+                  Scores as published on each listing&apos;s Airbnb page. Written owner testimonials
+                  will appear here once we can link to where they came from.
+                </p>
               </>
             ) : (
               <NoReviewsYet />
@@ -306,7 +354,11 @@ export default async function HomePage() {
       ) : null}
 
       <CtaBand
-        title="Tell us about your property"
+        title={
+          <>
+            Tell us about <em>your property</em>
+          </>
+        }
         description="Send the details. You get an honest read on what we would run, what we would change first, and what it costs."
         note="If short-term letting is the wrong use for your property, we will say so."
       />
