@@ -74,6 +74,7 @@ export function HomeHero({
   image,
   video,
   footnote,
+  aside,
 }: {
   eyebrow: string;
   title: ReactNode;
@@ -87,6 +88,8 @@ export function HomeHero({
    */
   video?: { mp4: string; webm: string };
   footnote?: ReactNode;
+  /** Floated beside the copy on wide screens, e.g. the guest-rating card. */
+  aside?: ReactNode;
 }) {
   const hero = heroSources(image.src);
 
@@ -155,7 +158,7 @@ export function HomeHero({
       <div aria-hidden="true" className="scrim-hero absolute inset-0" />
 
       <Container className="relative">
-        <div className="flex min-h-[32rem] flex-col justify-end py-20 sm:min-h-[36rem] lg:min-h-[42rem] lg:py-28">
+        <div className="grid min-h-[34rem] items-end gap-12 py-20 sm:min-h-[38rem] lg:min-h-[clamp(44rem,calc(100svh-var(--header-height)),60rem)] lg:grid-cols-[minmax(0,1fr)_22rem] lg:py-28">
           <div className="max-w-3xl">
             <Eyebrow onDark className="rise-in">
               {eyebrow}
@@ -179,7 +182,7 @@ export function HomeHero({
               className="rise-in mt-9 flex flex-col gap-3 sm:flex-row"
               style={{ animationDelay: "180ms" }}
             >
-              <ButtonLink href={primaryCta.href} variant="onDark" size="lg">
+              <ButtonLink href={primaryCta.href} variant="accent" size="lg">
                 {primaryCta.label}
               </ButtonLink>
               <ButtonLink href={secondaryCta.href} variant="onDarkGhost" size="lg">
@@ -193,8 +196,24 @@ export function HomeHero({
               </div>
             ) : null}
           </div>
+
+          {aside ? (
+            <div className="rise-in hidden lg:block" style={{ animationDelay: "320ms" }}>
+              {aside}
+            </div>
+          ) : null}
         </div>
       </Container>
+
+      {/* Scroll cue: decorative, wide screens only, where the hero fills the view. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 lg:block"
+      >
+        <span className="flex h-10 w-6 justify-center rounded-full border border-white/35 pt-2">
+          <span className="scroll-cue block h-2 w-1 rounded-full bg-brass-300" />
+        </span>
+      </div>
     </section>
   );
 }

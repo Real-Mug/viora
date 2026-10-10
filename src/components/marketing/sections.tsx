@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { Accordion, type FaqItem } from "@/components/ui/accordion";
+import { Img } from "@/components/ui/image";
 import { ArrowRight, ButtonLink } from "@/components/ui/button";
 import { Container, Eyebrow, Section, SectionHeading } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
@@ -62,24 +63,66 @@ const TRUST_PILLARS = [
   },
 ] as const;
 
-export function TrustSection() {
+export function TrustSection({
+  image,
+}: {
+  /** Optional photograph for the tall tile that anchors the bento grid. */
+  image?: { src: string; alt: string; caption?: string };
+} = {}) {
   return (
     <Section aria-labelledby="trust-heading">
       <Container>
-        <SectionHeading
-          id="trust-heading"
-          eyebrow="Why owners work with us"
-          title="Built for owners. Run for guests."
-          description="Short-term rentals are won on the boring things, done every time. That is the work we take on."
-        />
+        <Reveal>
+          <SectionHeading
+            id="trust-heading"
+            eyebrow="Why owners work with us"
+            title={
+              <>
+                Built for owners. <em>Run for guests.</em>
+              </>
+            }
+            description="Short-term rentals are won on the boring things, done every time. That is the work we take on."
+          />
+        </Reveal>
 
-        <ul className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {TRUST_PILLARS.map((pillar) => (
-            <li key={pillar.title}>
-              <pillar.icon className="h-7 w-7 text-brass-600" />
-              <h3 className="mt-4 text-[1.1875rem] text-ink">{pillar.title}</h3>
-              <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-ink-muted">{pillar.body}</p>
-            </li>
+        <ul
+          className={cn(
+            "mt-12 grid gap-5 sm:grid-cols-2",
+            image ? "lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)_minmax(0,1fr)]" : "lg:grid-cols-3",
+          )}
+        >
+          {image ? (
+            <Reveal
+              as="li"
+              variant="scale"
+              className="relative min-h-72 overflow-hidden rounded-[var(--radius-panel)] sm:col-span-2 lg:col-span-1 lg:row-span-3"
+            >
+              <Img src={image.src} alt={image.alt} fill sizes="(min-width: 1024px) 30vw, 100vw" className="object-cover" />
+              <span aria-hidden="true" className="scrim-bottom absolute inset-0" />
+              {image.caption ? (
+                <p className="absolute inset-x-0 bottom-0 p-6 font-display text-[1.375rem] leading-snug text-linen-50">
+                  {image.caption}
+                </p>
+              ) : null}
+            </Reveal>
+          ) : null}
+
+          {TRUST_PILLARS.map((pillar, index) => (
+            <Reveal
+              key={pillar.title}
+              as="li"
+              delay={index * 70}
+              className="h-full"
+            >
+              {/* Inner element: Reveal owns the outer transform, the tile owns the hover lift. */}
+              <div className="bento-tile h-full rounded-[var(--radius-card)] border border-line bg-surface-raised p-6 shadow-subtle">
+                <span className="icon-tile inline-flex h-11 w-11 items-center justify-center rounded-xl text-brass-200">
+                  <pillar.icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-5 text-[1.1875rem] text-ink">{pillar.title}</h3>
+                <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">{pillar.body}</p>
+              </div>
+            </Reveal>
           ))}
         </ul>
       </Container>
@@ -102,7 +145,7 @@ export function ServiceCard({ service, className }: { service: Service; classNam
         className,
       )}
     >
-      <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-evergreen-50 text-evergreen-800">
+      <span className="icon-tile inline-flex h-12 w-12 items-center justify-center rounded-xl text-brass-200 transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-105">
         <Icon className="h-6 w-6" />
       </span>
 
@@ -257,24 +300,25 @@ export function CtaBand({
   note,
 }: {
   eyebrow?: string;
-  title: string;
+  /** An <em> inside the title renders as the brass accent word. */
+  title: ReactNode;
   description: string;
   primary?: { label: string; href: string };
   secondary?: { label: string; href: string } | null;
   note?: ReactNode;
 }) {
   return (
-    <Section tone="evergreen" aria-labelledby="cta-heading">
+    <Section aria-labelledby="cta-heading" className="cta-glow text-linen-100">
       <Container>
-        <div className="max-w-3xl">
+        <Reveal className="max-w-3xl">
           <Eyebrow onDark>{eyebrow}</Eyebrow>
-          <h2 id="cta-heading" className="mt-4 text-display-md text-linen-50">
+          <h2 id="cta-heading" className="mt-4 text-display-lg text-linen-50">
             {title}
           </h2>
           <p className="mt-5 text-lead text-linen-300">{description}</p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={primary.href} variant="onDark" size="lg">
+            <ButtonLink href={primary.href} variant="accent" size="lg">
               {primary.label}
             </ButtonLink>
             {secondary ? (
@@ -285,7 +329,7 @@ export function CtaBand({
           </div>
 
           {note ? <p className="mt-7 max-w-xl text-sm leading-relaxed text-linen-400">{note}</p> : null}
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );
