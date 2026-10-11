@@ -20,3 +20,6 @@ public/images/**/*-[0-9]*w.avif
 /*.mp4
 /*.mov
 /*.m4v
+
+# Added by `vercel link`: holds the project and org ids used by CLI deploys.
+.vercel
