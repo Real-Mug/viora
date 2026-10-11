@@ -32,6 +32,10 @@ env:
   NEXT_PUBLIC_SITE_URL: https://real-mug.github.io/viora
   NEXT_PUBLIC_CONTENT_MODE: placeholder
   DEPLOY_TARGET: static
+  # Search Console ownership token. Public by design - it is emitted into the
+  # <head> of every page - so it is recorded here rather than hidden in a
+  # secret, and the Vercel project carries the same value.
+  NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: vEbzQhjp_s-y1J2Ue6lAsME37NpvGWVvmk0Pe-BT6Zg
 
 jobs:
   build:
