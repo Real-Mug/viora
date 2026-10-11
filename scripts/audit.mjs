@@ -63,6 +63,13 @@ const text = (html, pattern) => html.match(pattern)?.[1]?.trim();
 
 const SKIP_LINK_CHECK = /^(https?:|mailto:|tel:|#|javascript:)/i;
 
+/* Files that ship in the export but are not pages. A search-engine
+   ownership token is served verbatim -- Google reads the body text of
+   google<token>.html and nothing else -- so holding it to the title,
+   canonical and heading rules below only produces noise, and would gate
+   the deploy on markup the file is not allowed to have. */
+const NOT_A_PAGE = /^[/]google[0-9a-f]+[.]html$/i;
+
 async function exists(path) {
   try {
     await stat(path);
@@ -82,6 +89,7 @@ async function main() {
 
   for (const file of files) {
     const page = urlFor(file);
+    if (NOT_A_PAGE.test(page)) continue;
     const html = await readFile(file, "utf8");
     const is404 = page === "/404.html" || page === "/404/";
     allPages.add(page);
