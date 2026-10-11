@@ -11,8 +11,15 @@ export type DeployTarget = "static" | "node";
 export type ContentMode = "placeholder" | "live";
 
 export const env = {
-  /** Canonical origin used for canonical tags, OG URLs and the sitemap. */
-  siteUrl: trimTrailingSlash(process.env.NEXT_PUBLIC_SITE_URL || "https://viorahosting.com"),
+  /**
+   * Canonical origin used for canonical tags, OG URLs and the sitemap.
+   *
+   * Carries the www, because that is what the site actually serves: the apex
+   * 308-redirects to www. The fallback used to omit it, so with the env var
+   * unset every canonical and all 40 sitemap URLs named a host that redirects
+   * away - telling Google the canonical page is not the canonical page.
+   */
+  siteUrl: trimTrailingSlash(process.env.NEXT_PUBLIC_SITE_URL || "https://www.viorahosting.com"),
 
   /** `static` disables anything that needs a running server. */
   deployTarget: (process.env.DEPLOY_TARGET === "node" ? "node" : "static") as DeployTarget,
