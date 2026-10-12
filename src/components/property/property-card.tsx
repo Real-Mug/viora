@@ -102,7 +102,7 @@ export function PropertyCard({
 
         <p className="mt-2 clamp-2 text-sm leading-relaxed text-ink-muted">{property.summary}</p>
 
-        <dl className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.8125rem] text-ink-muted">
+        <dl className="mb-5 mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.8125rem] text-ink-muted">
           <div className="flex items-center gap-1.5">
             <IconGuests className="h-4 w-4 text-ink-subtle" />
             <dt className="sr-only">Sleeps</dt>
@@ -124,7 +124,8 @@ export function PropertyCard({
           </div>
         </dl>
 
-        <div className="mt-5 flex items-center justify-between gap-4 border-t border-line pt-4">
+        {/* mt-auto pins the footer to the card bottom so a row of cards lines up. */}
+        <div className="mt-auto flex items-center justify-between gap-4 border-t border-line pt-4">
           <p className="text-sm text-ink-subtle">{PROPERTY_TYPE_LABELS[property.propertyType]}</p>
 
           {rate ? (

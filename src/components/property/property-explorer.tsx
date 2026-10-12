@@ -179,7 +179,7 @@ export function PropertyExplorer({
             </span>
           ) : null}
         </Button>
-        <SortSelect value={filters.sort} onChange={(value) => update("sort", value)} />
+        <SortSelect value={filters.sort} hasPrices={Boolean(facets.priceRange)} onChange={(value) => update("sort", value)} />
       </div>
 
       {/* Filter panel: a sidebar on desktop, a sheet on mobile */}
@@ -221,7 +221,7 @@ export function PropertyExplorer({
             {results.length} {results.length === 1 ? "property" : "properties"}
             {count > 0 ? " match your filters" : ""}
           </p>
-          <SortSelect value={filters.sort} onChange={(value) => update("sort", value)} />
+          <SortSelect value={filters.sort} hasPrices={Boolean(facets.priceRange)} onChange={(value) => update("sort", value)} />
         </div>
 
         <p aria-live="polite" className="sr-only lg:hidden">
@@ -272,9 +272,12 @@ const selectClasses =
 
 function SortSelect({
   value,
+  hasPrices,
   onChange,
 }: {
   value: Filters["sort"];
+  /** Price sorts do nothing until at least one property publishes a rate. */
+  hasPrices: boolean;
   onChange: (value: Filters["sort"]) => void;
 }) {
   return (
@@ -289,8 +292,12 @@ function SortSelect({
         className={cn(selectClasses, "w-auto")}
       >
         <option value="featured">Featured</option>
-        <option value="price-asc">Price: low to high</option>
-        <option value="price-desc">Price: high to low</option>
+        {hasPrices ? (
+          <>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+          </>
+        ) : null}
         <option value="name">Name</option>
       </select>
     </div>
@@ -368,7 +375,8 @@ function FilterPanel({
         <NumberFilter
           label="Bathrooms"
           value={filters.bathrooms}
-          max={4}
+          // Whole numbers only: a 2.5-bath home should offer "2+", never an empty "3+".
+          max={Math.floor(facets.bathroomRange.max)}
           onChange={(value) => update("bathrooms", value)}
           anyLabel="Any"
         />

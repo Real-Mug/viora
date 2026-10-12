@@ -1,4 +1,4 @@
-import type { PropertyType, Province } from "./property";
+import type { PropertyType } from "./property";
 
 export type ContactMethod = "email" | "phone" | "text";
 
@@ -17,7 +17,8 @@ export type HostLead = {
   phone?: string;
   propertyAddress: string;
   city: string;
-  province: Province;
+  region?: string;
+  country: string;
   propertyType: PropertyType;
   bedrooms: number;
   bathrooms: number;

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { PROVINCE_NAMES, PROPERTY_TYPE_LABELS } from "@/lib/types/property";
+import { PROPERTY_TYPE_LABELS } from "@/lib/types/property";
 
 /**
  * One schema, used in three places: browser validation, the serverless/API
@@ -9,7 +9,6 @@ import { PROVINCE_NAMES, PROPERTY_TYPE_LABELS } from "@/lib/types/property";
  * because anything sent from a client is untrusted.
  */
 
-const provinceValues = Object.keys(PROVINCE_NAMES) as [string, ...string[]];
 const propertyTypeValues = Object.keys(PROPERTY_TYPE_LABELS) as [string, ...string[]];
 
 /**
@@ -41,6 +40,18 @@ const optionalUrl = z
     { message: "Enter a full URL starting with http:// or https://" },
   );
 
+/**
+ * A required number typed into a text box. `z.coerce.number()` alone turns an
+ * empty box into 0, which would let a blank required field pass, so blank is
+ * mapped to undefined first and reported with `message`. Bounds go in `build`
+ * because the preprocess wrapper no longer exposes `.min`/`.max`.
+ */
+const requiredNumber = (message: string, build: (n: z.ZodNumber) => z.ZodTypeAny) =>
+  z.preprocess(
+    (value) => (typeof value === "string" && value.trim() === "" ? undefined : value),
+    build(z.coerce.number({ required_error: message, invalid_type_error: message })),
+  );
+
 const phone = z
   .string()
   .trim()
@@ -70,15 +81,18 @@ export const hostLeadSchema = z
     phone,
     propertyAddress: safeText(200, 5, "Enter the property address."),
     city: safeText(80, 2, "Enter the city."),
-    province: z.enum(provinceValues, { errorMap: () => ({ message: "Select a province or territory." }) }),
+    region: safeText(80).optional().or(z.literal("")),
+    country: safeText(80, 2, "Enter the country."),
     propertyType: z.enum(propertyTypeValues, { errorMap: () => ({ message: "Select a property type." }) }),
-    bedrooms: z.coerce.number().int().min(0, "Enter 0 or more.").max(50),
-    bathrooms: z.coerce.number().min(0, "Enter 0 or more.").max(50),
-    maxGuests: z.coerce.number().int().min(1, "Enter at least 1 guest.").max(100),
+    bedrooms: requiredNumber("Enter the number of bedrooms.", (n) => n.int().min(0, "Enter 0 or more.").max(50)),
+    bathrooms: requiredNumber("Enter the number of bathrooms.", (n) => n.min(0, "Enter 0 or more.").max(50)),
+    maxGuests: requiredNumber("Enter the guest capacity.", (n) => n.int().min(1, "Enter at least 1 guest.").max(100)),
     airbnbListingUrl: optionalUrl,
+    // The select starts on an empty "Select..." option, so "" means skipped.
     currentPlatform: z
       .enum(["airbnb", "vrbo", "booking.com", "direct", "multiple", "none"])
-      .optional(),
+      .optional()
+      .or(z.literal("")),
     message: safeText(2000).optional().or(z.literal("")),
     preferredContact: z.enum(["email", "phone", "text"], {
       errorMap: () => ({ message: "Choose how you would like to be contacted." }),

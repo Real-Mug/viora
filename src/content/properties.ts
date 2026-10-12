@@ -98,9 +98,10 @@ export const propertyRecords: Property[] = [
       { file: "05-bedroom-one.webp", alt: "Primary bedroom with a queen bed and room-darkening shades" },
       { file: "06-bedroom-two.webp", alt: "Second bedroom with a double bed and clothing storage" },
       { file: "07-bathroom.webp", alt: "Full bathroom with a bathtub and shower" },
-      { file: "08-workspace.webp", alt: "Dedicated workspace with a desk and chair" },
       { file: "09-laundry.webp", alt: "In-suite washer and dryer" },
-      { file: "10-exterior.webp", alt: "Exterior of the townhome showing the private entrance" },
+      // The file names predate a check of the photos: 10 is the balcony and 08 is the street frontage.
+      { file: "10-exterior.webp", alt: "Private balcony with two chairs, overlooking the townhome complex" },
+      { file: "08-workspace.webp", alt: "Brick-fronted townhome row with private ground-floor entrances" },
     ]),
     houseRules: [
       "Self check-in, so arrival is easy at any time after the check-in hour.",
