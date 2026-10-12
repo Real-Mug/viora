@@ -12,7 +12,7 @@ import { Note } from "@/components/ui/card";
 import { IconInfo, IconMapPin } from "@/components/ui/icons";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { activeServiceAreas, getServiceArea, serviceAreas } from "@/content/locations";
-import { sortedPosts } from "@/content/posts";
+import { getPost, sortedPosts } from "@/content/posts";
 import { getService } from "@/content/services";
 import { CTA } from "@/lib/config/site";
 import { properties } from "@/lib/data";
@@ -62,7 +62,12 @@ export default async function LocationPage({ params }: Params) {
     .map(getService)
     .filter((service): service is Service => service !== undefined);
   const otherAreas = activeServiceAreas().filter((item) => item.slug !== area.slug);
-  const guides = sortedPosts().slice(0, 3);
+  // The cornerstone co-hosting guide is the oldest post, so newest-first would
+  // never show it here; pin it first.
+  const cornerstone = getPost("what-is-airbnb-co-hosting");
+  const guides = [cornerstone, ...sortedPosts().filter((post) => post !== cornerstone)]
+    .filter((post) => post !== undefined)
+    .slice(0, 3);
 
   const crumbs: Crumb[] = [
     { name: "Home", path: "/" },
@@ -87,7 +92,7 @@ export default async function LocationPage({ params }: Params) {
 
       <PageHero
         eyebrow={`${area.city}, ${PROVINCE_NAMES[area.province]}`}
-        title={`Short-term rental management in ${area.city}`}
+        title={area.heading ?? `Short-term rental management in ${area.city}`}
         description={area.summary}
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
         actions={
@@ -140,7 +145,7 @@ export default async function LocationPage({ params }: Params) {
           <SectionHeading
             id="local-notes-heading"
             eyebrow="Local context"
-            title={`What actually matters when letting in ${area.city}`}
+            title={`${area.city} short-term rental rules and local context`}
             description="The practical constraints owners run into here, rather than a generic description of the city."
           />
 

@@ -1787,6 +1787,7 @@
   /* An <em> inside a display heading becomes the brand's accent word. */
   h1 em,
   h2 em {
+    font-family: var(--font-fraunces-italic), var(--font-display);
     font-style: italic;
     font-variation-settings: "SOFT" 100;
     background-image: linear-gradient(

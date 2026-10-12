@@ -26,7 +26,7 @@ export const posts: Post[] = [
     relatedPosts: ["short-term-rental-management-checklist", "airbnb-vs-direct-booking"],
     seoTitle: "What Is Airbnb Co-Hosting? A Guide for Hosts",
     seoDescription:
-      "A plain explanation of Airbnb co-hosting for Canadian property owners: what a co-host does, what it costs you in control, and when full management makes more sense.",
+      "What an Airbnb co-host does, what you keep control of, and when full management makes more sense. A plain guide for Canadian property owners.",
     body: [
       {
         type: "paragraph",
@@ -70,7 +70,7 @@ export const posts: Post[] = [
       { type: "heading", level: 2, text: "Co-hosting or full management?" },
       {
         type: "paragraph",
-        text: "A reasonable way to decide is to ask what you actually want back. If you want your evenings and weekends back but still enjoy the business side - looking at the numbers, deciding the rate, choosing the furniture - co-hosting is probably the right shape. If you want the property to be genuinely off your plate and are happy to receive a report rather than make decisions, full management fits better.",
+        text: "A reasonable way to decide is to ask what you actually want back. If you want your evenings and weekends back but still enjoy the business side - looking at the numbers, deciding the rate, choosing the furniture - co-hosting is probably the right shape. If you want the property to be genuinely off your plate and are happy to receive a report rather than make decisions, [full short-term rental management](/services/short-term-rental-management) fits better.",
       },
       {
         type: "paragraph",
@@ -91,7 +91,7 @@ export const posts: Post[] = [
       },
       {
         type: "paragraph",
-        text: "A co-host who cannot answer those clearly is telling you something useful.",
+        text: "A co-host who cannot answer those clearly is telling you something useful. Our [Airbnb co-hosting service](/services/airbnb-co-hosting) page sets out how we answer them, and [how it works](/how-it-works) covers what gets agreed in writing.",
       },
     ],
   },
@@ -109,7 +109,7 @@ export const posts: Post[] = [
     relatedPosts: ["what-is-airbnb-co-hosting", "how-to-improve-your-vacation-rental-listing"],
     seoTitle: "Airbnb vs Direct Booking in Canada",
     seoDescription:
-      "An honest comparison of platform bookings and direct bookings for Canadian short-term rental owners: costs, risk, demand and what direct booking really requires.",
+      "Airbnb or direct booking? An honest comparison for Canadian short-term rental owners: platform fees, risk, demand and what going direct really takes.",
     body: [
       {
         type: "paragraph",
@@ -164,7 +164,7 @@ export const posts: Post[] = [
       },
       {
         type: "paragraph",
-        text: "That is the approach we take. Viora Hosting property pages link to the Airbnb listing where one exists, and the site is built so that direct booking can be switched on per property once availability, pricing and payment are genuinely connected. Until they are, we do not display a booking button, because a button that cannot confirm a reservation is worse than no button at all.",
+        text: "That is the approach we take. Viora Hosting [property pages](/properties) link to the Airbnb listing where one exists, and the site is built so that direct booking can be switched on per property once availability, pricing and payment are genuinely connected. Until they are, we do not display a booking button, because a button that cannot confirm a reservation is worse than no button at all.",
       },
     ],
   },
@@ -192,7 +192,7 @@ export const posts: Post[] = [
       {
         type: "list",
         items: [
-          "Confirm you are permitted to let short-term: municipal rules, provincial requirements, and the condominium declaration or strata bylaws",
+          "Confirm you are permitted to let short-term: municipal rules, provincial requirements, and the condominium declaration or strata bylaws - our [Toronto](/locations/toronto) and [Waterloo Region](/locations/waterloo-region) guides cover the local rules there",
           "Obtain any licence or registration required, and note where the number must be displayed",
           "Tell your insurer what the property is being used for and get confirmation in writing",
           "Fit and test smoke alarms, carbon monoxide alarms and a fire extinguisher",
@@ -251,7 +251,7 @@ export const posts: Post[] = [
       },
       {
         type: "paragraph",
-        text: "If you would rather not run this yourself, that is precisely the work we take on. It is also worth saying that this checklist is useful whether or not you ever hire anyone.",
+        text: "If you would rather not run this yourself, that is precisely the work we take on through [short-term rental management](/services/short-term-rental-management) and [property care](/services/property-care). It is also worth saying that this checklist is useful whether or not you ever hire anyone.",
       },
     ],
   },
@@ -267,9 +267,9 @@ export const posts: Post[] = [
     readingMinutes: 8,
     relatedServices: ["listing-optimization", "revenue-management"],
     relatedPosts: ["short-term-rental-management-checklist", "airbnb-vs-direct-booking"],
-    seoTitle: "How to Improve a Vacation Rental Listing",
+    seoTitle: "How to Improve Your Airbnb Listing",
     seoDescription:
-      "A practical order of work for improving an underperforming short-term rental listing: diagnose views versus bookings, then fix photos, title, description and settings.",
+      "Views but no bookings? A practical order of work for fixing an Airbnb or vacation rental listing: photos, title, description, amenities and settings.",
     body: [
       {
         type: "paragraph",
@@ -333,7 +333,7 @@ export const posts: Post[] = [
       },
       {
         type: "paragraph",
-        text: "If you would rather have someone work through this with you, listing optimization is something we do as a standalone piece of work - you do not need to hand over management to get it.",
+        text: "If you would rather have someone work through this with you, [listing optimization](/services/listing-optimization) is something we do as a standalone piece of work - you do not need to hand over management to get it.",
       },
     ],
   },

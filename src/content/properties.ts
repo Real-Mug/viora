@@ -91,7 +91,7 @@ export const propertyRecords: Property[] = [
       "smoke-alarm", "carbon-monoxide-alarm",
     ),
     images: imageSet("modern-2br-townhome-kitchener", [
-      { file: "01-living-room.webp", alt: "Open-concept living room with a sofa, armchair and wall-mounted television" },
+      { file: "01-living-room.webp", alt: "Open-concept living room of the Kitchener townhome, with a sofa, armchair and wall-mounted television" },
       { file: "02-living-dining.webp", alt: "Living and dining area on the main level of the townhome" },
       { file: "03-kitchen.webp", alt: "Fully equipped kitchen with full-size appliances and counter space" },
       { file: "04-kitchen-dining.webp", alt: "Kitchen counter and adjoining dining seating" },
@@ -128,9 +128,9 @@ export const propertyRecords: Property[] = [
     },
     status: "active",
     featured: true,
-    seoTitle: "Modern 2-Bedroom Townhome in Kitchener, Ontario",
+    seoTitle: "2-Bedroom Townhome in Kitchener, Ontario",
     seoDescription:
-      "Three-level, two-bedroom townhome in Kitchener with free parking, a dedicated workspace, in-suite laundry and self check-in. Sleeps four. Managed by Viora Hosting.",
+      "Two-bedroom Kitchener townhome with free parking, a workspace, in-suite laundry and self check-in. Sleeps four. Managed by Viora Hosting.",
     createdAt: CREATED,
     updatedAt: UPDATED,
   },
@@ -178,7 +178,7 @@ export const propertyRecords: Property[] = [
       "security-camera", "noise-monitor",
     ),
     images: imageSet("spacious-3br-house-waterloo", [
-      { file: "01-living-room.webp", alt: "Main living room with sectional seating, a television and an open dining area" },
+      { file: "01-living-room.webp", alt: "Main living room of the Waterloo house, with sectional seating, a television and an open dining area" },
       { file: "02-second-living.webp", alt: "Second living area with natural light and additional seating" },
       { file: "03-kitchen.webp", alt: "Fully stocked kitchen with full-size appliances" },
       { file: "04-dining.webp", alt: "Dining area with a table and seating" },
@@ -260,7 +260,7 @@ export const propertyRecords: Property[] = [
       "smoke-alarm", "carbon-monoxide-alarm", "fire-extinguisher", "first-aid-kit",
     ),
     images: imageSet("spacious-3br-townhouse-london", [
-      { file: "01-living-room.webp", alt: "Living room with two blue sofas, a coffee table, a television and a gas fireplace" },
+      { file: "01-living-room.webp", alt: "Living room of the London, Ontario townhouse, with two blue sofas, a television and a gas fireplace" },
       { file: "02-fireplace.webp", alt: "Gas fireplace and large windows looking onto the backyard" },
       { file: "03-kitchen.webp", alt: "Galley kitchen with white cabinets, a coffee machine and full-size appliances" },
       { file: "04-dining.webp", alt: "Glass dining table beside French doors that open onto the backyard deck" },
@@ -282,9 +282,9 @@ export const propertyRecords: Property[] = [
     airbnbUrl: "https://www.airbnb.ca/rooms/1760899695890821722",
     status: "active",
     featured: true,
-    seoTitle: "Spacious 3-Bedroom Townhouse in London, Ontario",
+    seoTitle: "3-Bedroom Townhouse in London, Ontario",
     seoDescription:
-      "Pet-friendly three-bedroom townhouse in London, Ontario with two living areas, a gas fireplace, workspace and free parking. Sleeps six. Managed by Viora Hosting.",
+      "Pet-friendly three-bedroom townhouse in London, Ontario with two living areas, a gas fireplace, workspace and free parking. Sleeps six.",
     createdAt: "2026-10-12T00:00:00.000Z",
     updatedAt: "2026-10-12T00:00:00.000Z",
   },

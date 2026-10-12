@@ -25,6 +25,8 @@ export type ServiceArea = {
   localNotes: { title: string; body: string }[];
   /** Slugs of services emphasised in this market. */
   highlightedServices: string[];
+  /** Page H1. Falls back to "Short-term rental management in {city}". */
+  heading?: string;
   seoTitle: string;
   seoDescription: string;
   coordinates?: { lat: number; lng: number };

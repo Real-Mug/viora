@@ -19,9 +19,9 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "About Viora Hosting",
+  title: "About Us: Canadian Airbnb Co-Hosting Company",
   description:
-    "Viora Hosting is a Canadian short-term rental co-hosting and property management company. Here is what we do, how we work with owners, and what we will not promise.",
+    "Viora Hosting is a Canadian Airbnb co-hosting and short-term rental management company. How we work with owners, and what we will not promise.",
   path: "/about",
 });
 

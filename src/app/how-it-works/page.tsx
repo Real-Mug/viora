@@ -21,7 +21,7 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "How Viora Hosting Works with Property Owners",
+  title: "How Our Airbnb Co-Hosting Works",
   description:
     "From first enquiry to ongoing management: the assessment, what we agree in writing, how we take over operations, and what reporting you receive.",
   path: "/how-it-works",

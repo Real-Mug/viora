@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       property.seoDescription ??
       `${property.summary} Sleeps ${property.maxGuests}. Managed by Viora Hosting.`,
     path: `/properties/${property.slug}`,
-    ...(cover ? { image: { url: cover.src, alt: cover.alt } } : {}),
+    ...(cover ? { image: { url: cover.src, alt: cover.alt, width: cover.width, height: cover.height } } : {}),
   });
 }
 
@@ -125,7 +125,7 @@ export default async function PropertyPage({ params }: Params) {
                     href={`/locations/${area.slug}`}
                     className="text-[0.9375rem] text-evergreen-800 underline-offset-4 hover:underline"
                   >
-                    Short-term rentals in {area.city}
+                    Airbnb management in {area.city}
                   </Link>
                 </>
               ) : null}

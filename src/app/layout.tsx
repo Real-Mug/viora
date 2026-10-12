@@ -30,9 +30,21 @@ const fraunces = Fraunces({
   // A variable font: no fixed weight list, so the display face can be optically
   // sized and softened without shipping several static files.
   weight: "variable",
-  // Italic is loaded for the brass accent word in display headings (<em>).
-  style: ["normal", "italic"],
+  style: ["normal"],
   axes: ["SOFT", "opsz"],
+});
+
+// The italic face is only the brass accent word in display headings (<em>).
+// Its own instance with preload off keeps ~146 KB from competing with the
+// page's first paint on every route; it swaps in a moment later.
+const frauncesItalic = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-fraunces-italic",
+  weight: "variable",
+  style: ["italic"],
+  axes: ["SOFT", "opsz"],
+  preload: false,
 });
 
 export const metadata: Metadata = rootMetadata;
@@ -46,7 +58,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-CA" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="en-CA" className={`${inter.variable} ${fraunces.variable} ${frauncesItalic.variable}`}>
       <head>
         {/*
           Marks the document as scripted before first paint.

@@ -51,6 +51,29 @@ const dateFormatter = new Intl.DateTimeFormat("en-CA", {
  * Blocks carry plain text, never HTML, so nothing here needs to inject markup -
  * which removes the usual injection surface of a blog rendering layer.
  */
+
+/**
+ * Turns `[label](/internal/path)` in block text into a site link. Only paths
+ * starting with "/" match, so external URLs and anything else stay plain text
+ * and the no-HTML guarantee above still holds.
+ */
+function Inline({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/(\[[^\]]+\]\(\/[^)\s]*\))/g).map((part, index) => {
+        const match = part.match(/^\[([^\]]+)\]\((\/[^)\s]*)\)$/);
+        return match ? (
+          <Link key={index} href={match[2]!}>
+            {match[1]}
+          </Link>
+        ) : (
+          part
+        );
+      })}
+    </>
+  );
+}
+
 function Block({ block }: { block: PostBlock }) {
   switch (block.type) {
     case "heading":
@@ -59,13 +82,17 @@ function Block({ block }: { block: PostBlock }) {
       return block.ordered ? (
         <ol>
           {block.items.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}>
+              <Inline text={item} />
+            </li>
           ))}
         </ol>
       ) : (
         <ul>
           {block.items.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}>
+              <Inline text={item} />
+            </li>
           ))}
         </ul>
       );
@@ -73,7 +100,9 @@ function Block({ block }: { block: PostBlock }) {
       return (
         <aside className="rounded-[var(--radius-card)] border border-brass-200 bg-brass-50 p-5 not-prose">
           <p className="font-sans text-[0.9375rem] font-semibold text-brass-900">{block.title}</p>
-          <p className="mt-2 text-[0.9375rem] leading-relaxed text-brass-900/85">{block.text}</p>
+          <p className="mt-2 text-[0.9375rem] leading-relaxed text-brass-900/85">
+            <Inline text={block.text} />
+          </p>
         </aside>
       );
     case "quote":
@@ -88,7 +117,11 @@ function Block({ block }: { block: PostBlock }) {
         </blockquote>
       );
     default:
-      return <p>{block.text}</p>;
+      return (
+        <p>
+          <Inline text={block.text} />
+        </p>
+      );
   }
 }
 

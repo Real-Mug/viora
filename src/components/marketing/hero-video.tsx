@@ -29,8 +29,6 @@ type Props = {
   /** Paths under /public, without the deployment sub-path. */
   mp4: string;
   webm: string;
-  /** Shown until the video has painted its first frame. */
-  poster: string;
 };
 
 function prefersReducedMotion(): boolean {
@@ -49,7 +47,7 @@ function connectionIsExpensive(): boolean {
   ).connection;
   if (!connection) return false;
   if (connection.saveData) return true;
-  return connection.effectiveType === "slow-2g" || connection.effectiveType === "2g";
+  return ["slow-2g", "2g", "3g"].includes(connection.effectiveType ?? "");
 }
 
 /** Runs `fn` once the page has loaded and the browser has a spare moment. */
@@ -85,7 +83,7 @@ function whenIdle(fn: () => void): () => void {
   };
 }
 
-export function HeroVideo({ mp4, webm, poster }: Props) {
+export function HeroVideo({ mp4, webm }: Props) {
   // `mounted` gates the <video> into the DOM; `visible` fades it in only once a
   // frame exists, so the poster is never replaced by a black rectangle.
   const [mounted, setMounted] = useState(false);
@@ -143,7 +141,8 @@ export function HeroVideo({ mp4, webm, poster }: Props) {
         loop
         playsInline
         preload="metadata"
-        poster={withBasePath(poster)}
+        // No poster: the hero photograph underneath already shows until the
+        // first frame plays, and a poster here downloaded a second 440 KB copy.
         aria-hidden="true"
         tabIndex={-1}
         onPlaying={() => setVisible(true)}

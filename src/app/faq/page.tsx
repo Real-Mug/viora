@@ -17,9 +17,9 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Frequently Asked Questions",
+  title: "Airbnb Co-Hosting FAQs for Canadian Owners",
   description:
-    "Answers about Airbnb co-hosting, short-term rental management, fees, control, direct booking and the Canadian markets Viora Hosting serves.",
+    "Answers on Airbnb co-hosting in Canada: what a co-host does, how fees are quoted, who controls the listing, licensing responsibility and where we work.",
   path: "/faq",
 });
 

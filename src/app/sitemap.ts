@@ -20,7 +20,15 @@ import { properties } from "@/lib/data";
 export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
+  // lastmod is only given where a real date exists. A build timestamp on
+  // every page teaches Google to ignore lastmod across the whole sitemap.
+  const { items } = await properties.list({ pageSize: 1000 });
+  const postDate = (post: (typeof posts)[number]) => Date.parse(post.updatedAt ?? post.publishedAt);
+  const latest = (times: number[]) => (times.length ? new Date(Math.max(...times)) : undefined);
+  const realDates: Record<string, Date | undefined> = {
+    "/properties": latest(items.map((property) => Date.parse(property.updatedAt))),
+    "/blog": latest(posts.map(postDate)),
+  };
 
   const staticRoutes: { path: string; priority: number; changeFrequency: "daily" | "weekly" | "monthly" | "yearly" }[] = [
     { path: "/", priority: 1, changeFrequency: "weekly" },
@@ -43,7 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const entries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: absoluteUrl(route.path),
-    lastModified: now,
+    ...(realDates[route.path] ? { lastModified: realDates[route.path] } : {}),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
@@ -51,7 +59,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const service of services) {
     entries.push({
       url: absoluteUrl(`/services/${service.slug}`),
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     });
@@ -60,13 +67,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const area of activeServiceAreas()) {
     entries.push({
       url: absoluteUrl(`/locations/${area.slug}`),
-      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
     });
   }
 
-  const { items } = await properties.list({ pageSize: 1000 });
   for (const property of items) {
     entries.push({
       url: absoluteUrl(`/properties/${property.slug}`),
@@ -79,7 +84,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const category of usedCategories()) {
     entries.push({
       url: absoluteUrl(`/blog/category/${category}`),
-      lastModified: now,
+      lastModified: latest(posts.filter((post) => post.category === category).map(postDate)),
       changeFrequency: "weekly",
       priority: 0.4,
     });

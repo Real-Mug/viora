@@ -17,7 +17,7 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Short-Term Rental and Airbnb Management Services",
+  title: "Airbnb Hosting Services for Canadian Owners",
   description:
     "Co-hosting, full rental management, listing optimization, guest communication, revenue management and property care for Canadian short-term rental owners.",
   path: "/services",
@@ -44,8 +44,8 @@ export default function ServicesPage() {
 
       <PageHero
         eyebrow="Services"
-        title="Take the whole operation, or just the part that is costing you your evenings"
-        description="Every service below is one we deliver ourselves. Owners commonly start with one and add others as they get comfortable handing work over."
+        title="Airbnb and short-term rental management services"
+        description="Take the whole operation, or just the part that is costing you your evenings. Every service below is one we deliver ourselves. Owners commonly start with one and add others as they get comfortable handing work over."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
       />
 

@@ -19,9 +19,9 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact Viora Hosting",
+  title: "Contact Our Airbnb Co-Hosting Team",
   description:
-    "Get in touch with Viora Hosting about co-hosting, short-term rental management, or staying at a property we manage in Canada.",
+    "Questions about Airbnb co-hosting or short-term rental management in Canada, or about a stay at one of our properties? Send a message and the same team replies.",
   path: "/contact",
 });
 
