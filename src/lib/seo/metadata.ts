@@ -56,7 +56,9 @@ export function pageMetadata({
     alternates: {
       canonical: url,
     },
-    robots: noindex
+    // env.noindex keeps an entire deployment out of the index (the Pages
+    // mirror); the per-page flag keeps single routes out of it.
+    robots: noindex || env.noindex
       ? { index: false, follow: false, nocache: true }
       : {
           index: true,

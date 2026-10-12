@@ -31,6 +31,10 @@ env:
   NEXT_PUBLIC_BASE_PATH: /viora
   NEXT_PUBLIC_SITE_URL: https://real-mug.github.io/viora
   NEXT_PUBLIC_CONTENT_MODE: placeholder
+  # This deployment is a mirror of viorahosting.com, not a second website.
+  # Without this it competes with the real domain for the same queries and
+  # Google chooses between them on its own.
+  NEXT_PUBLIC_NOINDEX: "true"
   DEPLOY_TARGET: static
   # Search Console ownership token. Public by design - it is emitted into the
   # <head> of every page - so it is recorded here rather than hidden in a
