@@ -8,6 +8,7 @@ import { CookieBanner } from "@/components/analytics/cookie-banner";
 import { JsonLd } from "@/components/seo/json-ld";
 import { graph, organizationSchema, websiteSchema } from "@/lib/seo/schema";
 import { rootMetadata } from "@/lib/seo/metadata";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import "./globals.css";
 
@@ -80,6 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <CookieBanner />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
