@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   return pageMetadata({
     title: `${name} Guides for Canadian Hosts`,
-    description: `Articles on ${name.toLowerCase()} for Canadian short-term rental owners, from the Viora Hosting team.`,
+    description: `Articles on ${name.toLowerCase().replace("airbnb", "Airbnb")} for Canadian short-term rental owners, from the Viora Hosting team.`,
     path: `/blog/category/${category}`,
   });
 }
@@ -63,7 +63,7 @@ export default async function CategoryPage({ params }: Params) {
         data={graph(
           webPageSchema({
             name: `${name} Guides`,
-            description: `Articles on ${name.toLowerCase()} for Canadian short-term rental owners.`,
+            description: `Articles on ${name.toLowerCase().replace("airbnb", "Airbnb")} for Canadian short-term rental owners.`,
             path: `/blog/category/${category}`,
             crumbs,
           }),
@@ -74,7 +74,7 @@ export default async function CategoryPage({ params }: Params) {
       <PageHero
         eyebrow="Resources"
         title={name}
-        description={`Everything we have written on ${name.toLowerCase()}.`}
+        description={`Everything we have written on ${name.toLowerCase().replace("airbnb", "Airbnb")}.`}
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
       />
 

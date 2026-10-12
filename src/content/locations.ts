@@ -67,6 +67,7 @@ export const serviceAreas: ServiceArea[] = [
     ],
     highlightedServices: ["airbnb-co-hosting", "short-term-rental-management", "revenue-management", "property-care"],
     coordinates: { lat: 43.4516, lng: -80.4925 },
+    heading: "Airbnb co-hosting in Kitchener, Waterloo and Cambridge",
     seoTitle: "Airbnb Co-Hosting in Kitchener and Waterloo",
     seoDescription:
       "Short-term rental co-hosting across Kitchener, Waterloo and Cambridge. Licensing-aware operations, mid-term stay strategy and turnovers run by a local team.",
@@ -118,7 +119,7 @@ export const serviceAreas: ServiceArea[] = [
     ],
     highlightedServices: ["airbnb-co-hosting", "listing-optimization", "guest-communication"],
     coordinates: { lat: 43.6532, lng: -79.3832 },
-    seoTitle: "Airbnb Co-Hosting and Rental Management, Toronto",
+    seoTitle: "Airbnb Management & Co-Hosting in Toronto",
     seoDescription:
       "Short-term rental co-hosting and property management for Toronto owners. Guest communication, turnovers, listing optimization and condo-aware operations.",
   },
@@ -169,7 +170,7 @@ export const serviceAreas: ServiceArea[] = [
     ],
     highlightedServices: ["airbnb-co-hosting", "guest-communication", "revenue-management"],
     coordinates: { lat: 49.2827, lng: -123.1207 },
-    seoTitle: "Airbnb Co-Hosting and Management, Vancouver",
+    seoTitle: "Airbnb Management & Co-Hosting in Vancouver",
     seoDescription:
       "Short-term rental co-hosting and management for Vancouver property owners, with licensing-aware operations, guest support and listing optimization.",
   },
@@ -219,7 +220,7 @@ export const serviceAreas: ServiceArea[] = [
     ],
     highlightedServices: ["airbnb-co-hosting", "revenue-management", "guest-communication"],
     coordinates: { lat: 45.5019, lng: -73.5674 },
-    seoTitle: "Airbnb Co-Hosting and Rental Management, Montreal",
+    seoTitle: "Airbnb Management & Co-Hosting in Montreal",
     seoDescription:
       "Short-term rental co-hosting and management for Montreal owners: registration-aware operations, seasonal pricing and bilingual guest communication.",
   },
@@ -269,7 +270,7 @@ export const serviceAreas: ServiceArea[] = [
     ],
     highlightedServices: ["short-term-rental-management", "revenue-management", "property-care"],
     coordinates: { lat: 51.0447, lng: -114.0719 },
-    seoTitle: "Airbnb Co-Hosting and Rental Management, Calgary",
+    seoTitle: "Airbnb Management & Co-Hosting in Calgary",
     seoDescription:
       "Short-term rental co-hosting and property management for Calgary owners: licensing-aware operations, event pricing and longer corporate stays.",
   },
@@ -319,7 +320,8 @@ export const serviceAreas: ServiceArea[] = [
     ],
     highlightedServices: ["vacation-rental-management", "property-care", "revenue-management"],
     coordinates: { lat: 45.0333, lng: -79.4167 },
-    seoTitle: "Cottage and Vacation Rental Management, Muskoka",
+    heading: "Cottage rental management in Muskoka",
+    seoTitle: "Muskoka Cottage Rental Management",
     seoDescription:
       "Vacation rental management for Muskoka cottage owners: seasonal opening and closing, turnover coordination, guest support and seasonal pricing.",
   },
@@ -368,6 +370,7 @@ export const serviceAreas: ServiceArea[] = [
     ],
     highlightedServices: ["vacation-rental-management", "property-care", "guest-communication"],
     coordinates: { lat: 50.1163, lng: -122.9574 },
+    heading: "Vacation rental management in Whistler",
     seoTitle: "Whistler Vacation Rental Management",
     seoDescription:
       "Short-term rental management for Whistler owners: zoning-aware advice, two-season operations, turnover coordination and guest support.",

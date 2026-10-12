@@ -32,11 +32,13 @@ export function organizationSchema(): JsonLd {
     "@id": ORG_ID,
     name: siteConfig.name,
     legalName: siteConfig.legalName,
-    url: env.siteUrl,
+    url: absoluteUrl("/"),
     description: siteConfig.shortDescription,
     logo: {
       "@type": "ImageObject",
-      url: absoluteUrl("/images/brand/logo.svg"),
+      url: absoluteUrl("/images/brand/icon-512.png"),
+      width: 512,
+      height: 512,
     },
     areaServed: { "@type": "Country", name: "Canada" },
     ...(email ? { email } : {}),
@@ -64,7 +66,7 @@ export function websiteSchema(): JsonLd {
   return {
     "@type": "WebSite",
     "@id": SITE_ID,
-    url: env.siteUrl,
+    url: absoluteUrl("/"),
     name: siteConfig.name,
     description: siteConfig.shortDescription,
     inLanguage: "en-CA",
@@ -75,8 +77,10 @@ export function websiteSchema(): JsonLd {
 export type Crumb = { name: string; path: string };
 
 export function breadcrumbSchema(crumbs: Crumb[]): JsonLd {
+  const last = crumbs[crumbs.length - 1];
   return {
     "@type": "BreadcrumbList",
+    ...(last ? { "@id": `${absoluteUrl(last.path)}#breadcrumb` } : {}),
     itemListElement: crumbs.map((crumb, index) => ({
       "@type": "ListItem",
       position: index + 1,
@@ -101,7 +105,9 @@ export function webPageSchema(input: {
     isPartOf: { "@id": SITE_ID },
     inLanguage: "en-CA",
     about: { "@id": ORG_ID },
-    ...(input.crumbs?.length ? { breadcrumb: breadcrumbSchema(input.crumbs) } : {}),
+    // Reference only: pages emit the BreadcrumbList itself alongside, and
+    // embedding a full copy here made Google read two identical trails.
+    ...(input.crumbs?.length ? { breadcrumb: { "@id": `${absoluteUrl(input.path)}#breadcrumb` } } : {}),
   };
 }
 
@@ -203,7 +209,8 @@ export function propertySchema(property: Property, propertyReviews: Review[] = [
         }
       : {}),
     numberOfRooms: property.bedrooms,
-    petsAllowed: property.pricing?.petsAllowed ?? false,
+    petsAllowed:
+      property.pricing?.petsAllowed ?? property.amenities.some((amenity) => amenity.id === "pets-allowed"),
     amenityFeature: property.amenities.map((amenity) => ({
       "@type": "LocationFeatureSpecification",
       name: amenity.label,
@@ -215,39 +222,33 @@ export function propertySchema(property: Property, propertyReviews: Review[] = [
     ...(rating ? { aggregateRating: rating } : {}),
     ...(eligibleReviews.length ? { review: eligibleReviews.map(reviewSchema) } : {}),
     ...(property.externalWebsiteUrl ? { sameAs: [property.externalWebsiteUrl] } : {}),
-    isPartOf: { "@id": ORG_ID },
   };
 }
 
 /**
- * LocalBusiness for a service area. Emitted only for markets marked active,
- * and without opening hours or an address unless real ones are configured.
+ * The management service as offered in one market, provided by the single
+ * organization.
+ *
+ * Deliberately a Service, not a LocalBusiness: Viora has one business and no
+ * branch offices, so a per-city "Viora Hosting - <City>" business with map
+ * coordinates would describe locations that do not exist and contradict the
+ * one Google Business Profile.
  */
 export function serviceAreaSchema(area: ServiceArea): JsonLd {
   const url = absoluteUrl(`/locations/${area.slug}`);
   return {
-    "@type": "ProfessionalService",
-    "@id": `${url}#localbusiness`,
-    name: `${siteConfig.name} - ${area.city}`,
+    "@type": "Service",
+    "@id": `${url}#service`,
+    name: `Short-term rental management in ${area.city}`,
+    serviceType: "Short-term rental co-hosting and property management",
     description: area.summary,
     url,
-    parentOrganization: { "@id": ORG_ID },
+    provider: { "@id": ORG_ID },
     areaServed: {
       "@type": "City",
       name: area.city,
       containedInPlace: { "@type": "State", name: PROVINCE_NAMES[area.province] },
     },
-    ...(area.coordinates
-      ? {
-          geo: {
-            "@type": "GeoCoordinates",
-            latitude: area.coordinates.lat,
-            longitude: area.coordinates.lng,
-          },
-        }
-      : {}),
-    ...(siteConfig.contact.email ? { email: siteConfig.contact.email } : {}),
-    ...(siteConfig.contact.phone ? { telephone: siteConfig.contact.phone } : {}),
   };
 }
 
@@ -261,11 +262,11 @@ export function articleSchema(post: Post): JsonLd {
     url,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt ?? post.publishedAt,
-    author: { "@type": "Organization", name: post.author, "@id": ORG_ID },
+    author: { "@type": "Organization", name: post.author, "@id": ORG_ID, url: absoluteUrl("/") },
     publisher: { "@id": ORG_ID },
     inLanguage: "en-CA",
     mainEntityOfPage: url,
-    ...(post.cover ? { image: absoluteUrl(post.cover.src) } : {}),
+    image: absoluteUrl(post.cover?.src ?? "/images/brand/og-default.jpg"),
   };
 }
 

@@ -125,7 +125,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Are the properties shown on the site all managed by Viora Hosting?",
         answer:
-          "The Properties section is currently populated with clearly labelled sample listings so the site can be reviewed before real inventory is published. Every sample carries a visible label. Once real managed properties are added, the samples are removed entirely.",
+          "Yes. Every property in the Properties section is one our team manages day to day, and each property page links to its Airbnb listing so you can check it for yourself.",
       },
     ],
   },

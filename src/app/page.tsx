@@ -40,9 +40,9 @@ import { faqSchema, graph, webPageSchema } from "@/lib/seo/schema";
 export const metadata: Metadata = pageMetadata({
   // The homepage sets its own brand-bearing title: the layout's title template
   // is not applied to the root segment, so the brand has to be explicit here.
-  title: "Viora Hosting | Short-Term Rental Co-Hosting in Canada",
+  title: "Airbnb Management & Co-Hosting in Canada | Viora Hosting",
   description:
-    "Professional co-hosting and short-term rental management for Canadian property owners: guest support, listing optimization and property operations.",
+    "Airbnb co-hosting and short-term rental management for owners anywhere in Canada. Guests, cleaning, pricing and reporting handled. Free property assessment.",
   path: "/",
 });
 
@@ -75,16 +75,17 @@ export default async function HomePage() {
       />
 
       <HomeHero
-        eyebrow="Short-term rental hosting in Canada"
+        eyebrow="Short-term rental management for property owners"
         title={
           <>
-            Your property,
-            <br className="hidden sm:block" /> <em>hosted properly.</em>
+            Airbnb co-hosting across Canada,
+            <br className="hidden sm:block" /> <em>done properly.</em>
           </>
         }
-        description="We host short-term rentals for Canadian owners. Listing, guests, turnovers and reporting - handled."
+        description="We co-host Airbnb and short-term rentals for owners anywhere in Canada. Listing, guests, turnovers and reporting - handled."
         primaryCta={CTA.primary}
-        secondaryCta={CTA.secondary}
+        // Owners are the audience here; the properties section further down is the proof.
+        secondaryCta={{ label: "How it works", href: "/how-it-works" }}
         image={{
           src: "/images/hero/home-hero.webp",
           alt: "The fenced garden of a Viora Hosting house in Waterloo, Ontario, on a summer afternoon",

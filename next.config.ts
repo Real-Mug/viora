@@ -54,9 +54,9 @@ const nextConfig: NextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
   },
-  // Security headers are only honoured by a Node host. The static export ships
-  // the equivalent rules in public/.htaccess, so the key is omitted entirely
-  // rather than defined and silently ignored.
+  // Security headers here are only honoured by a Node host. The static export
+  // gets them from vercel.json on Vercel and from public/.htaccess on Apache
+  // (Hostinger), so the key is omitted rather than defined and silently ignored.
   ...(isStatic
     ? {}
     : {

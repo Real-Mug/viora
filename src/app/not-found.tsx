@@ -18,8 +18,8 @@ import { CTA } from "@/lib/config/site";
 export const metadata: Metadata = {
   title: "Page not found",
   description:
-    "That page does not exist. Browse the properties Viora Hosting manages in Kitchener and Waterloo, or get in touch and we will point you the right way.",
-  robots: { index: false, follow: true },
+    "That page does not exist. Browse the properties Viora Hosting manages across Canada, or get in touch and we will point you the right way.",
+
 };
 
 export default function NotFound() {

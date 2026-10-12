@@ -19,9 +19,9 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "List Your Property - Request an Assessment",
+  title: "List Your Property: Free Airbnb Assessment",
   description:
-    "Tell Viora Hosting about your Canadian property and get a free, no-obligation assessment: what we would manage, what we would change first, and what it would cost.",
+    "Tell us about your Canadian property and get a free, no-obligation assessment: what we would manage, what we would change first, and what it would cost.",
   path: "/become-a-host",
 });
 

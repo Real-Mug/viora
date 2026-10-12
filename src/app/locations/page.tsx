@@ -19,9 +19,9 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Service Areas Across Canada",
+  title: "Airbnb Management Service Areas in Canada",
   description:
-    "The Canadian markets where Viora Hosting provides short-term rental co-hosting and property management, with local rules and operating context for each.",
+    "Airbnb co-hosting and short-term rental management anywhere in Canada, with local guides to the rules and seasonality in Toronto, Waterloo Region and more.",
   path: "/locations",
 });
 
@@ -51,8 +51,8 @@ export default function LocationsPage() {
       />
 
       <PageHero
-        eyebrow="Service areas"
-        title="Where we work"
+        eyebrow="Where we work"
+        title="Airbnb co-hosting and rental management across Canada"
         description="We host short-term rentals in every part of Canada. The markets below have local guides covering the rules and seasonality that shape how a property there should run."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
       />

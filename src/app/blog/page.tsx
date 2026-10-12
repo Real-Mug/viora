@@ -19,7 +19,7 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Resources for Canadian Short-Term Rental Hosts",
+  title: "Airbnb Hosting Guides for Canadian Owners",
   description:
     "Practical guides on Airbnb co-hosting, short-term rental operations, pricing and direct booking, written for Canadian property owners.",
   path: "/blog",

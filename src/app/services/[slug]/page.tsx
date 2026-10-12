@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { PropertyCard } from "@/components/property/property-card";
 import { PageHero } from "@/components/marketing/hero";
 import { CtaBand, FaqSection, ServicesGrid } from "@/components/marketing/sections";
+import { GuestRatings } from "@/components/marketing/showcase";
 import { NoReviewsYet, ReviewList } from "@/components/reviews/review-list";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ButtonLink } from "@/components/ui/button";
@@ -197,11 +198,25 @@ export default async function ServicePage({ params }: Params) {
           <SectionHeading
             id="reviews-heading"
             eyebrow="Reviews"
-            title="What owners and guests say"
+            title={serviceReviews.length ? "What owners and guests say" : "What guests score the homes we run"}
             align="center"
           />
           <div className="mt-10">
-            {serviceReviews.length ? <ReviewList reviews={serviceReviews} /> : <NoReviewsYet />}
+            {/* Same fallback order as the homepage: written reviews, then the
+                published Airbnb scores (display only, never schema), then the
+                honest empty state. */}
+            {serviceReviews.length ? (
+              <ReviewList reviews={serviceReviews} />
+            ) : examples.items.some((property) => property.externalRating) ? (
+              <>
+                <GuestRatings properties={examples.items} />
+                <p className="mt-8 text-center text-sm text-ink-subtle">
+                  Scores as published on each listing&apos;s Airbnb page.
+                </p>
+              </>
+            ) : (
+              <NoReviewsYet />
+            )}
           </div>
         </Container>
       </Section>

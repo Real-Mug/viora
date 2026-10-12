@@ -93,7 +93,7 @@ export const services: Service[] = [
   {
     slug: "short-term-rental-management",
     name: "Short-Term Rental Management",
-    heading: "Full short-term rental management",
+    heading: "Full-service short-term rental management in Canada",
     summary:
       "Listing, guests, pricing, cleaning, maintenance and reporting. One point of contact.",
     icon: "management",
@@ -164,7 +164,7 @@ export const services: Service[] = [
       },
     ],
     relatedServices: ["airbnb-co-hosting", "revenue-management", "property-care"],
-    seoTitle: "Short-Term Rental Management Services in Canada",
+    seoTitle: "Short-Term Rental Management in Canada",
     seoDescription:
       "End-to-end short-term rental management for Canadian property owners: listings, guests, pricing, cleaning, maintenance and owner reporting.",
   },
@@ -238,7 +238,7 @@ export const services: Service[] = [
       },
     ],
     relatedServices: ["short-term-rental-management", "property-care", "revenue-management"],
-    seoTitle: "Vacation Rental Management in Canada",
+    seoTitle: "Cottage & Vacation Rental Management, Canada",
     seoDescription:
       "Vacation rental management for Canadian cottages, chalets and second homes: seasonal operations, group bookings, local suppliers and remote oversight.",
   },
@@ -246,7 +246,7 @@ export const services: Service[] = [
   {
     slug: "listing-optimization",
     name: "Listing Optimization",
-    heading: "Listing optimization for short-term rentals",
+    heading: "Airbnb listing optimization for Canadian hosts",
     summary:
       "Presentation, structure and positioning, so the right guests find you and book.",
     icon: "listing",
@@ -312,7 +312,7 @@ export const services: Service[] = [
       },
     ],
     relatedServices: ["airbnb-co-hosting", "revenue-management", "guest-communication"],
-    seoTitle: "Airbnb Listing Optimization Services",
+    seoTitle: "Airbnb Listing Optimization in Canada",
     seoDescription:
       "Listing optimization for Canadian short-term rentals: audits, rewritten copy, photo sequencing, amenity accuracy and clearer positioning.",
   },
@@ -320,7 +320,7 @@ export const services: Service[] = [
   {
     slug: "guest-communication",
     name: "Guest Communication",
-    heading: "Guest communication and support",
+    heading: "Airbnb guest communication and support",
     summary:
       "Consistent guest messaging, from first enquiry to the review after checkout.",
     icon: "communication",
@@ -386,7 +386,7 @@ export const services: Service[] = [
       },
     ],
     relatedServices: ["airbnb-co-hosting", "short-term-rental-management", "listing-optimization"],
-    seoTitle: "Airbnb Guest Communication and Guest Management",
+    seoTitle: "Airbnb Guest Communication Services",
     seoDescription:
       "Professional guest communication for Canadian short-term rentals: enquiries, pre-arrival information, in-stay support and review management.",
   },
@@ -394,7 +394,7 @@ export const services: Service[] = [
   {
     slug: "revenue-management",
     name: "Revenue Management",
-    heading: "Revenue and pricing management",
+    heading: "Airbnb pricing and revenue management",
     summary:
       "Pricing, minimum-stay and calendar strategy, reviewed against real performance.",
     icon: "revenue",
@@ -460,7 +460,7 @@ export const services: Service[] = [
       },
     ],
     relatedServices: ["short-term-rental-management", "listing-optimization", "vacation-rental-management"],
-    seoTitle: "Short-Term Rental Revenue and Pricing Management",
+    seoTitle: "Airbnb Pricing & Revenue Management",
     seoDescription:
       "Data-informed pricing and calendar strategy for Canadian short-term rentals: rate structure, minimum stays, gap nights and discount policy.",
   },
@@ -536,7 +536,7 @@ export const services: Service[] = [
     relatedServices: ["short-term-rental-management", "vacation-rental-management", "guest-communication"],
     seoTitle: "Airbnb Cleaning and Maintenance Coordination",
     seoDescription:
-      "Cleaning, turnover and maintenance coordination for Canadian short-term rentals, with condition tracking and safety checks.",
+      "Airbnb cleaning, turnover and maintenance coordination for Canadian short-term rentals: vetted local cleaners, condition tracking and safety checks.",
   },
 ];
 
