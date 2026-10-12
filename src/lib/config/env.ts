@@ -38,6 +38,20 @@ export const env = {
    */
   basePath: (process.env.NEXT_PUBLIC_BASE_PATH || "").replace(/\/+$/, ""),
 
+  /**
+   * Keeps a whole deployment out of the search index.
+   *
+   * The Pages copy is a byte-for-byte duplicate of the production site. Left
+   * crawlable it competes with viorahosting.com for the same queries, and
+   * Google picks a winner on its own - sometimes the wrong one.
+   *
+   * Note this does NOT disallow crawling. A page blocked in robots.txt can
+   * still be indexed from inbound links, and blocking it guarantees the
+   * noindex below is never read. Crawlable plus noindex is what actually
+   * removes a page.
+   */
+  noindex: process.env.NEXT_PUBLIC_NOINDEX === "true",
+
   formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT || "",
   turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "",
   gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",
