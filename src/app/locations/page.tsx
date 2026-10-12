@@ -53,7 +53,7 @@ export default function LocationsPage() {
       <PageHero
         eyebrow="Service areas"
         title="Where we work"
-        description="We take on properties only in markets where we have reliable cleaning and maintenance capacity. That is a shorter list than 'across Canada', and it is a more useful one."
+        description="We host short-term rentals in every part of Canada. The markets below have local guides covering the rules and seasonality that shape how a property there should run."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
       />
 
@@ -110,11 +110,11 @@ export default function LocationsPage() {
           )}
 
           <div className="mt-14 rounded-[var(--radius-panel)] border border-line bg-linen-200/60 p-6 sm:p-8">
-            <h2 className="text-display-sm text-ink">Property outside these areas?</h2>
+            <h2 className="text-display-sm text-ink">Your city not listed?</h2>
             <p className="mt-3 max-w-2xl leading-relaxed text-ink-muted">
-              Send it to us anyway. Whether we can take on a new market depends on whether we can
-              find cleaning and maintenance capacity we trust there - sometimes we can, sometimes we
-              cannot, and we will tell you which it is rather than take the property and hope.
+              We still cover it. Viora Hosting works with owners in every province and territory -
+              these guides are simply the markets we have written up so far. Tell us where your
+              property is and we will walk you through the local rules and how we would run it.
             </p>
             <p className="mt-4">
               <Link
@@ -130,7 +130,7 @@ export default function LocationsPage() {
 
       <CtaBand
         title="Local knowledge is the point"
-        description="Short-term rental rules in Canada are municipal, provincial and sometimes building-specific. Knowing a handful of markets properly beats claiming all of them."
+        description="Short-term rental rules in Canada are municipal, provincial and sometimes building-specific. Wherever your property is, we learn its local rules before we list it."
       />
     </>
   );

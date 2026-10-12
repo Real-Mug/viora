@@ -8,8 +8,8 @@ import type { Property, PropertyImage } from "@/lib/types/property";
  * here is hardcoded into a component, and the repository in src/lib/data is
  * built to page and filter over hundreds of these records.
  *
- * Both records below are REAL inventory, transcribed from the live Airbnb
- * listings linked in `airbnbUrl`. Neither carries `isPlaceholder`, so both are
+ * Every record below is REAL inventory, transcribed from the live Airbnb
+ * listings linked in `airbnbUrl`. None carries `isPlaceholder`, so all are
  * published in every content mode.
  *
  * Rules that apply when editing these, or adding a third:
@@ -219,5 +219,72 @@ export const propertyRecords: Property[] = [
       "Pet-friendly three-bedroom house in Waterloo with two living areas, a fenced backyard, workspace and driveway parking. Sleeps six. Managed by Viora Hosting.",
     createdAt: CREATED,
     updatedAt: UPDATED,
+  },
+
+  /*
+   * A new listing with no reviews yet, so `externalRating` is absent rather
+   * than zero. Add it once Airbnb shows a rating. London has no service-area
+   * page, so there is no `locationSlug` either.
+   */
+  {
+    id: "prop-london-townhouse",
+    slug: "spacious-3br-townhouse-london",
+    name: "Spacious 3-Bedroom Townhouse, London",
+    summary:
+      "A pet-friendly three-bedroom townhouse in London, Ontario, with two living areas, a gas fireplace, a dedicated workspace and free parking. Sleeps six.",
+    description: [
+      "A welcoming three-bedroom townhouse in London, Ontario, with room to relax, work and spend time together. It sleeps six across three bedrooms - two with queen beds and one with two single beds - and has two full bathrooms plus a half bathroom.",
+      "There are two separate living areas: a ground-floor living room with a gas fireplace, and a basement lounge, so everyone has room to spread out. The fully equipped kitchen has a coffee machine, air fryer, oven, microwave and dishwasher, along with cooking and dining essentials.",
+      "A dedicated office space with fast Wi-Fi and an ethernet connection makes it easy to work or study, and the backyard is there for fresh air and a break. In-suite laundry and free parking on the premises are included, and pets are welcome.",
+      "Please note the townhouse has multiple levels connected by stairs, so it may not suit guests with limited mobility.",
+    ],
+    location: {
+      city: "London",
+      province: "ON",
+      country: "CA",
+      coordinates: { lat: 42.991, lng: -81.293 },
+    },
+    propertyType: "townhouse",
+    bedrooms: 3,
+    beds: 4,
+    bathrooms: 2.5,
+    maxGuests: 6,
+    amenities: amenities(
+      "wifi", "air-conditioning", "heating", "washer", "dryer", "linens",
+      "self-check-in", "bathtub", "iron", "pets-allowed",
+      "full-kitchen", "dishwasher", "coffee-maker", "dining-area", "refrigerator", "microwave", "oven", "toaster",
+      "backyard",
+      "free-parking",
+      "dedicated-workspace",
+      "smoke-alarm", "carbon-monoxide-alarm", "fire-extinguisher", "first-aid-kit",
+    ),
+    images: imageSet("spacious-3br-townhouse-london", [
+      { file: "01-living-room.webp", alt: "Living room with two blue sofas, a coffee table, a television and a gas fireplace" },
+      { file: "02-fireplace.webp", alt: "Gas fireplace and large windows looking onto the backyard" },
+      { file: "03-kitchen.webp", alt: "Galley kitchen with white cabinets, a coffee machine and full-size appliances" },
+      { file: "04-dining.webp", alt: "Glass dining table beside French doors that open onto the backyard deck" },
+      { file: "05-bedroom-one.webp", alt: "First bedroom with a queen bed, bedside lamp and closet" },
+      { file: "06-bedroom-two.webp", alt: "Second bedroom with a queen bed, a blue feature wall and a desk" },
+      { file: "07-workspace.webp", alt: "Desk with a chair and laptop by the window in the second bedroom" },
+      { file: "08-bedroom-three.webp", alt: "Third bedroom with two single beds and a shared nightstand" },
+      { file: "09-bathroom.webp", alt: "Bathroom vanity with a round mirror and storage cabinet" },
+      { file: "10-exterior.webp", alt: "Brick-fronted townhouse with a garage and front garden" },
+    ]),
+    houseRules: [
+      "Check-in after 3:00 p.m. and checkout before 12:00 p.m.",
+      "Maximum six guests. Pets are welcome.",
+      "Quiet hours from 11:00 p.m. to 7:00 a.m.",
+      "No parties or events, no smoking, and no commercial photography.",
+      "The townhouse has stairs between levels and may not suit guests with limited mobility.",
+      "The full, current house rules are on the Airbnb listing.",
+    ],
+    airbnbUrl: "https://www.airbnb.ca/rooms/1760899695890821722",
+    status: "active",
+    featured: true,
+    seoTitle: "Spacious 3-Bedroom Townhouse in London, Ontario",
+    seoDescription:
+      "Pet-friendly three-bedroom townhouse in London, Ontario with two living areas, a gas fireplace, workspace and free parking. Sleeps six. Managed by Viora Hosting.",
+    createdAt: "2026-10-12T00:00:00.000Z",
+    updatedAt: "2026-10-12T00:00:00.000Z",
   },
 ];
