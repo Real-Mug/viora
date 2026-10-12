@@ -38,7 +38,7 @@ export function organizationSchema(): JsonLd {
       "@type": "ImageObject",
       url: absoluteUrl("/images/brand/logo.svg"),
     },
-    areaServed: { "@type": "Country", name: "Canada" },
+    areaServed: "Worldwide",
     ...(email ? { email } : {}),
     ...(phone ? { telephone: phone } : {}),
     ...(hasAddress
@@ -114,7 +114,7 @@ export function serviceSchema(service: Service): JsonLd {
     serviceType: service.name,
     url: absoluteUrl(`/services/${service.slug}`),
     provider: { "@id": ORG_ID },
-    areaServed: { "@type": "Country", name: "Canada" },
+    areaServed: "Worldwide",
     // No `offers` block: Viora Hosting does not publish fixed service pricing,
     // and inventing a price here would be false markup.
   };

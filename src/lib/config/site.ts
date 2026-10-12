@@ -47,9 +47,9 @@ export type SiteConfig = {
 export const siteConfig: SiteConfig = {
   name: "Viora Hosting",
   legalName: "Viora Hosting", // PLACEHOLDER: registered legal entity name
-  tagline: "Short-term rental hosting for property owners in Canada.",
+  tagline: "Short-term rental hosting for property owners worldwide.",
   shortDescription:
-    "We host short-term rentals for Canadian owners. Listing, guests, turnovers and reporting - handled.",
+    "We host short-term rentals for owners anywhere in the world. Listing, guests, turnovers and reporting - handled.",
   country: "CA",
   countryName: "Canada",
   locale: "en-CA",
