@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { PROPERTY_TYPE_LABELS } from "@/lib/types/property";
+import { PROVINCE_NAMES, PROPERTY_TYPE_LABELS } from "@/lib/types/property";
 
 /**
  * One schema, used in three places: browser validation, the serverless/API
@@ -9,6 +9,7 @@ import { PROPERTY_TYPE_LABELS } from "@/lib/types/property";
  * because anything sent from a client is untrusted.
  */
 
+const provinceValues = Object.keys(PROVINCE_NAMES) as [string, ...string[]];
 const propertyTypeValues = Object.keys(PROPERTY_TYPE_LABELS) as [string, ...string[]];
 
 /**
@@ -81,8 +82,7 @@ export const hostLeadSchema = z
     phone,
     propertyAddress: safeText(200, 5, "Enter the property address."),
     city: safeText(80, 2, "Enter the city."),
-    region: safeText(80).optional().or(z.literal("")),
-    country: safeText(80, 2, "Enter the country."),
+    province: z.enum(provinceValues, { errorMap: () => ({ message: "Select a province or territory." }) }),
     propertyType: z.enum(propertyTypeValues, { errorMap: () => ({ message: "Select a property type." }) }),
     bedrooms: requiredNumber("Enter the number of bedrooms.", (n) => n.int().min(0, "Enter 0 or more.").max(50)),
     bathrooms: requiredNumber("Enter the number of bathrooms.", (n) => n.min(0, "Enter 0 or more.").max(50)),

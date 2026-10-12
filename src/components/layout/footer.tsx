@@ -52,7 +52,7 @@ export function Footer() {
           <div className="max-w-sm">
             <Logo />
             <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-              We host short-term rentals worldwide, end to end - listing, guests, turnovers,
+              We host Canadian short-term rentals end to end - listing, guests, turnovers,
               reporting.
             </p>
 
