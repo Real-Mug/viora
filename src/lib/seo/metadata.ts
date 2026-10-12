@@ -30,7 +30,7 @@ export type PageMetadataInput = {
 
 const DEFAULT_OG_IMAGE = {
   url: "/images/brand/og-default.jpg",
-  alt: "Viora Hosting - short-term rental co-hosting and property management worldwide",
+  alt: "Viora Hosting - short-term rental co-hosting and property management in Canada",
   width: 1200,
   height: 630,
 };
@@ -96,7 +96,7 @@ export function pageMetadata({
 export const rootMetadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
   title: {
-    default: `${siteConfig.name} | Short-Term Rental Co-Hosting and Property Management Worldwide`,
+    default: `${siteConfig.name} | Short-Term Rental Co-Hosting and Property Management in Canada`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.shortDescription,

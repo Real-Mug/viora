@@ -19,7 +19,7 @@ const crumbs: Crumb[] = [
 export const metadata: Metadata = pageMetadata({
   title: "Short-Term Rental and Airbnb Management Services",
   description:
-    "Co-hosting, full rental management, listing optimization, guest communication, revenue management and property care for short-term rental owners worldwide.",
+    "Co-hosting, full rental management, listing optimization, guest communication, revenue management and property care for Canadian short-term rental owners.",
   path: "/services",
 });
 
@@ -33,7 +33,7 @@ export default function ServicesPage() {
           webPageSchema({
             name: "Short-Term Rental and Airbnb Management Services",
             description:
-              "The co-hosting, management and operational services Viora Hosting delivers for property owners worldwide.",
+              "The co-hosting, management and operational services Viora Hosting delivers for Canadian property owners.",
             path: "/services",
             crumbs,
           }),

@@ -475,7 +475,7 @@ export default async function PropertyPage({ params }: Params) {
 
       <CtaBand
         title="Own a property like this one?"
-        description="We host properties all over the world. Tell us about yours."
+        description="We host properties across Canada. Tell us about yours."
       />
 
       {/* Phones only: the sticky sidebar's two actions, kept within reach. */}

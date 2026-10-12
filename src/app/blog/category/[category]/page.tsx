@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!name) return {};
 
   return pageMetadata({
-    title: `${name} Guides for Rental Hosts`,
-    description: `Articles on ${name.toLowerCase()} for short-term rental owners, from the Viora Hosting team.`,
+    title: `${name} Guides for Canadian Hosts`,
+    description: `Articles on ${name.toLowerCase()} for Canadian short-term rental owners, from the Viora Hosting team.`,
     path: `/blog/category/${category}`,
   });
 }
@@ -63,7 +63,7 @@ export default async function CategoryPage({ params }: Params) {
         data={graph(
           webPageSchema({
             name: `${name} Guides`,
-            description: `Articles on ${name.toLowerCase()} for short-term rental owners.`,
+            description: `Articles on ${name.toLowerCase()} for Canadian short-term rental owners.`,
             path: `/blog/category/${category}`,
             crumbs,
           }),

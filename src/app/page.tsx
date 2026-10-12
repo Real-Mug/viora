@@ -40,9 +40,9 @@ import { faqSchema, graph, webPageSchema } from "@/lib/seo/schema";
 export const metadata: Metadata = pageMetadata({
   // The homepage sets its own brand-bearing title: the layout's title template
   // is not applied to the root segment, so the brand has to be explicit here.
-  title: "Viora Hosting | Short-Term Rental Co-Hosting Worldwide",
+  title: "Viora Hosting | Short-Term Rental Co-Hosting in Canada",
   description:
-    "Professional co-hosting and short-term rental management for property owners worldwide: guest support, listing optimization and property operations.",
+    "Professional co-hosting and short-term rental management for Canadian property owners: guest support, listing optimization and property operations.",
   path: "/",
 });
 
@@ -65,9 +65,9 @@ export default async function HomePage() {
       <JsonLd
         data={graph(
           webPageSchema({
-            name: "Viora Hosting - Short-Term Rental Co-Hosting and Property Management Worldwide",
+            name: "Viora Hosting - Short-Term Rental Co-Hosting and Property Management in Canada",
             description:
-              "Professional co-hosting and short-term rental management for property owners around the world.",
+              "Professional co-hosting and short-term rental management for property owners in Canada.",
             path: "/",
           }),
           faqSchema(faqs),
@@ -75,14 +75,14 @@ export default async function HomePage() {
       />
 
       <HomeHero
-        eyebrow="Short-term rental hosting worldwide"
+        eyebrow="Short-term rental hosting in Canada"
         title={
           <>
             Your property,
             <br className="hidden sm:block" /> <em>hosted properly.</em>
           </>
         }
-        description="We host short-term rentals for owners anywhere in the world. Listing, guests, turnovers and reporting - handled."
+        description="We host short-term rentals for Canadian owners. Listing, guests, turnovers and reporting - handled."
         primaryCta={CTA.primary}
         secondaryCta={CTA.secondary}
         image={{
@@ -115,7 +115,7 @@ export default async function HomePage() {
                     href="/locations"
                     className="underline decoration-brass-300/60 underline-offset-4 transition-colors hover:text-white"
                   >
-                    markets worldwide
+                    other Canadian markets
                   </Link>
                 </>
               ) : null}
@@ -317,7 +317,7 @@ export default async function HomePage() {
               <SectionHeading
                 id="resources-heading"
                 eyebrow="Resources"
-                title="Guides for hosts"
+                title="Guides for Canadian hosts"
                 description="Co-hosting, operations and pricing. Useful whether or not you work with us."
               />
               <ButtonLink href="/blog" variant="secondary" className="shrink-0">

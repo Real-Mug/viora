@@ -21,9 +21,9 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Short-Term Rental Properties",
+  title: "Short-Term Rental Properties in Canada",
   description:
-    "Browse the short-term rental properties managed by Viora Hosting. Filter by location, property type, guests, bedrooms and amenities.",
+    "Browse the short-term rental properties managed by Viora Hosting across Canada. Filter by location, property type, guests, bedrooms and amenities.",
   path: "/properties",
 });
 
@@ -41,8 +41,8 @@ export default async function PropertiesPage() {
       <JsonLd
         data={graph(
           webPageSchema({
-            name: "Short-Term Rental Properties",
-            description: "Properties managed by Viora Hosting.",
+            name: "Short-Term Rental Properties in Canada",
+            description: "Properties managed by Viora Hosting across Canadian markets.",
             path: "/properties",
             crumbs,
           }),

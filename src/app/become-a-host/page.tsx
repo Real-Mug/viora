@@ -21,7 +21,7 @@ const crumbs: Crumb[] = [
 export const metadata: Metadata = pageMetadata({
   title: "List Your Property - Request an Assessment",
   description:
-    "Tell Viora Hosting about your property and get a free, no-obligation assessment: what we would manage, what we would change first, and what it would cost.",
+    "Tell Viora Hosting about your Canadian property and get a free, no-obligation assessment: what we would manage, what we would change first, and what it would cost.",
   path: "/become-a-host",
 });
 
@@ -47,7 +47,7 @@ export default function BecomeAHostPage() {
           webPageSchema({
             name: "List Your Property with Viora Hosting",
             description:
-              "Request a free property assessment for short-term rental co-hosting or management, wherever your property is.",
+              "Request a free property assessment for short-term rental co-hosting or management in Canada.",
             path: "/become-a-host",
             crumbs,
           }),
@@ -129,7 +129,7 @@ export default function BecomeAHostPage() {
                     ))}
                   </ul>
                   <p className="mt-4 text-[0.8125rem] leading-relaxed text-ink-subtle">
-                    We host properties all over the world. If your city is not listed here, send the form
+                    We host properties across Canada. If your city is not listed here, send the form
                     anyway - these are just the markets we have written guides for.
                   </p>
                 </div>

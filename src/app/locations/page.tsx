@@ -19,9 +19,9 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Service Areas Worldwide",
+  title: "Service Areas Across Canada",
   description:
-    "Viora Hosting provides short-term rental co-hosting and property management worldwide. Local guides cover the rules in the markets we know best.",
+    "The Canadian markets where Viora Hosting provides short-term rental co-hosting and property management, with local rules and operating context for each.",
   path: "/locations",
 });
 
@@ -41,8 +41,8 @@ export default function LocationsPage() {
       <JsonLd
         data={graph(
           webPageSchema({
-            name: "Service Areas - Where Viora Hosting Operates",
-            description: "Markets served by Viora Hosting short-term rental management, worldwide.",
+            name: "Service Areas - Where Viora Hosting Operates in Canada",
+            description: "Canadian markets served by Viora Hosting short-term rental management.",
             path: "/locations",
             crumbs,
           }),
@@ -53,7 +53,7 @@ export default function LocationsPage() {
       <PageHero
         eyebrow="Service areas"
         title="Where we work"
-        description="We host short-term rentals all over the world. The markets below have local guides covering the rules and seasonality that shape how a property there should run."
+        description="We host short-term rentals in every part of Canada. The markets below have local guides covering the rules and seasonality that shape how a property there should run."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
       />
 
@@ -112,7 +112,7 @@ export default function LocationsPage() {
           <div className="mt-14 rounded-[var(--radius-panel)] border border-line bg-linen-200/60 p-6 sm:p-8">
             <h2 className="text-display-sm text-ink">Your city not listed?</h2>
             <p className="mt-3 max-w-2xl leading-relaxed text-ink-muted">
-              We still cover it. Viora Hosting works with owners all over the world -
+              We still cover it. Viora Hosting works with owners in every province and territory -
               these guides are simply the markets we have written up so far. Tell us where your
               property is and we will walk you through the local rules and how we would run it.
             </p>
@@ -130,7 +130,7 @@ export default function LocationsPage() {
 
       <CtaBand
         title="Local knowledge is the point"
-        description="Short-term rental rules are set locally and are sometimes building-specific. Wherever your property is, we learn its local rules before we list it."
+        description="Short-term rental rules in Canada are municipal, provincial and sometimes building-specific. Wherever your property is, we learn its local rules before we list it."
       />
     </>
   );
