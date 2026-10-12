@@ -4,7 +4,7 @@
 
 Please do **not** open a public issue for a security problem.
 
-Report it privately to **hello@viorahosting.com**, or use GitHub's
+Report it privately to **bakhtsanankhan@gmail.com**, or use GitHub's
 [private vulnerability reporting](https://docs.github.com/code-security/security-advisories/guidance-on-reporting-and-writing/privately-reporting-a-security-vulnerability)
 on this repository (Security → Report a vulnerability).
 

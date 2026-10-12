@@ -55,8 +55,7 @@ export const siteConfig: SiteConfig = {
   locale: "en-CA",
 
   contact: {
-    // PLACEHOLDER: replace with the real published inbox before launch.
-    email: "hello@viorahosting.com",
+    email: "bakhtsanankhan@gmail.com",
     // PLACEHOLDER: leave empty to hide the phone link site-wide.
     phone: "",
     phoneDisplay: "",

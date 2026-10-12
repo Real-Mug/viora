@@ -52,7 +52,7 @@ export const env = {
    */
   noindex: process.env.NEXT_PUBLIC_NOINDEX === "true",
 
-  formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT || "",
+  formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT || "https://formspree.io/f/mzedvwbg",
   turnstileSiteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "",
   gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",
   googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
