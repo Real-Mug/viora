@@ -25,14 +25,13 @@ visible "draft pending legal review" notice and contain `PLACEHOLDER` markers.
 - [ ] Remove the draft notice from `src/components/layout/legal-page.tsx` only
       once a lawyer has signed off
 
-### BLOCKER — Confirm the service areas
+### Service areas — confirmed
 
-`src/content/locations.ts` currently lists Toronto, Vancouver, Montreal,
-Calgary, Muskoka and Whistler as `active: true`. **A location page is a public
-statement that you take on work in that market.**
+Viora hosts across all of Canada, so every market in `src/content/locations.ts`
+stays `active: true`. The location pages are local guides, not the full list of
+where we work, and the site copy says so.
 
-- [ ] Set `active: false` for any market you do not actually serve. The page, its
-      links, its sitemap entry and its structured data all disappear.
+- [x] Coverage confirmed: every province and territory
 - [ ] Verify every regulatory note against the current municipal or provincial
       source. These regimes change frequently and several were amended recently.
       The notes are written as "confirm this yourself" for that reason — keep
@@ -42,8 +41,7 @@ statement that you take on work in that market.**
 
 In `src/lib/config/site.ts`:
 
-- [ ] `contact.email` — currently `hello@viorahosting.com`; confirm it exists and
-      is monitored
+- [x] `contact.email` — `bakhtsanankhan@gmail.com`
 - [ ] `contact.phone` / `phoneDisplay` — blank, so no phone link renders. Fill in
       or leave blank deliberately.
 - [ ] `legalName` — the registered entity name
@@ -52,27 +50,25 @@ In `src/lib/config/site.ts`:
       if there is no public business address
 - [ ] `social` — add only profiles that exist; an empty array renders nothing
 
-### BLOCKER — Form endpoint
+### Form endpoint — done
 
-- [ ] Set `NEXT_PUBLIC_FORM_ENDPOINT`. Until it is set, both forms tell the
-      visitor the form is not connected and to email instead. They never show a
-      false success, but they also never deliver a lead.
-- [ ] Submit each form end to end and confirm the message arrives
-- [ ] Confirm the receiving inbox is monitored
+- [x] Forms post to Formspree (`https://formspree.io/f/mzedvwbg`, the default in
+      `src/lib/config/env.ts`). `NEXT_PUBLIC_FORM_ENDPOINT` overrides it.
+- [x] Submit each form end to end and confirm the message arrives
+- [x] Confirm the receiving inbox is monitored
 
 ### Photography
 
-- [ ] Replace the generated SVG placeholders in `public/images/` with real
-      photography. Every placeholder has an `alt` beginning "Placeholder image",
-      which is a fast way to find them: `grep -rn "Placeholder image" src/`
+- [x] Replace the generated SVG placeholders in `public/images/` with real
+      photography (no "Placeholder image" alt text remains in `src/`)
 - [ ] Replace `public/images/brand/og-default.png` with a designed 1200×630 card
       — it is the first impression of every shared link
 - [ ] Compress before committing; target under ~250 KB per photo
 
 ### Properties
 
-- [ ] Replace the six sample records in `src/content/properties.ts` with real
-      inventory, and **delete each `isPlaceholder: true` line**
+- [x] Real inventory in `src/content/properties.ts` (Kitchener and Waterloo,
+      transcribed from their Airbnb listings; no `isPlaceholder` records left)
 - [ ] Get written permission from each owner before publishing their property
 - [ ] Confirm no exact street address appears anywhere in the content
 - [ ] Set `NEXT_PUBLIC_CONTENT_MODE=live` once no samples remain

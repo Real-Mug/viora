@@ -321,5 +321,145 @@
       1200,
       1600
     ]
+  },
+  "/images/properties/spacious-3br-townhouse-london/01-living-room.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-townhouse-london/02-fireplace.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-townhouse-london/03-kitchen.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-townhouse-london/04-dining.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-townhouse-london/05-bedroom-one.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-townhouse-london/06-bedroom-two.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-townhouse-london/07-workspace.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-townhouse-london/08-bedroom-three.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-townhouse-london/09-bathroom.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
+  },
+  "/images/properties/spacious-3br-townhouse-london/10-exterior.webp": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      96,
+      176,
+      256,
+      384,
+      640,
+      828,
+      1200,
+      1600
+    ]
   }
 }

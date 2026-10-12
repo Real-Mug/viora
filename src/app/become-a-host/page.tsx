@@ -114,7 +114,7 @@ export default function BecomeAHostPage() {
               {areas.length > 0 ? (
                 <div className="mt-6 rounded-[var(--radius-panel)] border border-line bg-surface-raised p-6">
                   <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-ink">
-                    Markets we currently serve
+                    Local guides
                   </h2>
                   <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
                     {areas.map((area) => (
@@ -129,8 +129,8 @@ export default function BecomeAHostPage() {
                     ))}
                   </ul>
                   <p className="mt-4 text-[0.8125rem] leading-relaxed text-ink-subtle">
-                    Outside these areas? Send the form anyway. We will tell you straight whether we
-                    can cover it rather than taking the property and hoping.
+                    We host properties across Canada. If your city is not listed here, send the form
+                    anyway - these are just the markets we have written guides for.
                   </p>
                 </div>
               ) : null}
