@@ -17,9 +17,11 @@ import { CTA, mainNav, type NavLink } from "@/lib/config/site";
  *   - the Services dropdown is a real button with aria-expanded/aria-controls,
  *     opens on hover *and* on click/Enter, and closes on Escape or outside
  *     click, so it works for pointer, keyboard and touch alike;
- *   - the mobile drawer traps nothing and hides nothing: it is a plain panel
- *     with the background marked aria-hidden via inert-style overlay, focus is
- *     moved to the close button, and Escape closes it;
+ *   - the mobile drawer is a modal dialog: while open, focus moves to the close
+ *     button, Tab is kept inside it and Escape closes it, returning focus to the
+ *     menu button; while closed it is `inert`, so its links are not tabbable;
+ *   - hovering opens the Services menu, and the click that follows a hover
+ *     keeps it open rather than toggling it shut;
  *   - the current page is marked with aria-current.
  */
 
@@ -33,6 +35,8 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
+  // Stable, so the drawer's open/keyboard effects do not re-run on every render.
+  const closeMobile = useCallback(() => setMobileOpen(false), []);
 
   // Close everything on navigation.
   useEffect(() => {
@@ -160,7 +164,7 @@ export function Header() {
         />
       </div>
 
-      <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} pathname={pathname} />
+      <MobileNav open={mobileOpen} onClose={closeMobile} pathname={pathname} />
     </header>
   );
 }
@@ -171,6 +175,7 @@ function DesktopDropdown({ item, pathname }: { item: NavLink; pathname: string }
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLLIElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const openedByHover = useRef(false);
   const menuId = useId();
   const active = isActive(pathname, item.href);
 
@@ -219,15 +224,28 @@ function DesktopDropdown({ item, pathname }: { item: NavLink; pathname: string }
       className="relative"
       onMouseEnter={() => {
         cancelClose();
+        if (!open) openedByHover.current = true;
         setOpen(true);
       }}
-      onMouseLeave={scheduleClose}
+      onMouseLeave={() => {
+        openedByHover.current = false;
+        scheduleClose();
+      }}
     >
       <button
         type="button"
         aria-expanded={open}
         aria-controls={menuId}
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => {
+          // Hovering opens the menu, so the click that usually follows must
+          // not toggle it straight back shut.
+          if (openedByHover.current) {
+            openedByHover.current = false;
+            setOpen(true);
+            return;
+          }
+          setOpen((value) => !value);
+        }}
         data-active={active ? "true" : undefined}
         className={cn(
           "nav-underline relative inline-flex h-10 items-center gap-1 whitespace-nowrap rounded-full px-3",
@@ -297,27 +315,63 @@ function MobileNav({
   pathname: string;
 }) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  // Where focus was when the drawer opened (the menu button), so dismissing
+  // the drawer can hand focus back instead of dropping it on <body>.
+  const returnFocusRef = useRef<HTMLElement | null>(null);
+
+  const dismiss = useCallback(() => {
+    onClose();
+    returnFocusRef.current?.focus();
+  }, [onClose]);
 
   useEffect(() => {
     if (!open) return;
+    returnFocusRef.current = document.activeElement as HTMLElement | null;
     closeRef.current?.focus();
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        dismiss();
+        return;
+      }
+      // Keep Tab inside the drawer while it is open: it is a modal dialog.
+      if (event.key !== "Tab" || !dialogRef.current) return;
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), summary, [tabindex]:not([tabindex="-1"])',
+      );
+      const visible = [...focusable].filter((el) => el.offsetParent !== null);
+      const first = visible[0];
+      const last = visible[visible.length - 1];
+      if (!first || !last) return;
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open, onClose]);
+  }, [open, dismiss]);
 
   return (
     <div
       id="mobile-navigation"
       className={cn("xl:hidden", !open && "pointer-events-none")}
       aria-hidden={!open}
+      // `inert` takes the closed drawer's links out of the Tab order;
+      // aria-hidden and pointer-events alone leave them focusable.
+      inert={!open}
     >
       {/* Backdrop */}
       <div
-        onClick={onClose}
+        onClick={dismiss}
         className={cn(
           "fixed inset-0 z-40 bg-linen-950/45 transition-opacity duration-300",
           open ? "opacity-100" : "opacity-0",
@@ -325,6 +379,7 @@ function MobileNav({
       />
 
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal={open ? true : undefined}
         aria-label="Site menu"
@@ -339,7 +394,7 @@ function MobileNav({
           <button
             ref={closeRef}
             type="button"
-            onClick={onClose}
+            onClick={dismiss}
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-linen-200"
           >
             <IconClose className="h-5 w-5" />

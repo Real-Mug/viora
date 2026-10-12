@@ -174,6 +174,7 @@ export class StaticPropertyRepository implements PropertyRepository {
 
     const guestCounts = items.map((property) => property.maxGuests);
     const bedroomCounts = items.map((property) => property.bedrooms);
+    const bathroomCounts = items.map((property) => property.bathrooms);
 
     return {
       cities: [...cityCounts.entries()]
@@ -205,6 +206,10 @@ export class StaticPropertyRepository implements PropertyRepository {
       bedroomRange: {
         min: bedroomCounts.length ? Math.min(...bedroomCounts) : 0,
         max: bedroomCounts.length ? Math.max(...bedroomCounts) : 0,
+      },
+      bathroomRange: {
+        min: bathroomCounts.length ? Math.min(...bathroomCounts) : 0,
+        max: bathroomCounts.length ? Math.max(...bathroomCounts) : 0,
       },
       priceRange: rates.length ? { min: Math.min(...rates), max: Math.max(...rates) } : null,
     };

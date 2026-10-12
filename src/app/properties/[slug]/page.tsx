@@ -393,6 +393,22 @@ export default async function PropertyPage({ params }: Params) {
                       , and we have not republished them here. We only publish a review once we can
                       point to where it came from, so the rating above links straight to the source.
                     </p>
+                  ) : property.airbnbUrl ? (
+                    // A new listing: same quiet note as its siblings, not the
+                    // site-wide empty state with its owner sign-up button.
+                    <p className="rounded-[var(--radius-card)] border border-dashed border-line-strong bg-linen-200/50 px-5 py-4 text-sm leading-relaxed text-ink-muted">
+                      This is a new listing with no reviews yet. Once guests start reviewing it,
+                      the reviews will appear on its{" "}
+                      <a
+                        href={property.airbnbUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-evergreen-800 underline underline-offset-4 hover:text-evergreen-900"
+                      >
+                        Airbnb listing
+                      </a>
+                      .
+                    </p>
                   ) : (
                     <NoReviewsYet context="property" />
                   )}
@@ -459,7 +475,7 @@ export default async function PropertyPage({ params }: Params) {
 
       <CtaBand
         title="Own a property like this one?"
-        description="We host across several Canadian markets. Tell us about yours."
+        description="We host properties all over the world. Tell us about yours."
       />
 
       {/* Phones only: the sticky sidebar's two actions, kept within reach. */}

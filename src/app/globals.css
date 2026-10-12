@@ -220,10 +220,13 @@
     }
   }
 
+  /* The gutter keeps text off the screen edge on phones; it is added to the
+     max-width so the text column stays 44rem wide on larger screens. */
   .container-prose {
     width: 100%;
     margin-inline: auto;
-    max-width: 44rem;
+    padding-inline: 1rem;
+    max-width: calc(44rem + 2rem);
   }
 
   /* Vertical rhythm for full-width sections. */

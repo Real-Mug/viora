@@ -221,6 +221,12 @@ export function BookingPanel({ property }: { property: Property }) {
         <p>
           {bookingEngineAvailable ? (
             "Availability is shown live and confirmed at booking."
+          ) : !property.pricing ? (
+            // No published rates means no estimate on screen, so do not call it one.
+            <>
+              No live calendar is connected yet, so we confirm rates and availability with you
+              directly. No payment is taken through this site.
+            </>
           ) : (
             <>
               This is a price estimate, not a confirmed booking. No live calendar is connected yet,

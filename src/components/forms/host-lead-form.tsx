@@ -18,7 +18,7 @@ import { track } from "@/lib/analytics";
 import { siteConfig } from "@/lib/config/site";
 import { fieldErrors, hostLeadSchema } from "@/lib/forms/schemas";
 import { looksAutomated, submitLead, throttled } from "@/lib/forms/submit";
-import { PROPERTY_TYPE_LABELS, PROVINCE_NAMES } from "@/lib/types/property";
+import { PROPERTY_TYPE_LABELS } from "@/lib/types/property";
 
 /**
  * Become a Host lead form.
@@ -37,7 +37,6 @@ import { PROPERTY_TYPE_LABELS, PROVINCE_NAMES } from "@/lib/types/property";
  * asks for no more than is needed to assess a property.
  */
 
-const PROVINCE_OPTIONS = Object.entries(PROVINCE_NAMES).map(([value, label]) => ({ value, label }));
 const TYPE_OPTIONS = Object.entries(PROPERTY_TYPE_LABELS).map(([value, label]) => ({ value, label }));
 const PLATFORM_OPTIONS = [
   { value: "airbnb", label: "Airbnb" },
@@ -60,7 +59,8 @@ type State = {
   phone: string;
   propertyAddress: string;
   city: string;
-  province: string;
+  region: string;
+  country: string;
   propertyType: string;
   bedrooms: string;
   bathrooms: string;
@@ -79,7 +79,8 @@ const INITIAL: State = {
   phone: "",
   propertyAddress: "",
   city: "",
-  province: "",
+  region: "",
+  country: "",
   propertyType: "",
   bedrooms: "",
   bathrooms: "",
@@ -261,19 +262,26 @@ export function HostLeadForm({ sourcePath = "/become-a-host" }: { sourcePath?: s
             onChange={(event) => set("city")(event.target.value)}
             error={fieldError("city")}
           />
-          <SelectField
-            label="Province or territory"
-            name="province"
-            required
-            placeholder="Select..."
-            options={PROVINCE_OPTIONS}
-            value={values.province}
-            onChange={(event) => set("province")(event.target.value)}
-            error={fieldError("province")}
+          <TextField
+            label="State, province or region"
+            name="region"
+            autoComplete="address-level1"
+            value={values.region}
+            onChange={(event) => set("region")(event.target.value)}
+            error={fieldError("region")}
           />
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2">
+          <TextField
+            label="Country"
+            name="country"
+            autoComplete="country-name"
+            required
+            value={values.country}
+            onChange={(event) => set("country")(event.target.value)}
+            error={fieldError("country")}
+          />
           <SelectField
             label="Property type"
             name="propertyType"
@@ -283,15 +291,6 @@ export function HostLeadForm({ sourcePath = "/become-a-host" }: { sourcePath?: s
             value={values.propertyType}
             onChange={(event) => set("propertyType")(event.target.value)}
             error={fieldError("propertyType")}
-          />
-          <SelectField
-            label="Currently listed on"
-            name="currentPlatform"
-            placeholder="Select..."
-            options={PLATFORM_OPTIONS}
-            value={values.currentPlatform}
-            onChange={(event) => set("currentPlatform")(event.target.value)}
-            error={fieldError("currentPlatform")}
           />
         </div>
 
@@ -335,12 +334,22 @@ export function HostLeadForm({ sourcePath = "/become-a-host" }: { sourcePath?: s
           />
         </div>
 
+        <SelectField
+          label="Currently listed on"
+          name="currentPlatform"
+          placeholder="Select..."
+          options={PLATFORM_OPTIONS}
+          value={values.currentPlatform}
+          onChange={(event) => set("currentPlatform")(event.target.value)}
+          error={fieldError("currentPlatform")}
+        />
+
         <TextField
           label="Current listing URL"
           name="airbnbListingUrl"
           type="url"
           inputMode="url"
-          placeholder="https://www.airbnb.ca/rooms/..."
+          placeholder="https://www.airbnb.com/rooms/..."
           hint="An existing Airbnb or Vrbo listing helps us give you a far more useful assessment."
           value={values.airbnbListingUrl}
           onChange={(event) => set("airbnbListingUrl")(event.target.value)}

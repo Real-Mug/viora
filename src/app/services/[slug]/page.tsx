@@ -260,7 +260,7 @@ export default async function ServicePage({ params }: Params) {
       </Section>
 
       <CtaBand
-        title={`Talk to us about ${service.name.toLowerCase()}`}
+        title={`Talk to us about ${service.name}`}
         description="Send your property details. We come back with the plan and the cost."
       />
     </>

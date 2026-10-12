@@ -36,6 +36,7 @@ export type PropertyFacets = {
   amenities: { value: string; label: string; count: number }[];
   guestRange: { min: number; max: number };
   bedroomRange: { min: number; max: number };
+  bathroomRange: { min: number; max: number };
   priceRange: { min: number; max: number } | null;
 };
 
