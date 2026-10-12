@@ -40,9 +40,9 @@ export const faqGroups: FaqGroup[] = [
           "Yes, and that is how most owners come to us. We take over an established listing without resetting its reviews or ranking, and agree any changes with you first.",
       },
       {
-        question: "Which Canadian locations do you serve?",
+        question: "Which locations do you serve?",
         answer:
-          "They are listed on the Service Areas page. A market only works if we have reliable cleaning and maintenance capacity there, so we would rather say no than run a property badly. Outside the list? Ask anyway.",
+          "Anywhere in the world. Viora Hosting is based in Canada and works with owners worldwide. The Service Areas page has local guides for the markets we know best; if yours is not listed, get in touch and we will walk you through how we would run it.",
       },
     ],
   },
@@ -164,7 +164,7 @@ export function homepageFaqs(): FaqItem[] {
     "Can you manage my existing Airbnb property?",
     "Do you guarantee a certain income or occupancy?",
     "How much does it cost?",
-    "Which Canadian locations do you serve?",
+    "Which locations do you serve?",
     "Can guests book directly?",
   ];
   const all = allFaqs();

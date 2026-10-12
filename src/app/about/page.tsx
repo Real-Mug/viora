@@ -21,7 +21,7 @@ const crumbs: Crumb[] = [
 export const metadata: Metadata = pageMetadata({
   title: "About Viora Hosting",
   description:
-    "Viora Hosting is a Canadian short-term rental co-hosting and property management company. Here is what we do, how we work with owners, and what we will not promise.",
+    "Viora Hosting is a Canadian short-term rental co-hosting and property management company working worldwide: what we do, how we work and what we will not promise.",
   path: "/about",
 });
 
@@ -62,7 +62,7 @@ export default function AboutPage() {
           webPageSchema({
             name: "About Viora Hosting",
             description:
-              "A Canadian short-term rental co-hosting and property management company working with owners across several markets.",
+              "A Canadian short-term rental co-hosting and property management company working with owners around the world.",
             path: "/about",
             crumbs,
           }),
@@ -73,7 +73,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         title="A short-term rental company built around the operational work"
-        description="Viora Hosting manages the day-to-day reality of short-term rentals for Canadian property owners: guests, turnovers, listings and the constant small decisions that come with letting a property nightly."
+        description="Viora Hosting manages the day-to-day reality of short-term rentals for property owners around the world: guests, turnovers, listings and the constant small decisions that come with letting a property nightly."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
       />
 
@@ -145,20 +145,19 @@ export default function AboutPage() {
                 operation that produces the result the owner is paying for.
               </p>
 
-              <h2>Canadian focus</h2>
+              <h2>Based in Canada, hosting worldwide</h2>
               <p>
-                We work in Canada, and that is a deliberate limit rather than a marketing line.
-                Short-term rental rules here are set municipally and provincially and vary
-                enormously: Toronto&apos;s principal-residence regime, British Columbia&apos;s
-                provincial legislation, Quebec&apos;s registration requirement, Calgary&apos;s
-                licensing tiers, and township-level rules in cottage country are all genuinely
-                different problems.
+                Viora Hosting is a Canadian company, and we work with owners wherever their
+                property is. Short-term rental rules are set locally and vary enormously - even
+                within Canada, Toronto&apos;s principal-residence regime, British Columbia&apos;s
+                provincial legislation, Quebec&apos;s registration requirement and Calgary&apos;s
+                licensing tiers are all genuinely different problems.
               </p>
               <p>
-                Operating in a smaller number of markets we understand properly is more useful to an
-                owner than claiming national coverage we could not deliver. Our current{" "}
-                <Link href="/locations">service areas</Link> are listed in full, and if your property
-                is outside them we will tell you rather than take the work.
+                So before we list a property anywhere, we learn the rules that apply to it. Our{" "}
+                <Link href="/locations">local guides</Link> cover the markets we know best, and if
+                your property is somewhere else, tell us where it is and we will walk you through how
+                we would run it.
               </p>
             </div>
 

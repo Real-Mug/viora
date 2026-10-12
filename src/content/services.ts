@@ -14,7 +14,7 @@ export const services: Service[] = [
   {
     slug: "airbnb-co-hosting",
     name: "Airbnb Co-Hosting",
-    heading: "Airbnb co-hosting for Canadian property owners",
+    heading: "Airbnb co-hosting for property owners worldwide",
     summary:
       "We run the day-to-day. You keep ownership, pricing and the listing.",
     icon: "co-hosting",
@@ -81,13 +81,13 @@ export const services: Service[] = [
       {
         question: "Can you co-host a property that is not on Airbnb?",
         answer:
-          "Yes. The same operational work applies whether your bookings come from Airbnb, Vrbo, another platform or directly. Airbnb is simply where most Canadian owners start.",
+          "Yes. The same operational work applies whether your bookings come from Airbnb, Vrbo, another platform or directly. Airbnb is simply where most owners start.",
       },
     ],
     relatedServices: ["short-term-rental-management", "guest-communication", "listing-optimization"],
-    seoTitle: "Airbnb Co-Hosting Services in Canada",
+    seoTitle: "Airbnb Co-Hosting Services Worldwide",
     seoDescription:
-      "Airbnb co-hosting for Canadian property owners. We manage guest communication, turnovers and daily operations while you keep control of your listing.",
+      "Airbnb co-hosting for property owners worldwide. We manage guest communication, turnovers and daily operations while you keep control of your listing.",
   },
 
   {
@@ -164,9 +164,9 @@ export const services: Service[] = [
       },
     ],
     relatedServices: ["airbnb-co-hosting", "revenue-management", "property-care"],
-    seoTitle: "Short-Term Rental Management Services in Canada",
+    seoTitle: "Short-Term Rental Management Services Worldwide",
     seoDescription:
-      "End-to-end short-term rental management for Canadian property owners: listings, guests, pricing, cleaning, maintenance and owner reporting.",
+      "End-to-end short-term rental management for property owners worldwide: listings, guests, pricing, cleaning, maintenance and owner reporting.",
   },
 
   {
@@ -238,9 +238,9 @@ export const services: Service[] = [
       },
     ],
     relatedServices: ["short-term-rental-management", "property-care", "revenue-management"],
-    seoTitle: "Vacation Rental Management in Canada",
+    seoTitle: "Vacation Rental Management Worldwide",
     seoDescription:
-      "Vacation rental management for Canadian cottages, chalets and second homes: seasonal operations, group bookings, local suppliers and remote oversight.",
+      "Vacation rental management for cottages, chalets and second homes worldwide: seasonal operations, group bookings, local suppliers and remote oversight.",
   },
 
   {
@@ -314,7 +314,7 @@ export const services: Service[] = [
     relatedServices: ["airbnb-co-hosting", "revenue-management", "guest-communication"],
     seoTitle: "Airbnb Listing Optimization Services",
     seoDescription:
-      "Listing optimization for Canadian short-term rentals: audits, rewritten copy, photo sequencing, amenity accuracy and clearer positioning.",
+      "Listing optimization for short-term rentals: audits, rewritten copy, photo sequencing, amenity accuracy and clearer positioning.",
   },
 
   {
@@ -388,7 +388,7 @@ export const services: Service[] = [
     relatedServices: ["airbnb-co-hosting", "short-term-rental-management", "listing-optimization"],
     seoTitle: "Airbnb Guest Communication and Guest Management",
     seoDescription:
-      "Professional guest communication for Canadian short-term rentals: enquiries, pre-arrival information, in-stay support and review management.",
+      "Professional guest communication for short-term rentals: enquiries, pre-arrival information, in-stay support and review management.",
   },
 
   {
@@ -462,7 +462,7 @@ export const services: Service[] = [
     relatedServices: ["short-term-rental-management", "listing-optimization", "vacation-rental-management"],
     seoTitle: "Short-Term Rental Revenue and Pricing Management",
     seoDescription:
-      "Data-informed pricing and calendar strategy for Canadian short-term rentals: rate structure, minimum stays, gap nights and discount policy.",
+      "Data-informed pricing and calendar strategy for short-term rentals: rate structure, minimum stays, gap nights and discount policy.",
   },
 
   {
@@ -536,7 +536,7 @@ export const services: Service[] = [
     relatedServices: ["short-term-rental-management", "vacation-rental-management", "guest-communication"],
     seoTitle: "Airbnb Cleaning and Maintenance Coordination",
     seoDescription:
-      "Cleaning, turnover and maintenance coordination for Canadian short-term rentals, with condition tracking and safety checks.",
+      "Cleaning, turnover and maintenance coordination for short-term rentals, with condition tracking and safety checks.",
   },
 ];
 

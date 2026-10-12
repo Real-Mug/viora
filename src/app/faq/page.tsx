@@ -19,7 +19,7 @@ const crumbs: Crumb[] = [
 export const metadata: Metadata = pageMetadata({
   title: "Frequently Asked Questions",
   description:
-    "Answers about Airbnb co-hosting, short-term rental management, fees, control, direct booking and the Canadian markets Viora Hosting serves.",
+    "Answers about Airbnb co-hosting, short-term rental management, fees, control, direct booking and where Viora Hosting operates.",
   path: "/faq",
 });
 

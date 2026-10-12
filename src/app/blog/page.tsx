@@ -19,9 +19,9 @@ const crumbs: Crumb[] = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "Resources for Canadian Short-Term Rental Hosts",
+  title: "Resources for Short-Term Rental Hosts",
   description:
-    "Practical guides on Airbnb co-hosting, short-term rental operations, pricing and direct booking, written for Canadian property owners.",
+    "Practical guides on Airbnb co-hosting, short-term rental operations, pricing and direct booking, written for property owners.",
   path: "/blog",
 });
 
@@ -41,7 +41,7 @@ export default function BlogPage() {
       <JsonLd
         data={graph(
           webPageSchema({
-            name: "Resources for Canadian Short-Term Rental Hosts",
+            name: "Resources for Short-Term Rental Hosts",
             description: "Guides on co-hosting, operations, pricing and direct booking.",
             path: "/blog",
             crumbs,
@@ -52,7 +52,7 @@ export default function BlogPage() {
 
       <PageHero
         eyebrow="Resources"
-        title="Guides for Canadian hosts"
+        title="Guides for hosts"
         description="Writing that is worth reading whether or not you ever work with us. Fewer articles, each one actually useful."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
       />
