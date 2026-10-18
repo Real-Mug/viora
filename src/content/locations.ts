@@ -79,7 +79,7 @@ export const serviceAreas: ServiceArea[] = [
     province: "ON",
     active: true,
     summary:
-      "Co-hosting and short-term rental management in London, Ontario, under one of the province's more detailed licensing regimes - where we also run a home of our own.",
+      "Co-hosting and short-term rental management in London, Ontario, under one of the province's more detailed licensing regimes - where we also manage a home.",
     intro: [
       "London is where we manage a pet-friendly three-bedroom townhouse that sleeps six, with two living areas and a dedicated workspace. It is the kind of home this city's guests ask for, and running it is how we know what the market actually needs.",
       "Demand here is driven less by tourism than by institutions. Western University and Fanshawe College bring visiting families at move-in, convocation and homecoming, and the London Health Sciences Centre hospitals and St. Joseph's draw patients' families and travelling medical staff throughout the year. Its position on the Highway 401 and 402 corridor brings contractors and people relocating who need a furnished place for weeks rather than nights.",
@@ -123,7 +123,7 @@ export const serviceAreas: ServiceArea[] = [
     heading: "Airbnb co-hosting in London, Ontario",
     seoTitle: "Airbnb Co-Hosting in London, Ontario",
     seoDescription:
-      "Airbnb co-hosting and short-term rental management in London, Ontario: licensing-aware operations, guest support, turnovers and a local home we run.",
+      "Airbnb co-hosting and short-term rental management in London, Ontario: licensing-aware operations, guest support, turnovers and a local home we manage.",
   },
 
   {
