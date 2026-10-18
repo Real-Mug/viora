@@ -513,6 +513,9 @@
     color: var(--color-ink-muted);
     font-size: 1.0625rem;
     line-height: 1.75;
+    /* Source lists carry long unbroken URLs; without this they push the
+       page wider than a phone screen. */
+    overflow-wrap: anywhere;
   }
 
   .prose-viora > * + * {

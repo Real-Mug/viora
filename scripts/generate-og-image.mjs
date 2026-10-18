@@ -60,7 +60,7 @@ const overlay = Buffer.from(`
     <path d="M9 38 L21 58 L33 38" fill="none" stroke="#faf8f4" stroke-width="5.5"
           stroke-linecap="round" stroke-linejoin="round"/>
     <text x="58" y="52" font-family="Georgia, 'Times New Roman', serif" font-size="40"
-          fill="#faf8f4">Viora<tspan fill="#dcbb7e">Rental</tspan></text>
+          fill="#faf8f4">Viora<tspan fill="#dcbb7e">Hosting</tspan></text>
   </g>
 
   <text x="72" y="286" font-family="Georgia, 'Times New Roman', serif" font-size="66"
@@ -76,7 +76,7 @@ const overlay = Buffer.from(`
         fill="#e6e1d7">operations - so owners do not have to.</text>
 
   <text x="72" y="556" font-family="'Segoe UI', Arial, sans-serif" font-size="22"
-        fill="#a9a294" letter-spacing="2">KITCHENER &#183; WATERLOO REGION &#183; ONTARIO</text>
+        fill="#a9a294" letter-spacing="2">SERVING PROPERTY OWNERS ACROSS CANADA</text>
 </svg>
 `);
 

@@ -1,5 +1,5 @@
 # =============================================================================
-# VioraRental - Apache / LiteSpeed configuration
+# Viora Hosting - Apache / LiteSpeed configuration
 # -----------------------------------------------------------------------------
 # For the static build (DEPLOY_TARGET=static). Upload the contents of ./out to
 # public_html; this file travels with them because anything in ./public is
