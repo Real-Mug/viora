@@ -31,6 +31,15 @@ const urlList = paths.length
   ? paths.map((path) => new URL(path, `${SITE}/`).href)
   : await sitemapUrls();
 
+// Git Bash on Windows rewrites "/blog/x/" into "C:/Program Files/Git/blog/x/"
+// before node sees it. Catch that here rather than send IndexNow bad URLs.
+const foreign = urlList.filter((url) => new URL(url).origin !== new URL(SITE).origin);
+if (foreign.length) {
+  console.error(`Not on ${SITE}: ${foreign.join(", ")}`);
+  console.error("In Git Bash, run with MSYS_NO_PATHCONV=1, or pass paths without the leading slash.");
+  process.exit(1);
+}
+
 const keyCheck = await fetch(KEY_LOCATION);
 if (!keyCheck.ok || (await keyCheck.text()).trim() !== KEY) {
   console.error(`Key file not live at ${KEY_LOCATION} - deploy first, then re-run.`);
