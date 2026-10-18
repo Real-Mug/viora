@@ -224,8 +224,7 @@ export const propertyRecords: Property[] = [
 
   /*
    * A new listing with no reviews yet, so `externalRating` is absent rather
-   * than zero. Add it once Airbnb shows a rating. London has no service-area
-   * page, so there is no `locationSlug` either.
+   * than zero. Add it once Airbnb shows a rating.
    */
   {
     id: "prop-london-townhouse",
@@ -244,6 +243,7 @@ export const propertyRecords: Property[] = [
       province: "ON",
       country: "CA",
       coordinates: { lat: 42.99, lng: -81.29 },
+      locationSlug: "london-ontario",
     },
     propertyType: "townhouse",
     bedrooms: 3,

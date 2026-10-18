@@ -784,7 +784,7 @@ export const posts: Post[] = [
         },
         {
           type: "paragraph",
-          text: "We did not find a night cap in London's rules.",
+          text: "We did not find a night cap in London's rules. We manage a home in London, and our [London page](/locations/london-ontario) covers how we approach the city.",
         },
         { type: "heading", level: 2, text: "Hamilton" },
         {

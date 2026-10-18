@@ -74,6 +74,59 @@ export const serviceAreas: ServiceArea[] = [
   },
 
   {
+    slug: "london-ontario",
+    city: "London",
+    province: "ON",
+    active: true,
+    summary:
+      "Co-hosting and short-term rental management in London, Ontario, under one of the province's more detailed licensing regimes - where we also run a home of our own.",
+    intro: [
+      "London is where we manage a pet-friendly three-bedroom townhouse that sleeps six, with two living areas and a dedicated workspace. It is the kind of home this city's guests ask for, and running it is how we know what the market actually needs.",
+      "Demand here is driven less by tourism than by institutions. Western University and Fanshawe College bring visiting families at move-in, convocation and homecoming, and the London Health Sciences Centre hospitals and St. Joseph's draw patients' families and travelling medical staff throughout the year. Its position on the Highway 401 and 402 corridor brings contractors and people relocating who need a furnished place for weeks rather than nights.",
+      "London also licenses short-term rentals more tightly than many Ontario cities, and the rules changed again on 1 October 2026. For owners, the first question is whether a property can be licensed at all, and only then how to run it well.",
+    ],
+    areasServed: [
+      "Downtown London",
+      "Old East Village",
+      "Wortley Village",
+      "Old North",
+      "Masonville",
+      "Hyde Park",
+      "Byron",
+      "Westmount",
+      "White Oaks",
+    ],
+    localNotes: [
+      {
+        title: "The licence is tied to where you live",
+        body:
+          "London requires a Short-Term Accommodation Provider Licence before you advertise or host a stay of 28 days or less, and the rental must be at your resident address - the place you normally live, owned or rented. From 1 October 2026 each provider is limited to one short-term accommodation and one licence. In practice, a London investment property you do not live in cannot be licensed for short stays. The licence number must appear in every listing. Confirm the current requirements with the City of London before you list: this regime has changed more than once.",
+      },
+      {
+        title: "Inspections and an emergency contact come with the licence",
+        body:
+          "Since 31 March 2026 every short-term accommodation has had to pass a property standards inspection and a fire safety inspection. Unhosted rentals are limited to five bedrooms, and a local emergency contact must be able to attend within one hour. Condo owners need written authorization from the board and renters need it from their landlord before applying.",
+      },
+      {
+        title: "Accommodation tax: confirm the rate",
+        body:
+          "London charges a Municipal Accommodation Tax on short stays, shown as a separate line on the guest's receipt, plus HST. When we checked in October 2026 the City's licensing page gave the rate as 4% while its tax page and by-law gave 5% from 1 May 2025, so confirm the current rate with the City. Do not assume the platform collects it for you here.",
+      },
+      {
+        title: "Mid-term stays suit this market",
+        body:
+          "Because the short-term licence turns on stays of 28 days or less, and because hospital rotations, relocations and contract work run in months, furnished stays of a month or more are a genuine strategy in London rather than a fallback. They price differently and turn over far less often, and they change which platform, agreement and insurance you should use.",
+      },
+    ],
+    highlightedServices: ["airbnb-co-hosting", "short-term-rental-management", "guest-communication", "property-care"],
+    coordinates: { lat: 42.9849, lng: -81.2453 },
+    heading: "Airbnb co-hosting in London, Ontario",
+    seoTitle: "Airbnb Co-Hosting in London, Ontario",
+    seoDescription:
+      "Airbnb co-hosting and short-term rental management in London, Ontario: licensing-aware operations, guest support, turnovers and a local home we run.",
+  },
+
+  {
     slug: "toronto",
     city: "Toronto",
     province: "ON",
