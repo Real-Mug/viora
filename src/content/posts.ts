@@ -337,6 +337,331 @@ export const posts: Post[] = [
       },
     ],
   },
+
+  {
+    slug: "how-much-does-an-airbnb-co-host-charge-canada",
+    title: "How Much Does an Airbnb Co-Host Charge in Canada?",
+    excerpt:
+      "Co-host fees in Canada come in a few common shapes, and the headline number means little until you know what it is calculated on. Here is how pricing works, how Airbnb's payout splits work, and what to watch for.",
+    category: "co-hosting",
+    publishedAt: "2026-10-18",
+    author: "Viora Hosting",
+    readingMinutes: 8,
+    relatedServices: ["airbnb-co-hosting", "short-term-rental-management", "revenue-management"],
+    relatedPosts: ["what-is-airbnb-co-hosting", "short-term-rental-management-checklist"],
+    seoTitle: "Airbnb Co-Host Fees in Canada: How Pricing Works",
+    seoDescription:
+      "How Airbnb co-host fees work in Canada: percentage, flat and à-la-carte pricing, what the percentage is based on, payout splits and the red flags to avoid.",
+    body: [
+      {
+        type: "paragraph",
+        text: "Ask around and you will hear that a co-host charges a percentage, and that is usually true. It is also not very useful on its own. Two co-hosts can quote the same percentage and cost you very different amounts, because they calculate it on different numbers, include different work and add different extras. This guide explains how Airbnb co-host fees in Canada are usually structured, so you can compare quotes properly before you sign anything.",
+      },
+      {
+        type: "paragraph",
+        text: "We are not going to give you a 'typical' percentage. We looked for one from Airbnb or from a published industry survey and could not find a source we would stand behind. Most figures online come from software vendors and management companies with an interest in the answer, and they disagree with each other. What we can do is show you how the pricing is built, which is what actually decides your cost.",
+      },
+      { type: "heading", level: 2, text: "The three common fee structures" },
+      { type: "heading", level: 3, text: "A percentage of booking revenue" },
+      {
+        type: "paragraph",
+        text: "This is the most common model. The co-host takes an agreed share of what each booking earns. The appeal is that it ties their income to yours: when the property earns more, they earn more, and in a quiet month they feel it too. The catch is that 'a percentage of revenue' can mean several different things.",
+      },
+      { type: "heading", level: 3, text: "A flat monthly fee" },
+      {
+        type: "paragraph",
+        text: "Some co-hosts charge a fixed amount each month regardless of bookings. It is predictable, which suits owners who budget carefully or who rent mostly for longer stays. It also means the co-host is paid the same whether the calendar is full or empty, so it is worth asking what they are doing to fill it.",
+      },
+      { type: "heading", level: 3, text: "À-la-carte pricing" },
+      {
+        type: "paragraph",
+        text: "Here you pay for specific tasks: a fee per turnover, per check-in, per listing setup, or an hourly rate for maintenance coordination. This fits owners who want help with one or two things, such as guest messaging or cleaning coordination, and want to keep the rest. Airbnb's own Co-Host Network reflects this: co-hosts list which services they offer, from listing setup and pricing through to guest messaging, onsite support and cleaning, and agree pricing with the host.",
+      },
+      {
+        type: "paragraph",
+        text: "Many arrangements are a mix, for example a percentage for ongoing management plus a per-turnover cleaning charge.",
+      },
+      { type: "heading", level: 2, text: "What the percentage is calculated on" },
+      {
+        type: "paragraph",
+        text: "This is the single most important question to ask about any percentage quote. The same rate can be applied to very different numbers:",
+      },
+      {
+        type: "list",
+        items: [
+          "Gross booking value: everything the guest pays, sometimes including the cleaning fee and the platform's guest-facing charges",
+          "Your payout: what Airbnb pays you after its host service fee is deducted",
+          "Your payout excluding the cleaning fee: the nightly revenue only, after platform fees",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "The difference is not small. Airbnb's help centre says it is moving home hosts to a single host-only service fee, where the whole fee comes out of the host's payout, and that most hosts on that structure pay 15.5%. A percentage taken before that fee is deducted is a percentage of money you never receive. Including the cleaning fee in the base matters too, because cleaning money is mostly passed straight through to the cleaner.",
+      },
+      {
+        type: "callout",
+        title: "Get the base in writing",
+        text: "A useful test: ask the co-host to work through one real booking from your calendar, line by line, and show what they would take and what you would keep. If the arithmetic is hard to follow, the contract will be too.",
+      },
+      { type: "heading", level: 2, text: "How cleaning fees pass through to guests" },
+      {
+        type: "paragraph",
+        text: "On Airbnb, you can set a cleaning fee in your listing details and it is charged to the guest as part of the booking. In most co-hosting arrangements, that money is used to pay for the clean itself. Some co-hosts handle the cleaning and keep the cleaning fee as payment for it; others pass it to an independent cleaner. Either is fine, as long as you know which. Problems start when the cleaning fee is collected from the guest, the co-host's percentage is calculated on a base that includes it, and a separate cleaning charge is also billed to you.",
+      },
+      { type: "heading", level: 2, text: "Setup and onboarding fees" },
+      {
+        type: "paragraph",
+        text: "Some co-hosts charge a one-time fee to get a property ready: photography, writing or rewriting the listing, setting up pricing tools and smart locks, and buying linen and supplies. Others build this into the ongoing fee. A setup fee is not a bad sign in itself, because the work is real, but you should know exactly what it buys and whether supplies are charged at cost or with a markup. Ask also whether the photos and listing copy are yours to keep if the arrangement ends.",
+      },
+      { type: "heading", level: 2, text: "What drives a co-host's quote" },
+      {
+        type: "list",
+        items: [
+          "Scope: messaging only costs less than messaging, turnovers, maintenance, pricing and restocking combined",
+          "Location: a property a short drive from the co-host's team is cheaper to service than one that needs a dedicated trip, and cleaning and trades rates vary by market",
+          "Property size and complexity: more bedrooms mean longer turnovers, more linen and more to go wrong; hot tubs, pools and septic systems add work",
+          "Seasonality: a cottage that is busy for ten weeks and quiet the rest of the year is priced differently from a city unit with steady demand",
+          "Number of listings: several properties with one owner can often be serviced more efficiently than one",
+          "Booking pattern: many short stays mean many turnovers; a property rented mostly for a month at a time is lighter work",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "This is why we do not publish a price list. Viora Hosting quotes after a free assessment of the property, the market and what you actually want to hand over, and the fee and scope are set out in writing before anything starts. If you would like a number for your property, [request a free assessment](/become-a-host).",
+      },
+      { type: "heading", level: 2, text: "How co-host payouts work on Airbnb" },
+      {
+        type: "paragraph",
+        text: "Airbnb has a built-in way for a listing owner to share part of each booking's payout with a co-host, so you do not have to pay them separately. According to Airbnb's help centre, the options are:",
+      },
+      {
+        type: "list",
+        items: [
+          "Cleaning fee: the co-host receives the cleaning fee set in the listing",
+          "Cleaning fee plus a percentage: the cleaning fee plus a percentage of each booking, excluding the cleaning fee",
+          "Percentage: a percentage of each booking, with the cleaning fee either included or excluded",
+          "Fixed amount: a set amount per booking",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "A few details are worth knowing. Only the listing owner can set up, edit or remove co-host payouts; a co-host cannot set their own. The co-host has to confirm the proposal, and payouts apply only to bookings that check in after they confirm. Payouts are calculated on the host's potential earnings for each booking, which Airbnb describes as the nightly price times the number of nights plus extras such as the cleaning fee, minus the host service fee and applicable taxes and fees. In other words, the built-in percentage is applied after Airbnb's fee, not before it.",
+      },
+      {
+        type: "paragraph",
+        text: "Airbnb also says co-hosts are paid first, and the host receives whatever remains, so if a booking earns less than expected the shortfall lands on the owner. For tax reporting, the listing owner receives a tax document covering the full booking amount, and the co-host receives one for what they were paid. Airbnb notes that limits may apply depending on where the host and co-host are located, so check the current terms in your own account.",
+      },
+      {
+        type: "paragraph",
+        text: "The payout tool only covers Airbnb stays. If the property is also listed elsewhere, or the co-host charges for things outside the booking, such as maintenance call-outs or a monthly fee, those will be invoiced separately.",
+      },
+      {
+        type: "callout",
+        title: "A note on HST",
+        text: "A co-host's fee is a charge for a service, and a co-host who is registered for GST/HST will normally add it to their invoice. Ask whether a quote includes HST. Your own GST/HST position as an owner of short-term accommodation is a separate question, and one for your accountant.",
+      },
+      { type: "heading", level: 2, text: "Red flags in a co-host's pricing" },
+      {
+        type: "list",
+        items: [
+          "Guaranteed income: no co-host controls demand, seasonality or competition. If someone guarantees a figure, find out how it is funded and what conditions sit behind it",
+          "Hidden minimums: a monthly minimum fee that applies when bookings are low turns a percentage model into a flat fee in the quiet months",
+          "Long lock-ins: multi-year terms, or large penalties for ending early, remove your main protection against poor service",
+          "The co-host owning the listing: if your property is listed in their account rather than yours, the listing, its reviews and its booking history are tied to their account. Ending the arrangement can mean starting again from zero",
+          "Undisclosed markups: on cleaning, supplies or repairs, buried in a monthly statement",
+          "A vague base: any percentage quote that does not say what it is calculated on",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "On the listing point: Airbnb lets co-hosts with full access do almost everything on a listing, including designating themselves as the primary host shown to guests. That is a normal part of how co-hosting works, but the listing itself should stay in your account, with you as the listing owner. Our [guide to Airbnb co-hosting](/blog/what-is-airbnb-co-hosting) explains why that distinction matters.",
+      },
+      { type: "heading", level: 2, text: "Questions to ask before you sign" },
+      {
+        type: "list",
+        ordered: true,
+        items: [
+          "What exactly is the percentage, or fee, calculated on? Show me on a real booking.",
+          "Who receives the cleaning fee, and is cleaning ever billed to me on top of it?",
+          "Is there a setup fee, a monthly minimum or any other fixed charge?",
+          "Are supplies and repairs charged at cost, or with a markup?",
+          "What can you spend without asking me first?",
+          "Will you be paid through Airbnb's co-host payouts, by invoice, or both?",
+          "Does your quote include HST?",
+          "Whose account is the listing in, and what happens to it if we stop working together?",
+          "How much notice do either of us need to give to end the agreement?",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "A good co-host will be glad you asked. If you want to see how we answer them, our [Airbnb co-hosting](/services/airbnb-co-hosting) page sets out the scope, [how it works](/how-it-works) covers what is agreed in writing, and the [FAQ](/faq) covers fees, control and terms. When you are ready for a quote based on your property rather than an average, [request a free assessment](/become-a-host).",
+      },
+      { type: "heading", level: 2, text: "Sources" },
+      {
+        type: "list",
+        items: [
+          "https://www.airbnb.com/help/article/3389",
+          "https://www.airbnb.com/help/article/1534",
+          "https://www.airbnb.com/help/article/1857",
+          "https://www.airbnb.com/e/local-partners",
+        ],
+      },
+    ],
+  },
+
+  {
+    slug: "airbnb-co-host-vs-property-manager",
+    title: "Airbnb Co-Host vs Property Manager: Which Does Your Rental Need?",
+    excerpt:
+      "The real difference between co-hosting and full management is not the task list. It is who owns the listing, who receives the money, and what you are signing. Here is how to decide.",
+    category: "co-hosting",
+    publishedAt: "2026-10-18",
+    author: "Viora Hosting",
+    readingMinutes: 8,
+    relatedServices: ["airbnb-co-hosting", "short-term-rental-management", "property-care"],
+    relatedPosts: ["what-is-airbnb-co-hosting", "short-term-rental-management-checklist"],
+    seoTitle: "Airbnb Co-Host vs Property Manager",
+    seoDescription:
+      "Airbnb co-host vs property manager: who controls the listing and payouts, contract terms, licensing, tax and insurance, and how to choose for your rental.",
+    body: [
+      {
+        type: "paragraph",
+        text: "If you have read our [introduction to Airbnb co-hosting](/blog/what-is-airbnb-co-hosting), you know the short version: a co-host helps run your listing while you stay the host of record, and a full-service manager takes the operation off your hands. This article goes a level deeper. The day-to-day work can look almost identical under both models. The differences that matter sit underneath it, in who controls the listing, where the money goes, what the contract says, and who carries the legal obligations.",
+      },
+      { type: "heading", level: 2, text: "Who controls the listing" },
+      {
+        type: "paragraph",
+        text: "Under co-hosting, the listing lives in your Airbnb account. You invite the co-host through the co-hosts section of the listing editor and choose their permission level. Airbnb currently offers three:",
+      },
+      {
+        type: "list",
+        items: [
+          "Full access: the co-host can manage nearly everything, including the calendar, pricing, reservations, the earnings dashboard and Resolution Center requests, and can invite or remove other co-hosts (but not add another full-access co-host)",
+          "Calendar and messaging: the co-host can message guests and see the calendar, but cannot edit it",
+          "Calendar only: the co-host can see the calendar, and nothing else",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Airbnb is clear on one limit that protects owners: co-hosts cannot view or change the listing owner's payout method or taxpayer information, whatever their permission level. And because the listing is yours, removing a co-host leaves the listing, its reviews and its history exactly where they were.",
+      },
+      {
+        type: "paragraph",
+        text: "Under full management, practice varies. Some managers work inside your account as a full-access co-host. Others list properties in their own account or through their own software, often alongside other platforms. That is not wrong, and it can be efficient, but it changes what you hold. If the listing sits in the manager's account, its reviews and ranking are attached to that account, and ending the relationship may mean rebuilding from scratch.",
+      },
+      { type: "heading", level: 2, text: "The host-of-record question" },
+      {
+        type: "paragraph",
+        text: "Airbnb draws a distinction between the listing owner and the primary host. The listing owner is the account the listing belongs to. The primary host is the person guests see as their host, and a full-access co-host can designate themselves or another co-host as primary host. So a co-host can be the face of your listing while you remain its owner.",
+      },
+      {
+        type: "paragraph",
+        text: "Airbnb also says the listing owner remains responsible for all co-hosts on the listing, including any added by a full-access co-host. That is the practical meaning of host of record: when something goes wrong, the platform looks to the owner of the listing. Under co-hosting, that is you, with someone working on your behalf. Under full management in the manager's account, the manager is the host on the platform, and your relationship with them is governed by your contract rather than by Airbnb.",
+      },
+      { type: "heading", level: 2, text: "Who receives the payouts" },
+      {
+        type: "paragraph",
+        text: "With co-hosting, Airbnb pays the listing owner. If you use Airbnb's co-host payout feature, you set up the split yourself: only the listing owner can create or edit a co-host's payout, and the co-host has to accept it. You see every booking's earnings, and you are paid directly. Airbnb sends the tax document for the full booking amount to the listing owner, and a separate one to the co-host for their share.",
+      },
+      {
+        type: "paragraph",
+        text: "With full management, the money often flows the other way. The manager collects the booking revenue, deducts their fee and expenses, and pays you the balance with a statement. That is convenient, but it means your visibility depends on the quality of their reporting. Ask how often you are paid, what the statement shows, whether funds are held in a separate trust account, and whether you can see the underlying booking data.",
+      },
+      { type: "heading", level: 2, text: "Contract terms" },
+      {
+        type: "paragraph",
+        text: "Co-hosting arrangements tend to be lighter: a written scope, a fee, a spending limit and a notice period. Because the listing is yours, ending the arrangement is mostly a matter of removing the co-host and finishing any committed work. Full management contracts are usually longer and more detailed, which is reasonable given the manager is taking on more. Read these clauses in particular:",
+      },
+      {
+        type: "list",
+        items: [
+          "Term and termination: the minimum length, the notice required and any early-exit fee",
+          "Future bookings: who honours reservations already on the calendar when the contract ends, and who is paid for them",
+          "Listing ownership: whose account the listing is in and whether it, its photos and its content transfer to you at the end",
+          "Owner use: how you block dates for yourself, and whether there are limits on doing so",
+          "Spending authority: what the manager can spend without asking, and how repairs are approved",
+          "Markups: whether cleaning, supplies and maintenance are charged at cost",
+          "Exclusivity: whether you can also list the property yourself or through anyone else",
+        ],
+      },
+      {
+        type: "callout",
+        title: "Watch the bookings that outlast the contract",
+        text: "Short-term rentals are booked months ahead. A contract that lets the manager keep all future reservations made before you gave notice can extend the relationship long after you thought it ended. Get the treatment of those bookings in writing at the start.",
+      },
+      { type: "heading", level: 2, text: "Licensing, tax and insurance" },
+      {
+        type: "paragraph",
+        text: "This is where owners are most often surprised. Under either model, the legal obligations of owning a short-term rental generally stay with the owner. A good co-host or manager will help: Airbnb's Co-Host Network even lists licensing and permits among the services co-hosts can offer. Helping is not the same as being responsible.",
+      },
+      {
+        type: "list",
+        items: [
+          "Municipal licensing: many Canadian municipalities require a short-term rental licence or registration, and some limit short-term rentals to a principal residence. Check whose name the licence will be in under your arrangement, and who is answerable if the rules are broken",
+          "Income tax: rental income is yours to report, whoever collects it. Airbnb sends the listing owner a tax document for the full booking amount, even where part of it goes to a co-host",
+          "GST/HST: since July 2021, short-term accommodation booked through platforms in Canada has been brought into the GST/HST system, with the platform collecting it in some cases and the registered owner in others. Whether you need to register depends on your situation, so ask your accountant",
+          "Insurance: a standard home policy may not cover nightly rentals. Tell your insurer how the property is used and get confirmation in writing. Ask any manager what liability insurance they carry themselves",
+          "Condominium rules: a condo declaration or bylaw can prohibit short-term rentals regardless of what the city allows",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "We are not lawyers or accountants, and nor are most co-hosts or managers. Anyone who tells you compliance becomes entirely their problem should be asked to put that in the contract.",
+      },
+      { type: "heading", level: 2, text: "How the cost is structured" },
+      {
+        type: "paragraph",
+        text: "Co-hosting is usually priced by scope. You pay for the parts you hand over, either as a share of each booking, a fixed amount per booking, a monthly fee or a charge per task, and you keep doing (and not paying for) the rest. If you set pricing yourself and only want messaging and turnovers covered, you pay for messaging and turnovers.",
+      },
+      {
+        type: "paragraph",
+        text: "Full management is usually priced as a single, larger share of revenue that covers the whole operation, from listing and pricing through guests, cleaning coordination, maintenance and reporting. Cleaning, supplies and repairs are often charged on top. Because the manager is carrying more of the work and risk, the share is normally higher than for a narrow co-hosting scope. Whichever you are comparing, ask what the percentage is calculated on, what is billed separately, and whether there are minimums. Our article on [how much an Airbnb co-host charges in Canada](/blog/how-much-does-an-airbnb-co-host-charge-canada) goes through those questions in detail.",
+      },
+      { type: "heading", level: 2, text: "Which does your rental need?" },
+      { type: "heading", level: 3, text: "Choose co-hosting if…" },
+      {
+        type: "list",
+        items: [
+          "You want the listing, the reviews and the payouts to stay in your own account",
+          "You enjoy, or want to keep, the business decisions: pricing, furnishing, who stays",
+          "You live close enough to deal with the occasional issue, or simply want to stay involved",
+          "You have one or two properties and need help with specific parts of the work",
+          "You are new to hosting, or new to working with anyone, and want an arrangement that is easy to change",
+          "You want to see every booking's numbers directly rather than through a statement",
+        ],
+      },
+      { type: "heading", level: 3, text: "Choose full management if…" },
+      {
+        type: "list",
+        items: [
+          "You want the property genuinely off your plate and are happy to receive a report rather than make decisions",
+          "You live far from the property, or travel often enough that you cannot be the backstop",
+          "You own several properties and running them has become a job",
+          "You want one party accountable for pricing, guests, cleaning and maintenance together",
+          "You have read the contract, understand whose account the listing is in, and are comfortable with the exit terms",
+        ],
+      },
+      {
+        type: "paragraph",
+        text: "Plenty of owners start with co-hosting and move to fuller management later, or the reverse. Neither choice is permanent if the contract is written fairly.",
+      },
+      { type: "heading", level: 2, text: "How Viora handles it" },
+      {
+        type: "paragraph",
+        text: "We offer both. With [Airbnb co-hosting](/services/airbnb-co-hosting), the listing stays in your account, you remain the host of record and you choose what we take on. With [short-term rental management](/services/short-term-rental-management), we run the whole operation, with you still owning the property, setting spending limits and blocking dates for your own use. [How it works](/how-it-works) explains what gets agreed in writing. We work with owners anywhere in Canada, and we quote after a free assessment rather than from a price list, so if you are weighing the two, [request a free assessment](/become-a-host) and we will tell you honestly which one we think fits.",
+      },
+      { type: "heading", level: 2, text: "Sources" },
+      {
+        type: "list",
+        items: [
+          "https://www.airbnb.com/help/article/1534",
+          "https://www.airbnb.com/help/article/3389",
+          "https://www.airbnb.com/e/local-partners",
+          "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/digital-economy.html",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getPost(slug: string): Post | undefined {
