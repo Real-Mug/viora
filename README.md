@@ -2,11 +2,10 @@
 
 Short-term rental hosting for property owners in Canada.
 
-### 🔗 Live site — [real-mug.github.io/viora](https://real-mug.github.io/viora/)
+### Live site: [www.viorahosting.com](https://www.viorahosting.com/)
 
-Share that link with anyone. It needs no GitHub account and no login, and it
-redeploys automatically on every push to `main`. Source and site live in this
-one repository — see [Deployment](#deployment-github-pages).
+Deployed by Vercel on every push to `main`. This repository is private; the
+old GitHub Pages mirror was retired when it went private.
 
 A Next.js 15 (App Router) + TypeScript + Tailwind v4 site, built to ship today as a
 static export to Hostinger and to grow into a direct-booking platform without a
