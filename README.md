@@ -4,8 +4,10 @@ Short-term rental hosting for property owners in Canada.
 
 ### Live site: [www.viorahosting.com](https://www.viorahosting.com/)
 
-Deployed by Vercel on every push to `main`. This repository is private; the
-old GitHub Pages mirror was retired when it went private.
+Deployed by Vercel on every push to `main`. The repository must stay public:
+the Vercel project is on a Hobby account, which only deploys a private repo
+when the commit author owns that Vercel account. The old GitHub Pages mirror
+is retired.
 
 A Next.js 15 (App Router) + TypeScript + Tailwind v4 site, built to ship today as a
 static export to Hostinger and to grow into a direct-booking platform without a
