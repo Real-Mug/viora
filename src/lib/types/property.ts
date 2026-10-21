@@ -209,6 +209,13 @@ export type Property = {
   status: PropertyStatus;
   /** Shown first on the properties index. */
   featured?: boolean;
+  /**
+   * The one home given the large spotlight on the homepage and listed first
+   * everywhere. Set it on a single record; if several have it, the first wins.
+   */
+  spotlight?: boolean;
+  /** Short selling points for the spotlight, taken from the listing itself. */
+  highlights?: string[];
 
   seoTitle?: string;
   seoDescription?: string;

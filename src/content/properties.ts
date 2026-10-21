@@ -50,6 +50,94 @@ const UPDATED = "2026-09-20T00:00:00.000Z";
 const RATINGS_CHECKED = "2026-09-20";
 
 export const propertyRecords: Property[] = [
+  /*
+   * The spotlight home: shown large on the homepage and first in every list.
+   * A new listing with no reviews yet, so `externalRating` is absent. The
+   * exterior photo has the house-number plaque blurred so no address is shown.
+   */
+  {
+    id: "prop-waterloo-pool-house",
+    slug: "4br-pool-house-waterloo",
+    name: "4-Bedroom Pool House with Pergola Bar, Waterloo",
+    summary:
+      "A four-bedroom house in Waterloo's quiet Clair Hills with a heated seasonal pool, a pergola bar and covered patio, a king suite and 3.5 bathrooms. Sleeps six.",
+    description: [
+      "A bright, modern four-bedroom house in Clair Hills, a quiet residential neighbourhood on Waterloo's west side. The backyard is the centrepiece: a heated outdoor pool, open seasonally, with a pergola bar, a covered patio, patio furniture and string lights, backing onto open green space.",
+      "Inside, the primary suite has a king bed, its own ensuite bathroom, a large walk-in closet and a dedicated workspace. The second bedroom has a queen bed, a desk and a full bathroom next door, and two further bedrooms have single beds. In all there are three full bathrooms and a half bathroom, one of them with a corner jetted tub.",
+      "The open-concept living room has comfortable sofas and a TV with Netflix, the kitchen is fully stocked down to the pots, pans and spices, and there is in-home laundry, central air, a fireplace, fast Wi-Fi and free parking. Check-in is self-service with a smart lock.",
+      "The Boardwalk's shops, restaurants and gym are 5 to 10 minutes away, as are the University of Waterloo, Wilfrid Laurier, Conestoga College and the expressway.",
+      "Please note there are exterior security cameras on the property, and quiet hours start at 10 p.m.",
+    ],
+    location: {
+      city: "Waterloo",
+      region: "Waterloo Region",
+      province: "ON",
+      country: "CA",
+      coordinates: { lat: 43.453, lng: -80.584 },
+      locationSlug: "waterloo-region",
+      neighbourhoodNotes: [
+        "In Clair Hills, a quiet residential neighbourhood on Waterloo's west side, backing onto open green space.",
+        "The Boardwalk's shops, restaurants and gym are 5 to 10 minutes away.",
+        "The University of Waterloo, Wilfrid Laurier University and Conestoga College are a short drive away, as is the expressway.",
+      ],
+    },
+    propertyType: "house",
+    bedrooms: 4,
+    beds: 5,
+    bathrooms: 3.5,
+    maxGuests: 6,
+    amenities: amenities(
+      "wifi", "air-conditioning", "heating", "washer", "dryer", "linens",
+      "self-check-in", "bathtub", "fireplace", "long-term-stays", "pets-allowed",
+      "full-kitchen", "dishwasher", "dining-area", "refrigerator", "microwave", "oven", "kettle", "toaster",
+      "pool", "patio", "bbq", "backyard",
+      "free-parking",
+      "dedicated-workspace",
+      "smoke-alarm", "carbon-monoxide-alarm", "first-aid-kit", "security-camera",
+    ),
+    images: imageSet("4br-pool-house-waterloo", [
+      { file: "01-pool.webp", alt: "Heated outdoor pool in the backyard of the Waterloo pool house, with the pergola and patio behind it" },
+      { file: "02-pergola-pool.webp", alt: "Covered pergola with lounge chairs beside the pool, looking out over open green space" },
+      { file: "03-living-room.webp", alt: "Open-concept living room with sofas, a large ottoman and a wall-mounted TV" },
+      { file: "04-kitchen.webp", alt: "Fully stocked kitchen with wood cabinets, a dishwasher and a breakfast bar" },
+      { file: "05-dining.webp", alt: "Dining table for six beside the kitchen, with stainless steel appliances" },
+      { file: "06-primary-bedroom.webp", alt: "Primary bedroom with a king bed, ceiling fan and a desk for working" },
+      { file: "07-bathroom-jetted-tub.webp", alt: "Bathroom with a long vanity and a corner jetted tub" },
+      { file: "08-bedroom-two.webp", alt: "Second bedroom with a queen bed and bedside lamps" },
+      { file: "09-bedroom-three.webp", alt: "Bedroom with single beds and a polka-dot feature wall" },
+      { file: "10-bedroom-four.webp", alt: "Bedroom with two single beds" },
+      { file: "11-bathroom.webp", alt: "Full bathroom with a shower and a single vanity" },
+      { file: "12-deck-dining.webp", alt: "Raised deck with an outdoor dining table overlooking the pool" },
+      { file: "13-backyard.webp", alt: "Backyard with the pergola, pool, artificial turf and a garden shed" },
+      { file: "14-exterior.webp", alt: "Front of the two-storey brick house with a double garage" },
+    ]),
+    houseRules: [
+      "Self check-in with a smart lock and keypad.",
+      "Maximum six overnight guests. One pet is allowed.",
+      "Quiet hours after 10 p.m.",
+      "No smoking (including vaping) and no parties or events.",
+      "Exterior security cameras are in use on the property.",
+      "The pool is open seasonally. The full, current house rules are on the Airbnb listing.",
+    ],
+    airbnbUrl: "https://www.airbnb.ca/rooms/1547199306785595304",
+    status: "active",
+    featured: true,
+    spotlight: true,
+    highlights: [
+      "Heated outdoor pool, open seasonally",
+      "Pergola bar and covered patio",
+      "King suite with ensuite and walk-in closet",
+      "3.5 bathrooms, one with a jetted tub",
+      "Dedicated workspace and fast Wi-Fi",
+      "Self check-in and free parking",
+    ],
+    seoTitle: "4-Bedroom Pool House in Waterloo, Ontario",
+    seoDescription:
+      "Four-bedroom Waterloo house with a heated seasonal pool, pergola bar, king suite and 3.5 baths in quiet Clair Hills. Sleeps six. Managed by Viora Hosting.",
+    createdAt: "2026-10-22T00:00:00.000Z",
+    updatedAt: "2026-10-22T00:00:00.000Z",
+  },
+
   {
     id: "prop-kitchener-townhome",
     slug: "modern-2br-townhome-kitchener",

@@ -107,6 +107,7 @@ function sortProperties(items: Property[], sort: PropertyQuery["sort"]): Propert
     case "featured":
     default:
       return sorted.sort((a, b) => {
+        if (Boolean(b.spotlight) !== Boolean(a.spotlight)) return Number(b.spotlight) - Number(a.spotlight);
         if (Boolean(b.featured) !== Boolean(a.featured)) return Number(b.featured) - Number(a.featured);
         return a.name.localeCompare(b.name, "en-CA");
       });

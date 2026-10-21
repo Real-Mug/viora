@@ -30,6 +30,7 @@ export const AMENITY_CATALOGUE: Amenity[] = [
   { id: "private-entrance", label: "Private entrance", category: "essentials" },
   { id: "long-term-stays", label: "Long-term stays allowed", category: "essentials" },
   { id: "pets-allowed", label: "Pets allowed", category: "essentials" },
+  { id: "fireplace", label: "Indoor fireplace", category: "essentials" },
 
   { id: "full-kitchen", label: "Full kitchen", category: "kitchen" },
   { id: "dishwasher", label: "Dishwasher", category: "kitchen" },
@@ -47,6 +48,7 @@ export const AMENITY_CATALOGUE: Amenity[] = [
   { id: "firepit", label: "Fire pit", category: "outdoor" },
   { id: "waterfront", label: "Waterfront access", category: "outdoor" },
   { id: "hot-tub", label: "Hot tub", category: "outdoor" },
+  { id: "pool", label: "Heated pool (seasonal)", category: "outdoor" },
   { id: "garden", label: "Garden", category: "outdoor" },
   { id: "backyard", label: "Private fenced backyard", category: "outdoor" },
 

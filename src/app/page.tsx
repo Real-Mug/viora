@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { PropertyCard } from "@/components/property/property-card";
+import { PropertySpotlight } from "@/components/property/property-spotlight";
 import { HomeHero } from "@/components/marketing/hero";
 import { DayInTheLife } from "@/components/marketing/day-in-the-life";
 import { Estimator } from "@/components/marketing/estimator";
@@ -48,9 +49,12 @@ export const metadata: Metadata = pageMetadata({
 
 export default async function HomePage() {
   const services = featuredServices().slice(0, 6);
-  const featured = await properties.list({ featuredOnly: true, pageSize: 3 });
+  // The spotlight home gets its own large band; the grid shows the next three
+  // featured homes so it is not repeated directly underneath.
+  const featured = await properties.list({ featuredOnly: true, pageSize: 4 });
   const fallback = featured.items.length ? featured : await properties.list({ pageSize: 3 });
-  const showcase = fallback.items;
+  const spotlight = fallback.items.find((property) => property.spotlight);
+  const showcase = fallback.items.filter((property) => property !== spotlight).slice(0, 3);
 
   // Reviews about Viora Hosting itself. Property-specific reviews are shown on
   // /reviews under the property they describe, so they are excluded here.
@@ -159,6 +163,8 @@ export default async function HomePage() {
           <ServicesGrid services={services} className="mt-12" />
         </Container>
       </Section>
+
+      {spotlight ? <PropertySpotlight property={spotlight} /> : null}
 
       {/* --- Featured properties ------------------------------------------- */}
       {showcase.length > 0 ? (
