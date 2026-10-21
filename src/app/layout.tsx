@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
@@ -92,6 +93,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <CookieBanner />
         <Analytics />
+        {/* Cookieless and aggregate, so it runs without the consent banner. */}
+        <VercelAnalytics />
       </body>
     </html>
   );

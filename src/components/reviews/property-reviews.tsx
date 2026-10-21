@@ -5,6 +5,7 @@ import { ReviewList } from "@/components/reviews/review-list";
 import { Img as Image } from "@/components/ui/image";
 import { IconExternal } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/reveal";
+import { airbnbOutHref } from "@/lib/outbound";
 import { cn } from "@/lib/cn";
 import type { Property } from "@/lib/types/property";
 import { PROVINCE_NAMES } from "@/lib/types/property";
@@ -88,7 +89,7 @@ export function PropertyReviewBlock({
 
           {property.airbnbUrl ? (
             <a
-              href={property.airbnbUrl}
+              href={airbnbOutHref(property.slug)}
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
@@ -117,7 +118,7 @@ export function PropertyReviewBlock({
             listing.{" "}
             {property.airbnbUrl ? (
               <a
-                href={property.airbnbUrl}
+                href={airbnbOutHref(property.slug)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-evergreen-800 underline underline-offset-4 hover:text-evergreen-900"

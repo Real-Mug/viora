@@ -112,7 +112,8 @@ export function ButtonLink({
       <a
         href={href}
         className={classes}
-        {...(isHttp ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        // `external` also opens same-site hops such as /go/airbnb/ in a new tab.
+        {...(isHttp || external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         {...props}
       >
         {children}

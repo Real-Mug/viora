@@ -5,6 +5,7 @@ import { IconBath, IconBed, IconCheck, IconGuests, IconMapPin } from "@/componen
 import { Img as Image } from "@/components/ui/image";
 import { Container, Section } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
+import { airbnbOutHref } from "@/lib/outbound";
 import type { Property } from "@/lib/types/property";
 import { PROVINCE_NAMES } from "@/lib/types/property";
 
@@ -112,7 +113,7 @@ export function PropertySpotlight({ property }: { property: Property }) {
                 View the home
               </ButtonLink>
               {property.airbnbUrl ? (
-                <ButtonLink href={property.airbnbUrl} variant="onDarkGhost" external>
+                <ButtonLink href={airbnbOutHref(property.slug)} variant="onDarkGhost" external>
                   See it on Airbnb
                 </ButtonLink>
               ) : null}

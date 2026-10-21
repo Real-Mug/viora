@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/icons";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { getServiceArea } from "@/content/locations";
+import { airbnbOutHref } from "@/lib/outbound";
 import { AMENITY_CATEGORY_LABELS, groupAmenities } from "@/lib/data/amenities";
 import { withBasePath } from "@/lib/config/env";
 import { availability, properties, reviews } from "@/lib/data";
@@ -400,7 +401,7 @@ export default async function PropertyPage({ params }: Params) {
                       This is a new listing with no reviews yet. Once guests start reviewing it,
                       the reviews will appear on its{" "}
                       <a
-                        href={property.airbnbUrl}
+                        href={airbnbOutHref(property.slug)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-medium text-evergreen-800 underline underline-offset-4 hover:text-evergreen-900"

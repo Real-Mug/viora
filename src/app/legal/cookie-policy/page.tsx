@@ -27,14 +27,14 @@ export default function CookiePolicyPage() {
       title="Cookie Policy"
       description="What this website stores in your browser, and what it does not."
       path="/legal/cookie-policy"
-      lastUpdated="2026-09-19"
+      lastUpdated="2026-10-22"
       sections={sections}
     >
       <h2 id="summary">The short version</h2>
       <p>
-        This site sets no advertising cookies and no third-party tracking cookies. Analytics load
-        only if you accept them. If you decline, or if you simply ignore the banner, no analytics
-        script is loaded at all - it is not loaded-but-silenced, it is not loaded.
+        This site sets no advertising cookies and no third-party tracking cookies. We count visits
+        with Vercel Web Analytics, which uses no cookies and stores nothing in your browser. Any
+        cookie-based analytics load only if you accept them.
       </p>
 
       <h2 id="what">What cookies are</h2>
@@ -52,6 +52,15 @@ export default function CookiePolicyPage() {
           stored in your browser&apos;s localStorage so you are not asked again on every page. It
           contains only the word &quot;granted&quot; or &quot;denied&quot;, stays on your device, and
           is never sent to us.
+        </li>
+      </ul>
+      <h3>Cookieless visit counts</h3>
+      <ul>
+        <li>
+          <strong>Vercel Web Analytics.</strong> Counts page views, including the short redirect
+          page used when you follow a link to one of our Airbnb listings. It sets no cookies, stores
+          nothing on your device, and reports only aggregate figures - it does not identify you or
+          follow you to other sites, which is why it needs no consent banner.
         </li>
       </ul>
       <h3>Analytics, only with consent</h3>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { RatingPill } from "@/components/property/external-rating";
 import { SampleBadge } from "@/components/ui/badge";
 import { IconBath, IconBed, IconExternal, IconGuests, IconMapPin } from "@/components/ui/icons";
+import { airbnbOutHref } from "@/lib/outbound";
 import { cn } from "@/lib/cn";
 import { formatDollars } from "@/lib/pricing/quote";
 import type { Property } from "@/lib/types/property";
@@ -135,7 +136,7 @@ export function PropertyCard({
             </p>
           ) : property.airbnbUrl ? (
             <a
-              href={property.airbnbUrl}
+              href={airbnbOutHref(property.slug)}
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
