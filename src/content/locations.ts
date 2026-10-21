@@ -30,7 +30,7 @@ export const serviceAreas: ServiceArea[] = [
     summary:
       "Co-hosting and short-term rental management across Kitchener, Waterloo and Cambridge - the market our own managed properties sit in.",
     intro: [
-      "Waterloo Region is where our own inventory is: a townhome in Kitchener and a family house in Waterloo, both run by the team that would run yours. Everything below comes from operating here rather than from a market report.",
+      "Waterloo Region is where most of the homes we manage are: a townhome in Kitchener, a family house in Waterloo and a four-bedroom pool house in Clair Hills, all run by the team that would run yours. Everything below comes from operating here rather than from a market report.",
       "Demand is unusual for a mid-sized Ontario market because it is driven by institutions rather than tourism. The University of Waterloo's co-op calendar moves students in and out on four-month cycles, Wilfrid Laurier and Conestoga add their own terms, and the tech corridor around Uptown Waterloo brings contractors and relocating staff who need somewhere furnished for weeks rather than nights. Grand River Hospital and St Mary's add a steady stream of visiting families and travelling medical staff.",
       "That mix rewards a different strategy from a cottage or a downtown Toronto condo. The strongest months here are rarely the ones a nightly-rate model would predict, and for many properties a blend of longer stays and shorter gaps earns more than chasing weekend bookings.",
     ],
@@ -39,6 +39,7 @@ export const serviceAreas: ServiceArea[] = [
       "Waterloo",
       "Cambridge",
       "Uptown Waterloo",
+      "Clair Hills",
       "Downtown Kitchener",
       "Elmira and Woolwich",
       "Baden and Wilmot",
