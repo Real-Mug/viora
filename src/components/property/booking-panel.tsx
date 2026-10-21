@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 
 import { ButtonLink } from "@/components/ui/button";
 import { IconInfo } from "@/components/ui/icons";
+import { airbnbOutHref } from "@/lib/outbound";
 import { track } from "@/lib/analytics";
 import { bookingEngineAvailable } from "@/lib/integrations";
 import { buildQuote, formatCents, formatDollars } from "@/lib/pricing/quote";
@@ -192,7 +193,12 @@ export function BookingPanel({ property }: { property: Property }) {
         </p>
       )}
 
-      <div className="mt-6 grid gap-3">
+      <p className="mt-6 text-sm leading-relaxed text-ink-muted">
+        <span className="font-medium text-evergreen-800">Book direct with us:</span> no Airbnb
+        service fee, and you deal with the people who look after the home.
+      </p>
+
+      <div className="mt-3 grid gap-3">
         <ButtonLink
           href={enquiryHref}
           size="lg"
@@ -204,7 +210,7 @@ export function BookingPanel({ property }: { property: Property }) {
 
         {property.airbnbUrl ? (
           <ButtonLink
-            href={property.airbnbUrl}
+            href={airbnbOutHref(property.slug)}
             variant="secondary"
             size="lg"
             fullWidth

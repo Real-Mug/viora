@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/legal/privacy-policy",
 });
 
-const LAST_UPDATED = "2026-09-19";
+const LAST_UPDATED = "2026-10-22";
 
 const sections = [
   { id: "who-we-are", title: "Who we are" },
@@ -75,7 +75,8 @@ export default function PrivacyPolicyPage() {
           browser type and pages requested
         </li>
         <li>
-          Analytics data, but only if you have agreed to analytics cookies. See{" "}
+          Aggregate, cookieless visit counts from Vercel Web Analytics, and fuller analytics data
+          only if you have agreed to analytics cookies. See{" "}
           <Link href="/legal/cookie-policy">the cookie policy</Link>.
         </li>
       </ul>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import { ButtonLink } from "@/components/ui/button";
 import { IconStar } from "@/components/ui/icons";
+import { airbnbOutHref } from "@/lib/outbound";
 import { cn } from "@/lib/cn";
 import { track } from "@/lib/analytics";
 import type { Property } from "@/lib/types/property";
@@ -84,7 +85,7 @@ export function MobileActionBar({ property }: { property: Property }) {
 
         {property.airbnbUrl ? (
           <ButtonLink
-            href={property.airbnbUrl}
+            href={airbnbOutHref(property.slug)}
             variant="secondary"
             external
             className="h-11 shrink-0 px-4 text-sm"
