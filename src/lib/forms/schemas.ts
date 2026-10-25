@@ -50,7 +50,7 @@ const optionalUrl = z
 const requiredNumber = (message: string, build: (n: z.ZodNumber) => z.ZodTypeAny) =>
   z.preprocess(
     (value) => (typeof value === "string" && value.trim() === "" ? undefined : value),
-    build(z.coerce.number({ required_error: message, invalid_type_error: message })),
+    build(z.coerce.number({ error: message })),
   );
 
 const phone = z
@@ -82,8 +82,8 @@ export const hostLeadSchema = z
     phone,
     propertyAddress: safeText(200, 5, "Enter the property address."),
     city: safeText(80, 2, "Enter the city."),
-    province: z.enum(provinceValues, { errorMap: () => ({ message: "Select a province or territory." }) }),
-    propertyType: z.enum(propertyTypeValues, { errorMap: () => ({ message: "Select a property type." }) }),
+    province: z.enum(provinceValues, { error: "Select a province or territory." }),
+    propertyType: z.enum(propertyTypeValues, { error: "Select a property type." }),
     bedrooms: requiredNumber("Enter the number of bedrooms.", (n) => n.int().min(0, "Enter 0 or more.").max(50)),
     bathrooms: requiredNumber("Enter the number of bathrooms.", (n) => n.min(0, "Enter 0 or more.").max(50)),
     maxGuests: requiredNumber("Enter the guest capacity.", (n) => n.int().min(1, "Enter at least 1 guest.").max(100)),
@@ -95,10 +95,10 @@ export const hostLeadSchema = z
       .or(z.literal("")),
     message: safeText(2000).optional().or(z.literal("")),
     preferredContact: z.enum(["email", "phone", "text"], {
-      errorMap: () => ({ message: "Choose how you would like to be contacted." }),
+      error: "Choose how you would like to be contacted.",
     }),
     consent: z.literal(true, {
-      errorMap: () => ({ message: "Please confirm you agree to be contacted about your enquiry." }),
+      error: "Please confirm you agree to be contacted about your enquiry.",
     }),
     ...antiSpam,
   })
@@ -112,12 +112,12 @@ export const contactLeadSchema = z.object({
   email: z.string().trim().toLowerCase().email("Enter a valid email address.").max(254),
   phone,
   topic: z.enum(["co-hosting", "management", "booking", "partnership", "other"], {
-    errorMap: () => ({ message: "Choose what your message is about." }),
+    error: "Choose what your message is about.",
   }),
   message: safeText(2000, 10, "Tell us a little more - at least 10 characters."),
   preferredContact: z.enum(["email", "phone", "text"]),
   consent: z.literal(true, {
-    errorMap: () => ({ message: "Please confirm you agree to be contacted about your enquiry." }),
+    error: "Please confirm you agree to be contacted about your enquiry.",
   }),
   ...antiSpam,
 });
