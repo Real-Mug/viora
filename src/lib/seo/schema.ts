@@ -201,10 +201,12 @@ export function propertySchema(property: Property, propertyReviews: Review[] = [
     },
     ...(property.location.coordinates
       ? {
+          // Rounded to two decimals (about 1 km) whatever the content says:
+          // a precise point plus an exterior photo is a home address.
           geo: {
             "@type": "GeoCoordinates",
-            latitude: property.location.coordinates.lat,
-            longitude: property.location.coordinates.lng,
+            latitude: Math.round(property.location.coordinates.lat * 100) / 100,
+            longitude: Math.round(property.location.coordinates.lng * 100) / 100,
           },
         }
       : {}),
