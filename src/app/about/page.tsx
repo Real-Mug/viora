@@ -6,8 +6,6 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { PageHero } from "@/components/marketing/hero";
 import { CtaBand } from "@/components/marketing/sections";
 import { JsonLd } from "@/components/seo/json-ld";
-import { Note } from "@/components/ui/card";
-import { IconInfo } from "@/components/ui/icons";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { activeServiceAreas } from "@/content/locations";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -71,7 +69,6 @@ export default function AboutPage() {
       />
 
       <PageHero
-        eyebrow="About"
         title="A short-term rental company built around the operational work"
         description="Viora Hosting manages the day-to-day reality of short-term rentals for Canadian property owners: guests, turnovers, listings and the constant small decisions that come with letting a property nightly."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
@@ -173,16 +170,6 @@ export default function AboutPage() {
                   className="h-auto w-full"
                 />
               </div>
-
-              <Note
-                icon={<IconInfo className="h-4 w-4 text-brass-600" />}
-                title="Company details"
-                className="mt-6"
-              >
-                Registered company information, founding date and team details will be published here
-                once confirmed. We have deliberately left this section empty rather than fill it with
-                numbers we cannot substantiate.
-              </Note>
 
               {areas.length > 0 ? (
                 <div className="mt-6 rounded-[var(--radius-card)] border border-line bg-surface-raised p-5">

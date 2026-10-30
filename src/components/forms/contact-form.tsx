@@ -32,7 +32,7 @@ const TOPIC_OPTIONS = [
   { value: "co-hosting", label: "Co-hosting my property" },
   { value: "management", label: "Full rental management" },
   { value: "booking", label: "Staying at a property" },
-  { value: "partnership", label: "Partnership or supplier enquiry" },
+  { value: "partnership", label: "I offer cleaning, trades or other services" },
   { value: "other", label: "Something else" },
 ];
 

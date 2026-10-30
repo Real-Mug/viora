@@ -57,7 +57,6 @@ export default function BecomeAHostPage() {
       />
 
       <PageHero
-        eyebrow="Become a host"
         title="List your property with Viora Hosting"
         description="Send us the details and we will come back with an honest assessment: what we would manage, what we would change first, what it would cost, and whether we think short-term letting suits the property at all."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}

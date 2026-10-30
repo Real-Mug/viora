@@ -36,6 +36,27 @@ function clean(data: Record<string, unknown>): Record<string, unknown> {
   return rest;
 }
 
+/**
+ * The email subject Formspree uses (`_subject`). Owner leads, guest enquiries
+ * and supplier pitches get different subjects so the inbox can filter them.
+ */
+const TOPIC_SUBJECTS: Record<string, string> = {
+  "co-hosting": "Property owner enquiry",
+  management: "Property owner enquiry",
+  booking: "Guest booking enquiry",
+  partnership: "Supplier or services offer",
+  other: "Website message",
+};
+
+export function subjectFor(payload: SubmitPayload): string {
+  if (payload.kind === "host-lead") {
+    const city = typeof payload.data.city === "string" ? payload.data.city.trim() : "";
+    return city ? `New property owner lead: ${city}` : "New property owner lead";
+  }
+  const topic = typeof payload.data.topic === "string" ? payload.data.topic : "";
+  return TOPIC_SUBJECTS[topic] ?? "Website message";
+}
+
 export async function submitLead(payload: SubmitPayload): Promise<SubmitResult> {
   if (!env.formEndpoint) {
     // Fail loudly in development, gracefully in production: the user is told
@@ -57,6 +78,7 @@ export async function submitLead(payload: SubmitPayload): Promise<SubmitResult> 
         kind: payload.kind,
         sourcePath: payload.sourcePath,
         submittedAt: new Date().toISOString(),
+        _subject: subjectFor(payload),
         ...clean(payload.data),
       }),
     });

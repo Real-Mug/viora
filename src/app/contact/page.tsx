@@ -45,7 +45,6 @@ export default function ContactPage() {
       />
 
       <PageHero
-        eyebrow="Contact"
         title="Get in touch"
         description="Whether you own a property, are thinking about letting one, or are staying at one we manage - this reaches the same team."
         breadcrumbs={<Breadcrumbs crumbs={crumbs} />}
@@ -140,6 +139,17 @@ export default function ContactPage() {
                     privacy policy
                   </Link>
                   .
+                </p>
+              </div>
+
+              <div className="rounded-[var(--radius-panel)] border border-line bg-surface-raised p-6">
+                <h2 className="font-sans text-xs font-semibold uppercase tracking-[0.14em] text-ink">
+                  Cleaners and trades
+                </h2>
+                <p className="mt-3 text-[0.875rem] leading-relaxed text-ink-muted">
+                  Offering cleaning or maintenance? Choose &ldquo;I offer cleaning, trades or other
+                  services&rdquo; in the form. We keep those on file and get in touch when we take
+                  on a home in your area.
                 </p>
               </div>
 

@@ -1787,33 +1787,10 @@
    ========================================================================== */
 
 @layer components {
-  /* An <em> inside a display heading becomes the brand's accent word. */
+  /* Headings stay one voice: an <em> inside one is not styled as an accent. */
   h1 em,
   h2 em {
-    font-family: var(--font-fraunces-italic), var(--font-display);
-    font-style: italic;
-    font-variation-settings: "SOFT" 100;
-    background-image: linear-gradient(
-      100deg,
-      var(--color-brass-600) 0%,
-      var(--color-brass-400) 55%,
-      var(--color-brass-600) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    /* Italic overhang would otherwise be clipped by background-clip. */
-    padding-right: 0.06em;
-  }
-
-  .text-linen-50 em,
-  .on-dark em {
-    background-image: linear-gradient(
-      100deg,
-      var(--color-brass-200) 0%,
-      var(--color-brass-400) 60%,
-      var(--color-brass-200) 100%
-    );
+    font-style: normal;
   }
 
   /* --- Hero glass card ------------------------------------------------- */

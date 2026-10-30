@@ -4,21 +4,17 @@ import Link from "next/link";
 import { PropertyCard } from "@/components/property/property-card";
 import { PropertySpotlight } from "@/components/property/property-spotlight";
 import { HomeHero } from "@/components/marketing/hero";
-import { DayInTheLife } from "@/components/marketing/day-in-the-life";
-import { Estimator } from "@/components/marketing/estimator";
 import {
   GuestRatings,
   HeroRatingCard,
   PhotoStrip,
   ProofBand,
 } from "@/components/marketing/showcase";
-import { MoneyFlow } from "@/components/marketing/money-flow";
 import { HostingWalkthrough } from "@/components/marketing/hosting-walkthrough";
 import {
   CtaBand,
   FaqSection,
   ServicesGrid,
-  TrustSection,
 } from "@/components/marketing/sections";
 import { NoReviewsYet } from "@/components/reviews/review-list";
 import { ReviewMarquee } from "@/components/reviews/review-marquee";
@@ -27,8 +23,6 @@ import { ArrowRight, ButtonLink } from "@/components/ui/button";
 import { SampleBadge } from "@/components/ui/badge";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
-import { IconMapPin } from "@/components/ui/icons";
-import { activeServiceAreas } from "@/content/locations";
 import { homepageFaqs } from "@/content/faqs";
 import { sortedPosts } from "@/content/posts";
 import { featuredServices } from "@/content/services";
@@ -47,6 +41,11 @@ export const metadata: Metadata = pageMetadata({
   path: "/",
 });
 
+/** "Waterloo, Kitchener and London" */
+function listCities(cities: string[]): string {
+  return cities.length > 1 ? `${cities.slice(0, -1).join(", ")} and ${cities.at(-1)}` : cities[0] ?? "";
+}
+
 export default async function HomePage() {
   const services = featuredServices().slice(0, 6);
   // The spotlight home gets its own large band; the grid shows the next three
@@ -60,7 +59,11 @@ export default async function HomePage() {
   // /reviews under the property they describe, so they are excluded here.
   const allReviews = await reviews.list();
   const companyReviews = allReviews.filter((review) => !review.propertySlug);
-  const areas = activeServiceAreas();
+  // Where the homes actually are, from the property records - not a list of
+  // markets we would like to be in.
+  const managedCities = [
+    ...new Set([spotlight, ...showcase].filter((p) => p !== undefined).map((p) => p.location.city)),
+  ];
   const faqs = homepageFaqs();
   const latestPosts = sortedPosts().slice(0, 3);
 
@@ -79,14 +82,8 @@ export default async function HomePage() {
       />
 
       <HomeHero
-        eyebrow="Short-term rental management for property owners"
-        title={
-          <>
-            Airbnb co-hosting across Canada,
-            <br className="hidden sm:block" /> <em>done properly.</em>
-          </>
-        }
-        description="We co-host Airbnb and short-term rentals for owners anywhere in Canada. Listing, guests, turnovers and reporting - handled."
+        title="Airbnb management for Canadian homeowners"
+        description="We run your listing, guests, cleaning and pricing, and send you a report every month. You own the home and keep the income."
         primaryCta={CTA.primary}
         // Owners are the audience here; the properties section further down is the proof.
         secondaryCta={{ label: "How it works", href: "/how-it-works" }}
@@ -99,31 +96,15 @@ export default async function HomePage() {
           webm: "/video/home-hero.webm",
         }}
         footnote={
-          areas.length ? (
+          managedCities.length ? (
             <p>
-              Working with owners in{" "}
-              {areas.slice(0, 4).map((area, index, list) => (
-                <span key={area.slug}>
-                  <Link
-                    href={`/locations/${area.slug}`}
-                    className="underline decoration-brass-300/60 underline-offset-4 transition-colors hover:text-white"
-                  >
-                    {area.city}
-                  </Link>
-                  {index < list.length - 1 ? ", " : ""}
-                </span>
-              ))}
-              {areas.length > 4 ? (
-                <>
-                  {" and "}
-                  <Link
-                    href="/locations"
-                    className="underline decoration-brass-300/60 underline-offset-4 transition-colors hover:text-white"
-                  >
-                    other Canadian markets
-                  </Link>
-                </>
-              ) : null}
+              Homes we manage today:{" "}
+              <Link
+                href="/properties"
+                className="underline decoration-brass-300/60 underline-offset-4 transition-colors hover:text-white"
+              >
+                {listCities(managedCities)}
+              </Link>
               .
             </p>
           ) : null
@@ -133,27 +114,14 @@ export default async function HomePage() {
 
       <ProofBand properties={showcase} />
 
-      <TrustSection
-        image={{
-          src: "/images/editorial/waterloo-region-home.webp",
-          alt: "A living area inside a Viora Hosting house in Waterloo, Ontario",
-          caption: "Every stay, run to the same standard.",
-        }}
-      />
-
       {/* --- Services ------------------------------------------------------ */}
       <Section tone="sunken" aria-labelledby="services-heading">
         <Container>
           <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <SectionHeading
               id="services-heading"
-              eyebrow="What we do"
-              title={
-                <>
-                  Services built around <em>how a rental runs</em>
-                </>
-              }
-              description="Take the whole operation, or just the part costing you your evenings."
+              title="What we do"
+              description="Hand us the whole thing, or only the parts you don't have time for."
             />
             <ButtonLink href="/services" variant="secondary" className="shrink-0">
               All services
@@ -173,13 +141,8 @@ export default async function HomePage() {
             <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
               <SectionHeading
                 id="properties-heading"
-                eyebrow="Properties"
-                title={
-                  <>
-                    The kind of properties <em>we host</em>
-                  </>
-                }
-                description="Presented properly, kept to a standard, with a real team behind the listing."
+                title="Homes we manage"
+                description="Real listings, live on Airbnb now. Click through and read what guests said."
               />
               <ButtonLink href="/properties" variant="secondary" className="shrink-0">
                 {CTA.secondary.label}
@@ -214,71 +177,17 @@ export default async function HomePage() {
 
       <HostingWalkthrough />
 
-      <DayInTheLife />
-
-      <MoneyFlow tone="default" />
-
-      <Estimator />
-
-      {/* --- Service areas -------------------------------------------------- */}
-      {areas.length > 0 ? (
-        <Section aria-labelledby="areas-heading">
-          <Container>
-            <Reveal>
-              <SectionHeading
-                id="areas-heading"
-                eyebrow="Where we work"
-                title={
-                  <>
-                    Markets we know <em>properly</em>
-                  </>
-                }
-                description="We only take on markets where we have reliable cleaning and maintenance capacity."
-              />
-            </Reveal>
-
-            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {areas.map((area, index) => (
-                <Reveal key={area.slug} as="li" delay={index * 60}>
-                  <Link
-                    href={`/locations/${area.slug}`}
-                    className="group flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-surface-raised p-5 shadow-subtle transition-colors hover:border-line-strong"
-                  >
-                    <span className="flex items-center gap-2 text-[1.0625rem] font-medium text-ink transition-colors group-hover:text-evergreen-800">
-                      <IconMapPin className="h-5 w-5 text-brass-600" />
-                      {area.city}
-                    </span>
-                    <span className="mt-2 clamp-2 text-sm leading-relaxed text-ink-muted">
-                      {area.summary}
-                    </span>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-evergreen-800">
-                      Local guide
-                      <ArrowRight />
-                    </span>
-                  </Link>
-                </Reveal>
-              ))}
-            </ul>
-          </Container>
-        </Section>
-      ) : null}
-
       {/* --- Reviews -------------------------------------------------------- */}
       <Section tone="sunken" aria-labelledby="reviews-heading">
         <Container>
           <Reveal>
             <SectionHeading
               id="reviews-heading"
-              eyebrow="Reviews"
-              title={
-                <>
-                  What guests <em>actually</em> say
-                </>
-              }
+              title="Guest ratings"
               description={
                 companyReviews.length
                   ? "Reviews of the service. Reviews of a specific home sit under that property."
-                  : "Guest scores from the public Airbnb pages of the homes we run, category by category."
+                  : "Taken from the Airbnb pages of the homes we manage."
               }
               align="center"
             />
@@ -302,10 +211,6 @@ export default async function HomePage() {
             ) : showcase.some((property) => property.externalRating) ? (
               <>
                 <GuestRatings properties={showcase} />
-                <p className="mt-8 text-center text-sm text-ink-subtle">
-                  Scores as published on each listing&apos;s Airbnb page. Written owner testimonials
-                  will appear here once we can link to where they came from.
-                </p>
               </>
             ) : (
               <NoReviewsYet />
@@ -323,9 +228,8 @@ export default async function HomePage() {
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
               <SectionHeading
                 id="resources-heading"
-                eyebrow="Resources"
                 title="Guides for Canadian hosts"
-                description="Co-hosting, operations and pricing. Useful whether or not you work with us."
+                description="Fees, rules, taxes and running a rental, written for owners."
               />
               <ButtonLink href="/blog" variant="secondary" className="shrink-0">
                 All resources
@@ -361,13 +265,9 @@ export default async function HomePage() {
       ) : null}
 
       <CtaBand
-        title={
-          <>
-            Tell us about <em>your property</em>
-          </>
-        }
-        description="Send the details. You get an honest read on what we would run, what we would change first, and what it costs."
-        note="If short-term letting is the wrong use for your property, we will say so."
+        title="Tell us about your property"
+        description="Send a few details. We'll reply with what we would do, what it would cost, and whether short-term renting makes sense for your home."
+        note="Free, and no obligation."
       />
     </>
   );

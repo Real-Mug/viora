@@ -341,7 +341,7 @@ export function CtaBand({
 
 export function FaqSection({
   items,
-  eyebrow = "Questions",
+  eyebrow,
   title = "Common questions from property owners",
   description,
   showAllLink = true,

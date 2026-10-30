@@ -76,7 +76,7 @@ export function HomeHero({
   footnote,
   aside,
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: ReactNode;
   description: string;
   primaryCta: { label: string; href: string };
@@ -160,12 +160,14 @@ export function HomeHero({
       <Container className="relative">
         <div className="grid min-h-[34rem] items-end gap-12 py-20 sm:min-h-[38rem] lg:min-h-[clamp(44rem,calc(100svh-var(--header-height)),60rem)] lg:grid-cols-[minmax(0,1fr)_22rem] lg:py-28">
           <div className="max-w-3xl">
-            <Eyebrow onDark className="rise-in">
-              {eyebrow}
-            </Eyebrow>
+            {eyebrow ? (
+              <Eyebrow onDark className="rise-in">
+                {eyebrow}
+              </Eyebrow>
+            ) : null}
 
             <h1
-              className="rise-in mt-5 text-display-xl text-linen-50"
+              className={cn("rise-in text-display-xl text-linen-50", eyebrow && "mt-5")}
               style={{ animationDelay: "60ms" }}
             >
               {title}
