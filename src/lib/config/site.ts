@@ -130,6 +130,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: "Reviews", href: "/reviews" },
       { label: "Become a Host", href: "/become-a-host" },
       { label: "Contact", href: "/contact" },
+      { label: "Owner Billing", href: "/owners/billing" },
     ],
   },
   {
@@ -170,3 +171,19 @@ export const CTA = {
   secondary: { label: "Explore Properties", href: "/properties" },
   contact: { label: "Contact Viora Hosting", href: "/contact" },
 } as const;
+
+/**
+ * Owner billing, run on Stripe (pre-authorised debit for monthly expenses and
+ * the HST on our fee; the fee itself comes through Airbnb's co-host payout).
+ *
+ * Both are Stripe-hosted pages, so no card or bank details ever touch this
+ * site. Paste the links from the Stripe dashboard here; while a value is
+ * empty its button is hidden and the page tells owners we will email the link.
+ *   setupUrl  - where a new owner authorises the bank debit once
+ *   portalUrl - Stripe customer portal login (Settings > Billing > Customer
+ *               portal > login link): invoices, receipts, change bank account
+ */
+export const ownerBilling = {
+  setupUrl: "",
+  portalUrl: "",
+};
