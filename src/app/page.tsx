@@ -4,31 +4,16 @@ import Link from "next/link";
 import { PropertyCard } from "@/components/property/property-card";
 import { PropertySpotlight } from "@/components/property/property-spotlight";
 import { HomeHero } from "@/components/marketing/hero";
-import {
-  GuestRatings,
-  HeroRatingCard,
-  PhotoStrip,
-  ProofBand,
-} from "@/components/marketing/showcase";
-import { HostingWalkthrough } from "@/components/marketing/hosting-walkthrough";
-import {
-  CtaBand,
-  FaqSection,
-  ServicesGrid,
-} from "@/components/marketing/sections";
-import { NoReviewsYet } from "@/components/reviews/review-list";
-import { ReviewMarquee } from "@/components/reviews/review-marquee";
+import { HeroRatingCard, ProofBand } from "@/components/marketing/showcase";
+import { FaqSection } from "@/components/marketing/sections";
 import { JsonLd } from "@/components/seo/json-ld";
-import { ArrowRight, ButtonLink } from "@/components/ui/button";
-import { SampleBadge } from "@/components/ui/badge";
+import { ButtonLink } from "@/components/ui/button";
+import { IconCheck } from "@/components/ui/icons";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
 import { homepageFaqs } from "@/content/faqs";
-import { sortedPosts } from "@/content/posts";
-import { featuredServices } from "@/content/services";
-import { showPlaceholders } from "@/lib/config/env";
 import { CTA } from "@/lib/config/site";
-import { properties, reviews } from "@/lib/data";
+import { properties } from "@/lib/data";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { faqSchema, graph, webPageSchema } from "@/lib/seo/schema";
 
@@ -41,13 +26,38 @@ export const metadata: Metadata = pageMetadata({
   path: "/",
 });
 
-/** "Waterloo, Kitchener and London" */
-function listCities(cities: string[]): string {
-  return cities.length > 1 ? `${cities.slice(0, -1).join(", ")} and ${cities.at(-1)}` : cities[0] ?? "";
-}
+/**
+ * The homepage is deliberately short: what we do, proof, how it works, the
+ * homes, what is included, a few questions, and a way to get in touch. The
+ * detail lives on /services, /how-it-works, /reviews and /blog.
+ */
+const STEPS = [
+  {
+    title: "Tell us about your home",
+    body: "Send a few details. We reply with what it could earn and what we would charge.",
+  },
+  {
+    title: "We get it ready",
+    body: "Photos, the Airbnb listing, pricing, cleaners and the house rules. We set it all up.",
+  },
+  {
+    title: "We run it, you get paid",
+    body: "We handle guests, cleaning and repairs. Airbnb pays you directly, and we send a report every month.",
+  },
+];
+
+const INCLUDED = [
+  "Your Airbnb listing and photos",
+  "Pricing that changes with demand",
+  "All guest messages, day and night",
+  "Cleaning after every stay",
+  "Supplies and restocking",
+  "Repairs and maintenance calls",
+  "City licence and tax reminders",
+  "A clear report every month",
+];
 
 export default async function HomePage() {
-  const services = featuredServices().slice(0, 6);
   // The spotlight home gets its own large band; the grid shows the next three
   // featured homes so it is not repeated directly underneath.
   const featured = await properties.list({ featuredOnly: true, pageSize: 4 });
@@ -55,17 +65,12 @@ export default async function HomePage() {
   const spotlight = fallback.items.find((property) => property.spotlight);
   const showcase = fallback.items.filter((property) => property !== spotlight).slice(0, 3);
 
-  // Reviews about Viora Hosting itself. Property-specific reviews are shown on
-  // /reviews under the property they describe, so they are excluded here.
-  const allReviews = await reviews.list();
-  const companyReviews = allReviews.filter((review) => !review.propertySlug);
   // Where the homes actually are, from the property records - not a list of
   // markets we would like to be in.
   const managedCities = [
     ...new Set([spotlight, ...showcase].filter((p) => p !== undefined).map((p) => p.location.city)),
   ];
-  const faqs = homepageFaqs();
-  const latestPosts = sortedPosts().slice(0, 3);
+  const faqs = homepageFaqs().slice(0, 4);
 
   return (
     <>
@@ -82,11 +87,10 @@ export default async function HomePage() {
       />
 
       <HomeHero
-        title="Airbnb management for Canadian homeowners"
-        description="We run your listing, guests, cleaning and pricing, and send you a report every month. You own the home and keep the income."
+        title="We run your Airbnb. You keep the income."
+        description="Guests, cleaning, pricing and repairs, all handled for you. For homeowners across Canada."
         primaryCta={CTA.primary}
-        // Owners are the audience here; the properties section further down is the proof.
-        secondaryCta={{ label: "How it works", href: "/how-it-works" }}
+        secondaryCta={{ label: "See our homes", href: "/properties" }}
         image={{
           src: "/images/hero/home-hero.webp",
           alt: "The fenced garden of a Viora Hosting house in Waterloo, Ontario, on a summer afternoon",
@@ -114,27 +118,29 @@ export default async function HomePage() {
 
       <ProofBand properties={showcase} />
 
-      {/* --- Services ------------------------------------------------------ */}
-      <Section tone="sunken" aria-labelledby="services-heading">
+      {/* --- How it works --------------------------------------------------- */}
+      <Section aria-labelledby="steps-heading">
         <Container>
-          <Reveal className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-            <SectionHeading
-              id="services-heading"
-              title="What we do"
-              description="Hand us the whole thing, or only the parts you don't have time for."
-            />
-            <ButtonLink href="/services" variant="secondary" className="shrink-0">
-              All services
-            </ButtonLink>
+          <Reveal>
+            <SectionHeading id="steps-heading" title="How it works" />
           </Reveal>
-
-          <ServicesGrid services={services} className="mt-12" />
+          <ol className="mt-10 grid gap-8 md:grid-cols-3">
+            {STEPS.map((step, index) => (
+              <Reveal key={step.title} as="li" delay={index * 80}>
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-evergreen-900 font-display text-lg text-linen-50">
+                  {index + 1}
+                </span>
+                <h3 className="mt-4 text-[1.25rem] text-ink">{step.title}</h3>
+                <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-muted">{step.body}</p>
+              </Reveal>
+            ))}
+          </ol>
         </Container>
       </Section>
 
       {spotlight ? <PropertySpotlight property={spotlight} /> : null}
 
-      {/* --- Featured properties ------------------------------------------- */}
+      {/* --- Homes ---------------------------------------------------------- */}
       {showcase.length > 0 ? (
         <Section aria-labelledby="properties-heading">
           <Container>
@@ -142,23 +148,12 @@ export default async function HomePage() {
               <SectionHeading
                 id="properties-heading"
                 title="Homes we manage"
-                description="Real listings, live on Airbnb now. Click through and read what guests said."
+                description="Real homes, live on Airbnb now."
               />
               <ButtonLink href="/properties" variant="secondary" className="shrink-0">
                 {CTA.secondary.label}
               </ButtonLink>
             </Reveal>
-
-            {showPlaceholders && showcase.some((property) => property.isPlaceholder) ? (
-              <div className="mt-8 flex flex-wrap items-center gap-3 rounded-[var(--radius-card)] border border-brass-200 bg-brass-50 p-4 text-sm text-brass-900">
-                <SampleBadge />
-                <p>
-                  Sample listings, shown while the site is prepared for launch. Not properties under
-                  management.
-                </p>
-              </div>
-            ) : null}
-
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {showcase.map((property, index) => (
                 <Reveal key={property.id} delay={index * 90} className="h-full">
@@ -167,108 +162,41 @@ export default async function HomePage() {
               ))}
             </div>
           </Container>
-
-          {/* Full-bleed ribbon of the real interiors behind those listings. */}
-          <div className="mt-14">
-            <PhotoStrip properties={showcase} />
-          </div>
         </Section>
       ) : null}
 
-      <HostingWalkthrough />
-
-      {/* --- Reviews -------------------------------------------------------- */}
-      <Section tone="sunken" aria-labelledby="reviews-heading">
+      {/* --- What's included ------------------------------------------------ */}
+      <Section tone="sunken" aria-labelledby="included-heading">
         <Container>
-          <Reveal>
-            <SectionHeading
-              id="reviews-heading"
-              title="Guest ratings"
-              description={
-                companyReviews.length
-                  ? "Reviews of the service. Reviews of a specific home sit under that property."
-                  : "Taken from the Airbnb pages of the homes we manage."
-              }
-              align="center"
-            />
-          </Reveal>
-          <div className="mt-10">
-            {companyReviews.length ? (
-              <>
-                {/*
-                  Full-bleed: the wall is pulled out of the container so cards
-                  run to the window edges and the mask does the framing.
-                */}
-                <div className="-mx-4 sm:-mx-6 lg:-mx-10">
-                  <ReviewMarquee reviews={companyReviews} />
-                </div>
-                <div className="mt-10 flex justify-center">
-                  <ButtonLink href="/reviews" variant="secondary">
-                    Read all reviews
-                  </ButtonLink>
-                </div>
-              </>
-            ) : showcase.some((property) => property.externalRating) ? (
-              <>
-                <GuestRatings properties={showcase} />
-              </>
-            ) : (
-              <NoReviewsYet />
-            )}
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-start">
+            <Reveal>
+              <SectionHeading
+                id="included-heading"
+                title="What we take care of"
+                description="Everything a guest touches, and everything you would rather not."
+              />
+              <ButtonLink href="/services" variant="secondary" className="mt-6">
+                All services
+              </ButtonLink>
+            </Reveal>
+            <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+              {INCLUDED.map((item) => (
+                <li key={item} className="flex gap-3 text-[1rem] text-ink">
+                  <IconCheck className="mt-1 h-4 w-4 shrink-0 text-brass-600" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </Container>
       </Section>
 
       <FaqSection items={faqs} />
-
-      {/* --- Resources ------------------------------------------------------ */}
-      {latestPosts.length > 0 ? (
-        <Section tone="sunken" aria-labelledby="resources-heading">
-          <Container>
-            <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-              <SectionHeading
-                id="resources-heading"
-                title="Guides for Canadian hosts"
-                description="Fees, rules, taxes and running a rental, written for owners."
-              />
-              <ButtonLink href="/blog" variant="secondary" className="shrink-0">
-                All resources
-              </ButtonLink>
-            </div>
-
-            <ul className="mt-10 grid gap-6 md:grid-cols-3">
-              {latestPosts.map((post, index) => (
-                <Reveal key={post.slug} as="li" delay={index * 80}>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="group flex h-full flex-col rounded-[var(--radius-card)] border border-line bg-surface-raised p-6 shadow-subtle transition-colors hover:border-line-strong"
-                  >
-                    <span className="text-xs font-medium uppercase tracking-[0.12em] text-brass-700">
-                      {post.readingMinutes} min read
-                    </span>
-                    <h3 className="mt-3 text-[1.125rem] leading-snug text-ink transition-colors group-hover:text-evergreen-800">
-                      {post.title}
-                    </h3>
-                    <p className="mt-3 clamp-3 flex-1 text-sm leading-relaxed text-ink-muted">
-                      {post.excerpt}
-                    </p>
-                    <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-evergreen-800">
-                      Read
-                      <ArrowRight />
-                    </span>
-                  </Link>
-                </Reveal>
-              ))}
-            </ul>
-          </Container>
-        </Section>
-      ) : null}
-
-      <CtaBand
-        title="Tell us about your property"
-        description="Send a few details. We'll reply with what we would do, what it would cost, and whether short-term renting makes sense for your home."
-        note="Free, and no obligation."
-      />
     </>
   );
+}
+
+/** "Waterloo, Kitchener and London" */
+function listCities(cities: string[]): string {
+  return cities.length > 1 ? `${cities.slice(0, -1).join(", ")} and ${cities.at(-1)}` : cities[0] ?? "";
 }
