@@ -54,6 +54,16 @@ export function MobileActionBar({ property }: { property: Property }) {
     };
   }, []);
 
+  // Tell the floating WhatsApp button to sit above this bar while it shows.
+  useEffect(() => {
+    const root = document.documentElement;
+    if (visible) root.dataset.actionBar = "visible";
+    else delete root.dataset.actionBar;
+    return () => {
+      delete root.dataset.actionBar;
+    };
+  }, [visible]);
+
   const rating = property.externalRating;
 
   return (

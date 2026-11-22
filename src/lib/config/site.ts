@@ -56,9 +56,9 @@ export const siteConfig: SiteConfig = {
 
   contact: {
     email: "bakhtsanankhan@gmail.com",
-    // PLACEHOLDER: leave empty to hide the phone link site-wide.
-    phone: "",
-    phoneDisplay: "",
+    // The same number takes calls and WhatsApp (see `whatsapp` below).
+    phone: "+15483501194",
+    phoneDisplay: "+1 (548) 350-1194",
     // PLACEHOLDER: a mailing/registered address enables LocalBusiness schema.
     // Leave the fields blank and the schema falls back to Organization only.
     address: {
@@ -187,3 +187,17 @@ export const ownerBilling = {
   setupUrl: "",
   portalUrl: "",
 };
+
+/**
+ * WhatsApp chat. Drives the floating "Chat with us" button on every page and
+ * the WhatsApp link on the contact page. `number` is digits only, country code
+ * first, as wa.me requires; `message` pre-fills the visitor's first message.
+ */
+export const whatsapp = {
+  number: "15483501194",
+  message: "Hi Viora Hosting, I have a question.",
+};
+
+export function whatsappHref(message = whatsapp.message): string {
+  return `https://wa.me/${whatsapp.number}?text=${encodeURIComponent(message)}`;
+}

@@ -4,6 +4,7 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
+import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { Analytics } from "@/components/analytics/analytics";
 import { CookieBanner } from "@/components/analytics/cookie-banner";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -90,6 +91,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
 
         <Footer />
+
+        <WhatsAppButton />
 
         <CookieBanner />
         <Analytics />

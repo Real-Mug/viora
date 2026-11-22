@@ -7,9 +7,10 @@ import { ContactForm } from "@/components/forms/contact-form";
 import { PageHero } from "@/components/marketing/hero";
 import { JsonLd } from "@/components/seo/json-ld";
 import { IconClock, IconMail, IconPhone, IconShield } from "@/components/ui/icons";
+import { IconWhatsApp } from "@/components/ui/icon-whatsapp";
 import { Container, Section } from "@/components/ui/section";
 import { activeServiceAreas } from "@/content/locations";
-import { siteConfig } from "@/lib/config/site";
+import { siteConfig, whatsappHref } from "@/lib/config/site";
 import { pageMetadata } from "@/lib/seo/metadata";
 import { breadcrumbSchema, graph, webPageSchema, type Crumb } from "@/lib/seo/schema";
 
@@ -93,12 +94,21 @@ export default function ContactPage() {
                     <li className="flex gap-3">
                       <IconPhone className="mt-0.5 h-5 w-5 shrink-0 text-brass-600" />
                       <div>
-                        <p className="text-sm font-medium text-ink">Phone</p>
+                        <p className="text-sm font-medium text-ink">Phone and WhatsApp</p>
                         <a
                           href={`tel:${contact.phone.replace(/[^\d+]/g, "")}`}
                           className="text-[0.9375rem] text-evergreen-800 underline-offset-4 hover:underline"
                         >
                           {contact.phoneDisplay || contact.phone}
+                        </a>
+                        <a
+                          href={whatsappHref()}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-1 flex items-center gap-1.5 text-[0.9375rem] font-medium text-evergreen-800 underline-offset-4 hover:underline"
+                        >
+                          <IconWhatsApp className="h-4 w-4 text-[#1da851]" />
+                          Chat on WhatsApp
                         </a>
                       </div>
                     </li>

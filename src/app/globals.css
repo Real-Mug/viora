@@ -1962,3 +1962,19 @@
     }
   }
 }
+
+/* Floating WhatsApp button: clear of the screen edge and the phone's safe
+   areas, and lifted above the property page's phone action bar while it shows. */
+.whatsapp-float {
+  right: max(1rem, env(safe-area-inset-right, 0px));
+  bottom: max(1rem, calc(env(safe-area-inset-bottom, 0px) + 0.5rem));
+  transition: bottom 200ms ease, transform 200ms ease;
+}
+@media (max-width: 1023.98px) {
+  html[data-action-bar="visible"] .whatsapp-float {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float { transition: none; }
+}
