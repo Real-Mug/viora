@@ -1,0 +1,6 @@
+Contact: mailto:viorahosting@gmail.com
+Contact: https://github.com/Real-Mug/viora/security/advisories/new
+Policy: https://github.com/Real-Mug/viora/blob/main/SECURITY.md
+Expires: 2027-11-23T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.viorahosting.com/.well-known/security.txt

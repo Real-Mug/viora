@@ -9,6 +9,11 @@ import { PROVINCE_NAMES, PROPERTY_TYPE_LABELS } from "@/lib/types/property";
  * because anything sent from a client is untrusted.
  */
 
+// Never compile validators with new Function(). The site's CSP has no
+// 'unsafe-eval', and without this zod probes for it on load, which the browser
+// reports as a CSP violation on every page.
+z.config({ jitless: true });
+
 const provinceValues = Object.keys(PROVINCE_NAMES) as [string, ...string[]];
 const propertyTypeValues = Object.keys(PROPERTY_TYPE_LABELS) as [string, ...string[]];
 
