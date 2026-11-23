@@ -52,7 +52,7 @@ In `src/lib/config/site.ts`:
 
 ### Form endpoint — done
 
-- [x] Forms post to Formspree (`https://formspree.io/f/mzedvwbg`, the default in
+- [x] Forms post to Formspree (`https://formspree.io/f/xbgopknb`, the default in
       `src/lib/config/env.ts`). `NEXT_PUBLIC_FORM_ENDPOINT` overrides it.
 - [x] Submit each form end to end and confirm the message arrives
 - [x] Confirm the receiving inbox is monitored
