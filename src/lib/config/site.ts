@@ -55,7 +55,7 @@ export const siteConfig: SiteConfig = {
   locale: "en-CA",
 
   contact: {
-    email: "bakhtsanankhan@gmail.com",
+    email: "viorahosting@gmail.com",
     // The same number takes calls and WhatsApp (see `whatsapp` below).
     phone: "+15483501194",
     phoneDisplay: "+1 (548) 350-1194",

@@ -41,7 +41,7 @@ where we work, and the site copy says so.
 
 In `src/lib/config/site.ts`:
 
-- [x] `contact.email` — `bakhtsanankhan@gmail.com`
+- [x] `contact.email` — `viorahosting@gmail.com`
 - [ ] `contact.phone` / `phoneDisplay` — blank, so no phone link renders. Fill in
       or leave blank deliberately.
 - [ ] `legalName` — the registered entity name
