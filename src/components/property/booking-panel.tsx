@@ -29,6 +29,8 @@ import type { Property } from "@/lib/types/property";
  * point of building it this way now.
  */
 
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+
 function todayIso(offsetDays = 0): string {
   const date = new Date();
   date.setDate(date.getDate() + offsetDays);
@@ -63,9 +65,12 @@ export function BookingPanel({ property }: { property: Property }) {
   const rate = property.pricing?.baseNightlyRate;
   const minimumNights = property.pricing?.minimumStayNights;
 
-  const enquiryHref = `/contact/?property=${encodeURIComponent(property.slug)}${
-    checkIn ? `&from=${checkIn}` : ""
-  }${checkOut ? `&to=${checkOut}` : ""}&guests=${adults + children}`;
+  // Only well-formed dates reach the link, and every value is URL-encoded.
+  const enquiryParams = new URLSearchParams({ property: property.slug });
+  if (ISO_DATE.test(checkIn)) enquiryParams.set("from", checkIn);
+  if (ISO_DATE.test(checkOut)) enquiryParams.set("to", checkOut);
+  enquiryParams.set("guests", String(adults + children));
+  const enquiryHref = `/contact/?${enquiryParams.toString()}`;
 
   return (
     <div className="rounded-[var(--radius-panel)] border border-line bg-surface-raised p-5 shadow-card sm:p-6">
